@@ -179,10 +179,12 @@ a {
   //background-color: transparent;
   -webkit-transition: color .4s;
   transition: color .4s;
+  font-weight: bold;
 }
 a:hover {
   color: #b1b1b1;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 
@@ -443,8 +445,7 @@ blockquote {
   margin: 1.5rem 0;
   padding: 0 0 0 10px;
   font-style: normal;
-  font-size: 100%;
   line-height: 1.8rem;
   border-left: 3px solid #D0E5F2;
-  font-size: 1.3rem;
+  font-size: 95%;
 } 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: home
 title:  "Welcome to COSE 371"
 date: 2019-03-02
 categories: Home
