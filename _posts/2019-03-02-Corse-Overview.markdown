@@ -27,4 +27,4 @@ categories: post
 
 - 수업자료(교재)
   - Database System Concepts. 6th Edition, Silberschatz, Korth, and Sudarshan, McGraw Hill. 
-  - [Lecture Notes](https://cose371.github.io/notes/)
+  - [Lecture Notes(link)](https://cose371.github.io/notes/)

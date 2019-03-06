@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "Week One: Course Introduction"
+date: 2019-03-06
+categories: LectureNote Q&A
+---
+
+데이터베이스 COSE 371(2) 첫 강의내용입니다. Lecture Note를 확인하세요.
+
+- Week one: Introduction [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EQgRISwsTLpFvY23687uPpUBJ2Dq2L_5mrL_JLZ9AIzIhA?e=OE2TTl) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZDr3dH2WuFKk1Km0EfiQrUBQ5a0q39ecSEA8r16i03GRw?e=esnGZR)
+
+
+---
+
+질의응답 Detail
+
+## Database Language 관련 질문
+Q1. database language 다시 한번만 알려주세요 sql도 database language중 하나인가요?
+
+> Database Language는 Database와 사용자의 Interaction을 위한 언어입니다. 일반적으로 DataBase Management System (DBMS)은 인터페이스로서 Database Language를 제공하며, 이 언어로 사용자는 Database와 관련된 여러 작업을 수행하게 됩니다. 예를 들어, 데이터에 대한 접근권한을 설정하고([DCL](https://en.wikipedia.org/wiki/Data_control_language)), 데이터 타입을 만들거나 변경하고([DDL](https://en.wikipedia.org/wiki/Data_definition_language)), 데이터를 추가하거나 수정하며 ([DML](https://en.wikipedia.org/wiki/Data_manipulation_language)), 데이터를 질의([DQL](https://en.wikipedia.org/wiki/Query_language))합니다. 수업에서는 DDL, DML, DCL만 다루었고 DQL은 다루지 않았는데, 이는 DML이 DQL을 포함하는 개념으로 간주하기 때문입니다 (책 기준). SQL은 현재 가장 많이 사용되는 Database Language입니다. 주로 관계형 DBMS에서 사용됩니다. 
+
+Q2. dml ddl dcl을 구분하는 핵심은 무엇인가요? 명확한 기준점을 알고싶습니다.
+
+Q3. DDL은 schema적인 레벨, DML은 instance적인 레벨의 데이터를 다루는 것이라고 생각하면 되나요?
+
+> DDL은 데이터베이스 스키마와 관련된 작업을 할 때 사용하는 언어가 맞습니다. DML의 경우 데이터베이스 질의 (원하는 정보 탐색)나 수정 등의 작업에서 사용되며, 스키마 내용을 변경하는 데에 사용되지는 않습니다. 그러한 면에서 제가 수업시간에 'instance적인 레벨의 데이터를 다룬다'라고 표현한 것인데, 이는 여러분들의 이해를 도우려고 한 말이고 일반적으로 많이 사용되는 표현은 아닙니다. DCL의 경우 일반적으로 많이 사용하는 표현입니다만 교과서에는 언급되지 않은 내용입니다. DCL은 주로 권한과 관련된 작업을 하는 언어를 말합니다. '어떤 유저에게 어떠한 relation에 대해 정보조회만 가능하게끔 설정한다' 등의 작업을 지시할 수 있습니다. 그런데 이러한 하위 언어들을 서로 완전히 구분되는 개념이라고 보기에는 무리가 있습니다. [SQL](https://en.wikipedia.org/wiki/SQL)은 DDL, DML (+ DQL 포함), DCL을 모두 포함하고 있습니다. 즉, 네 개념이 서로 따로 돌아다니는 개념이 아닌 데이터베이스 언어의 구성요소들 이라고 보시면 될 것 같습니다. 넷을 구분하는 비교적 명확한 기준은 다음과 같습니다. 
+
+- DDL, DML, DCL. DQL 구분 기준 ([Wiki](https://en.wikipedia.org/wiki/Database#Database_languages))
+  - Data control language (DCL) – controls access to data;
+  - Data definition language (DDL) – defines data types such as creating, altering, or dropping and the relationships among them;
+  - Data manipulation language (DML) – performs tasks such as inserting, updating, or deleting data occurrences;
+  - Data query language (DQL) – allows searching for information and computing derived information -> Read Only 작업
+  - 참고: DML이 DQL을 포함하는 개념으로 보기도 함
+
+
+## 스키마 질문
+Q4. 동일한 스키마가 존재할수있나요? 존재한다면 동일한 인스턴스를 매핑해야하나요
+
+Q5. logical schema랑 phiscal schema 차이 좀 알려주세요
+
+> (교재표현) The physical schema describes the database design at the physical level, while the logical schema describes the database design at the logical level.
+
+Q6. 인스턴스가 스키마에 input하기에 부적격 상태일때 input을 시도하는 경우에는 어떻게 되나요?
+
+> DBMS 설정에 따라 다릅니다만, 심각하게 부적격한 tuple을 삽입하려는 경우 에러가 반환됩니다.
+
+![Imgur](https://i.imgur.com/VwjtKZt.png)   
+
+Q7. 이런 테이블들은 logical schema인건가요? 그러면 physical level에선 배열로 저장이 되나요?!
+
+Q8. 만약, 데이터가 적재된상태에서 스키마를 변경하면 테이블 전체를 삭제후 변경하게되나요
+
+
+## Data independence
+Q9. physical data independence 다시 한번 설명 해주세요~
+
+## Transaction
+
+Q10. Transaction이 무엇인지 다시한번 설명해주실수있나요??
+
+> ATM에서의 송금 작업은 두단계로 이루어집니다. A계좌에서 돈 차감하기, B계좌에 돈 더하기. 이렇게 송금작업은 두단계로 이루어지지만, 논리적으로는 '돈을 보낸다'라는 하나의 작업 단위입니다. Transaction은 쉽게말해 데이터베이스에서 발생하는 작업 단위입니다. 하나의 Transaction에는 여러 명령이 존재할 수 있습니다만, 이 중 일부만 수행되고 나머지는 수행되는 일이 발생하면 안됩니다. Transaction은 [ACID](https://en.wikipedia.org/wiki/ACID_(computer_science)) 속성을 만족해야하는데, 이는 중간고사 후에 다룰 예정입니다. 
+
+## Data Model
+
+Q11. data model에서 정의하고 있는 element들은 항상 서로 관계가 있어야하나요?
+
+> element가 정확히 무엇을 의미하는지 잘 모르겠습니다. Entity를 의미하는 것이라면, 모든 Entity가 서로 관계를 가지고 있어야할 필요는 없습니다 (e.g. 교직원 - 시간표 간의 관계는 자연스럽지 않음). 
+
+Q12. data semantics 다시 한 번만 설명 부탁드립니다.
+
+
+## 기타
+Q13. 안녕하십니까 저는 정회훈입니다.
+
+> 반갑습니다. 
+
+Q14. 정회훈 : 수고하셨습니다.
+
+> 그대도 수고하셨습니다.
+
+Q15. 메타데이터가 카탈로그 같이 분류적 데이터?라고 할수있나요?
+
+Q16. buffer와 cache는 어떤 차이가 있나요?
