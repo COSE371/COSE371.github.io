@@ -9,11 +9,9 @@
 title: COSE371
 email: ws_choi@korea.ac.kr
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "/jekyll-simple" # the subpath of your site, e.g. /blog
-url: "COSE371.github.io" # the base hostname & protocol for your site
+IT 환경의 급속한 변화와 정보화 사회가 점차 성숙해지면서 데이터를 통합 관리하여 유용한 정보를 제공하는 데이터베이스 시스템의 역할은 더욱 중요해지고 있다. 본 강의에서는 이러한 데이터베이스시스템에 대한 기초 개념과 데이터베이스시스템 구축에 필요한 이론 및 기술들을 학습하는 것을 목적으로 한다.
+baseurl: "/jekyll-simple" # t he subpath of your site, e.g. /blog
+url: "https://COSE371.github.io" # the base hostname & protocol for your site
 github_username:  ws-choi
 
 # Build settings
