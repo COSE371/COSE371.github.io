@@ -2,7 +2,8 @@
 layout: post
 title:  "Welcome to COSE 371"
 date: 2019-03-02
-categories: post
+categories: Home
+permalink: /
 ---
 
 2019학년도 2학기 고려대학교 정보대학 데이터베이스 (COSE 371(2)) 강의 웹사이트입니다.
