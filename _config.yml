@@ -21,13 +21,8 @@ kramdown:
 
 # Third-party services
 # just leave someone empty to disable it
-# google_analytics: 
+google_analytics: UA-131286067-2
 disqus_shortname: "COSE371"
 
 # used this for post_excerpt at index_page
 excerpt_separator: <!--description-->
-
-analytics:
-  provider               : "google"  # false (default), "google", "google-universal", "custom"
-  google:
-    tracking_id          : "UA-131286067-1"
