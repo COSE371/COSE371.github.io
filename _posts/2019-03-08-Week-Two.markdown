@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Week One: Introduction to Relation Model"
+date: 2019-03-08
+categories: Lecturenote-and-QA
+---
+
+데이터베이스 COSE 371(2) 2주차 강의내용입니다. 
+
+Relation Model에 대해 알아봅니다.
+
+## Lecture Note
+
+
+Week Two: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EcJNXnVIOMxHux4tpRV-OF0BYsKvd64hW7MBZ7kimojijw?e=THp1dq) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EfqrhNBQ21VLgyo-Bd7-fGMBrGqs3FVUnjI8sUBHh4Q0dg?e=IU1ucb)
+
+
+
+## 질의응답 Detail
+
+다음은 질의응답 내용입니다.
+
