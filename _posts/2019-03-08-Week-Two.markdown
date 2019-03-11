@@ -16,7 +16,7 @@ Week Two: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharep
 
 
 
-<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d084abfa-db50-4b55-832a-3e05defe7c63}&amp;action=embedview&amp;wdAr=1.7777777777777777&amp;wdEaa=0" width="auto" height="auto" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d084abfa-db50-4b55-832a-3e05defe7c63}&amp;action=embedview&amp;wdAr=1.7777777777777777&amp;wdEaa=0" width="100%" height="auto" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 
 
 
