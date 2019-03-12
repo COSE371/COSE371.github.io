@@ -12,8 +12,11 @@ categories: Lecturenote-and-QA
 
 Week 1: Introduction [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EQgRISwsTLpFvY23687uPpUBJ2Dq2L_5mrL_JLZ9AIzIhA?e=OE2TTl) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZDr3dH2WuFKk1Km0EfiQrUBItoUCnmcquLKjmjISKoLuw?e=gY9BYJ)
 
+<div class="slide">
 
-<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d1ddeb90-5af6-4ae1-9352-a6d047e242b5}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="100%" height="auto" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d1ddeb90-5af6-4ae1-9352-a6d047e242b5}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="100%" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
 
 ## 질의응답 Detail
 
