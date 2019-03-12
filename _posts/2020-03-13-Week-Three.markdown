@@ -1,23 +1,21 @@
 ---
 layout: post
-title:  "Week 2: Introduction to Relation Model"
-date: 2019-03-11
+title:  "Week 3: Formal Relational Query Languages"
+date: 2019-03-13
 categories: Lecturenote-and-QA
 ---
 
-데이터베이스 COSE 371(2) 2주차 강의내용입니다. 
+데이터베이스 COSE 371(2) 3주차 강의내용입니다. 
 
-Relation Model에 대해 알아봅니다.
+Formal Relational Query Languages (Relational Algebra)에 대해 알아봅니다.
 
 ## Lecture Note
 
 
-Week 2: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EcJNXnVIOMxHux4tpRV-OF0BYsKvd64hW7MBZ7kimojijw?e=THp1dq) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EfqrhNBQ21VLgyo-Bd7-fGMBrGqs3FVUnjI8sUBHh4Q0dg?e=IU1ucb)
+Week 3: Formal Relational Query Languages [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EdTJnSkdnpdBoHdBre-lWFYBxTf5D_7gWccTWPCBveR8ZA?e=eQAeKg) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZvVeLrZvn9HhgvADieGhhoBEKn6_17gr2N1HKexvkWBcw?e=wF67Cb)
 
 
-
-<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d084abfa-db50-4b55-832a-3e05defe7c63}&amp;action=embedview&amp;wdAr=1.7777777777777777&amp;wdEaa=0" width="100%" height="auto" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
-
+<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={ba78d59b-bed9-477f-860b-c00e2786861a}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="100%" height="56%" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 
 
 ## 질의응답 Detail
