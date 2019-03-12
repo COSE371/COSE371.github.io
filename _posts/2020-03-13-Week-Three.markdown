@@ -15,43 +15,9 @@ Formal Relational Query Languages (Relational Algebra)에 대해 알아봅니다
 Week 3: Formal Relational Query Languages [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EdTJnSkdnpdBoHdBre-lWFYBxTf5D_7gWccTWPCBveR8ZA?e=eQAeKg) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZvVeLrZvn9HhgvADieGhhoBEKn6_17gr2N1HKexvkWBcw?e=wF67Cb)
 
 
-<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={ba78d59b-bed9-477f-860b-c00e2786861a}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="100%" height="56%" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+<iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={ba78d59b-bed9-477f-860b-c00e2786861a}&amp;action=embedview&amp;wdAr=1.7777777777777777" width="100%" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 
 
 ## 질의응답 Detail
 
-### Relational Model 원론적인 개념     
-
----
-
-Q1. relational model 정의 알려주세요
-
-Q2. set theory 가 relational model이랑 무슨 관련있는지 아직 이해가 잘 안갑니다 다시 한 번 설명해주세요 ㅠㅠ
-
-Q3. predicate logic설명 다시 해주세요
-
-> Q1~3: 일단은 https://en.wikipedia.org/wiki/Relational_model 참조하시고 시간이 나는대로 보충 설명 드리겠습니다.
-
-
-
-### Keys: primary, candidate, super, foreign
-
----
-
-Q4. name과 street과 city를 묶으면 minimal하지 않으니 candidate key가 아닌것 아닌가요?
-
-Q5. minimal 하다는게 무조건 한 attribute만을 얘기하는 건가요?
-
-Q6. 16page에서 candidate key는 무엇인가요?
-
-Q7. 17페이지 atomic 설명 한번만 더해주세요
-
-> Q4~Q7. 수요일에 자세히 말씀드리겠습니다. 시간이 나는대로 보충 설명 올리겠습니다.
-
-### 기타
-
----
-
-Q8. 여담 조아용 오호홍 OLTP하고 OLAP의 차이가 뭔가요?
-
-> 수업 외적인 내용이라 [링크](http://blog.naver.com/PostView.nhn?blogId=skygrab&logNo=30102437276)로 설명을 대체합니다만, 시간이 난다면 추후 보충 설명 올리겠습니다.
+수업 전이라 질문이 없습니다.
