@@ -3,6 +3,7 @@ layout: post
 title:  "Week 2: Introduction to Relation Model"
 date: 2019-03-11
 categories: Lecturenote-and-QA
+math: true
 ---
 
 데이터베이스 COSE 371(2) 2주차 강의내용입니다. 
