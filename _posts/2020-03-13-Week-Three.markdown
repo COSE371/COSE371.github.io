@@ -20,8 +20,6 @@ Week 3: Formal Relational Query Languages [[pdf]](https://koreaoffice-my.sharepo
 </div>
 
 
-
-
 ## 질의응답 Detail
 
 ---
@@ -59,7 +57,6 @@ relational algebra에서 and or not 오퍼레이터가 > = < 보다 연산순위
 
 덥네요..
 
-년도까지 포함해야 superkey로서 기능할 수 있는 것 아닌가요? 매 학기 데이터가 따로 관리되어서 상관없는건가요?
 
 foreign key다시 설명해주실 수 있나요ㅠ?
 

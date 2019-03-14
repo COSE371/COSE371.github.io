@@ -21,6 +21,13 @@ Week 2: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharepoi
 </div>
 
 
+## 슬라이드 필기 정정
+
+
+Q1.  년도까지 포함해야 superkey로서 기능할 수 있는 것 아닌가요? 매 학기 데이터가 따로 관리되어서 상관없는건가요?
+
+> 제가 강의중 슬라이드에 필기를 잘못한부분이 있었는데, 그것 관련 질문인것 같네요. 강의 중에 이 질문에 대한 답변은 드렸습니다만, 혹시 몰라서 20페이지 슬라이드 필기본 (녹색) 에 필기내용 수정본 (빨간색) 내용 추가해놓았습니다.
+
 ## 질의응답 Detail
 
 ### Relational Model 원론적인 개념     
