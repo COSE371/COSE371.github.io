@@ -1,11 +1,8 @@
 ---
 layout: page
-title: Lecture Notes
+title: "Assignment #1: Formal Relational Query Language"
 permalink: /assignment/
 ---
-
-
-# Assignment 1: Formal Relational Query Language 
 
 - Database System Concept 6th edition 연습문제 풀기 (총 27문제)
   - Practice Exercises
