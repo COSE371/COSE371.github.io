@@ -1,10 +1,8 @@
 ---
 layout: page
-title: Lecture Notes
+title: 실습서버 관련 정보
 permalink: /serverInfo/
 ---
-
-# 실습서버 접속하기
 
 ## 실습서버 환경 
 
@@ -19,7 +17,8 @@ permalink: /serverInfo/
 
 - Putty 등의 SSH client 이용하셔서 접근하세요.
 - 자세한 사항은 추후 공지
-- 
+
+
 ## 계정정보
 
 |항목|계정|비밀번호|예제|

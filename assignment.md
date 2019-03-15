@@ -1,7 +1,31 @@
 ---
 layout: page
-title: Assignment
+title: Lecture Notes
 permalink: /assignment/
 ---
 
-TBA!
+
+# Assignment 1: Formal Relational Query Language 
+
+- Database System Concept 6th edition 연습문제 풀기 (총 27문제)
+  - Practice Exercises
+      - 6.1, 6.2, 6.3
+
+  - Exercises
+      - 6.10
+      - 6.11(a,b,c,d)
+      - 6.12
+      - 6.13 
+      - 6.14(a, c, d)
+
+- 제출기한
+  - 정상제출: 3월 27일 14시까지 (채점결과의 **100%** 반영)
+  - 지각제출: 4월 03일 14시까지 (채점결과의 **80%** 반영)
+  - 최종제출: 4월 10일 14시까지 (채점결과의 **50%** 반영)
+- 제출방법: [KULMS(블랙보드)](https://kulms.korea.ac.kr/) 에 파일 (**pdf**) 제출
+- 제출양식: [pdf, 한글, ms_word](https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/onedrive.aspx#id=%2fpersonal%2fws_choi_korea_edu%2fDocuments%2fAssignment1&FolderCTID=0x012000CEC87F139602384EADBCA6B787467AB5) 중 택1
+  - pdf: 인쇄하여 작성 후 스캔하여 제출해주세요. 스캐너가 없을 경우 스마트폰에 dropbox ([android](https://play.google.com/store/apps/details?id=com.dropbox.android&hl=ko), [iphone](https://itunes.apple.com/kr/app/dropbox/id327630330?mt=8))등의 application 설치하여 카메라로 스캔하시면 됩니다. 
+  - [한글, MS_word] 한글이나 MS_word에 직접 타이핑해서 과제하시는 경우는 최종적으로 PDF로 변환하여 제출해주세요. 가급적 페이지 레이아웃 달라지지 않게해주세요.
+- 채점방법: 각 문제 (총 27문제) 별 오류 내용 발견 시 0.15점 감점, 부분점수 없음
+
+{% include dq.html %}
