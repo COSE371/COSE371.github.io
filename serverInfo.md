@@ -15,8 +15,8 @@ permalink: /serverInfo/
 
 ### 실습서버 접속 방법
 
-- [Shellinabox](http://115.68.231.165/shell) 이용
-  - Shellinabox 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
+- [Online Shell](http://115.68.231.165/shell) 이용
+  - Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
 - 또는 Putty 등의 SSH client 이용하셔서 접근하세요.
 
 
