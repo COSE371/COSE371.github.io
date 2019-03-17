@@ -1,6 +1,7 @@
 ---
 layout: page
-title: "Assignment #1: Formal Relational Query Language"
+title: "Assignment #1: Formal Relational Query Language (~ 03/27)"
+categories: current
 permalink: /assignment/
 ---
 
