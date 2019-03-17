@@ -23,11 +23,14 @@ permalink: /assignment/
 
 
 - 제출방법: [KULMS(블랙보드)](https://kulms.korea.ac.kr/) 에 파일 (**pdf**) 제출
+  - 블랙보드 접속이 원할하지 않을 시, ws_choi@kore.ac.kr 로 보내주세요.
 
 
 - 제출양식: [pdf, 한글, ms_word](https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/onedrive.aspx#id=%2fpersonal%2fws_choi_korea_edu%2fDocuments%2fAssignment1&FolderCTID=0x012000CEC87F139602384EADBCA6B787467AB5) 중 택1
   - pdf: 인쇄하여 작성 후 스캔하여 제출해주세요. 스캐너가 없을 경우 스마트폰에 dropbox ([android](https://play.google.com/store/apps/details?id=com.dropbox.android&hl=ko), [iphone](https://itunes.apple.com/kr/app/dropbox/id327630330?mt=8))등의 application 설치하여 카메라로 스캔하시면 됩니다. 
   - [한글, MS_word] 한글이나 MS_word에 직접 타이핑해서 과제하시는 경우는 최종적으로 PDF로 변환하여 제출해주세요. 가급적 페이지 레이아웃 달라지지 않게해주세요.
 - 채점방법: 각 문제 (총 27문제) 별 오류 내용 발견 시 0.15점 감점, 부분점수 없음
-
+  - 블랙보드에서의 무제한 제출을 허용하나,
+  - 가장 마지막 제출시각으로 정상/지각/최종 여부를 판단하고, 가장 마지막 제출한 내용을 평가하여 채점합니다.
+  
 {% include dq.html %}
