@@ -10,6 +10,12 @@ layout: default
   <div class="article-content" itemprop="articleBody">
     {{ page.content }}
   </div>
-
-
+ 
 </article>
+
+  
+{% for post in site.posts %}
+  {% if post.categories contains 'current' %}
+  <li>{{ post.title }}</li>
+  {% endif %}
+{% endfor %}
