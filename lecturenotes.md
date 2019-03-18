@@ -11,4 +11,6 @@ permalink: /notes/
 
 - Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByome8seJVSPE-2-50) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoma6YccNyaN0iWZB)
 
+- Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByoykPYstsiS6QXkGl) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW)
+
 {% include dq.html %}
