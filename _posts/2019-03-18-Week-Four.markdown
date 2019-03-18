@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Week 4: Structured Query Language (SQL)"
+date: 2019-03-18
+categories: Lecturenote-and-QA
+---
+
+데이터베이스 COSE 371(2) 4주차 강의내용입니다. 
+
+Structured Query Language (SQL) 에 대해 알아봅니다.
+
+## Lecture Note
+
+
+Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByoykPYstsiS6QXkGl) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW)
+
+
+<div class="slide">
+<iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214395&amp;authkey=AIl5GRQUxgpe3Zc&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+
+
+## 질의응답 Detail
+
+---
+수업 전이라 아직 질문이 없습니다.
