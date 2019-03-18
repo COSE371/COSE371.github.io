@@ -4,11 +4,11 @@ title: Lecture Notes
 permalink: /notes/
 ---
 
-- Week 1: Introduction [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EQgRISwsTLpFvY23687uPpUBJ2Dq2L_5mrL_JLZ9AIzIhA?e=OE2TTl) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZDr3dH2WuFKk1Km0EfiQrUBItoUCnmcquLKjmjISKoLuw?e=gY9BYJ)
+- Week 1: Introduction [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomXmEK-RcdHfgabU) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomKzyRyAh5b45N7n)
 
-- Week 2: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EcJNXnVIOMxHux4tpRV-OF0BYsKvd64hW7MBZ7kimojijw?e=THp1dq) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EfqrhNBQ21VLgyo-Bd7-fGMBrGqs3FVUnjI8sUBHh4Q0dg?e=IU1ucb)
 
-- Week 3: Formal Relational Query Languages [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EdTJnSkdnpdBoHdBre-lWFYBxTf5D_7gWccTWPCBveR8ZA?e=eQAeKg) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZvVeLrZvn9HhgvADieGhhoBEKn6_17gr2N1HKexvkWBcw?e=wF67Cb)
+- Week 2: Introduction to Relational Model [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomOHD781jm8XBaAi) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx)
 
+- Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByome8seJVSPE-2-50) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoma6YccNyaN0iWZB)
 
 {% include dq.html %}

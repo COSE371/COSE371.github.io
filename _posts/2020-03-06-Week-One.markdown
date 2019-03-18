@@ -10,7 +10,7 @@ categories: Lecturenote-and-QA
 ## Lecture Note
 
 
-Week 1: Introduction [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EQgRISwsTLpFvY23687uPpUBJ2Dq2L_5mrL_JLZ9AIzIhA?e=OE2TTl) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EZDr3dH2WuFKk1Km0EfiQrUBItoUCnmcquLKjmjISKoLuw?e=gY9BYJ)
+Week 1: Introduction [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomXmEK-RcdHfgabU) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomKzyRyAh5b45N7n)
 
 <div class="slide">
 

@@ -13,11 +13,11 @@ Relation Model에 대해 알아봅니다.
 ## Lecture Note
 
 
-Week 2: Introduction to Relational Model [[pdf]](https://koreaoffice-my.sharepoint.com/:b:/g/personal/ws_choi_korea_edu/EcJNXnVIOMxHux4tpRV-OF0BYsKvd64hW7MBZ7kimojijw?e=THp1dq) [[slide]](https://koreaoffice-my.sharepoint.com/:p:/g/personal/ws_choi_korea_edu/EfqrhNBQ21VLgyo-Bd7-fGMBrGqs3FVUnjI8sUBHh4Q0dg?e=IU1ucb)
+Week 2: Introduction to Relational Model [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomOHD781jm8XBaAi) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx)
 
 
 <div class="slide">
-    <iframe src="https://koreaoffice-my.sharepoint.com/personal/ws_choi_korea_edu/_layouts/15/Doc.aspx?sourcedoc={d084abfa-db50-4b55-832a-3e05defe7c63}&amp;action=embedview&amp;wdAr=1.7777777777777777&amp;wdEaa=0" width="100%" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+<iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214450&amp;authkey=AK6sR_NfVDraJCI&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
 
