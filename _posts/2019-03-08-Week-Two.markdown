@@ -70,7 +70,7 @@ Q7. 17페이지 atomic 설명 한번만 더해주세요
 
 Q8. 화살표는 모두 reference 관계를 의미하는 건가요?
 
-Q9.
+Q9. 답변은 했는데 질문을 실수로 지웠습니다. 미안합니다. 기억이 안나네요. reference 관계 관련 질문이었습니다. 
 
 > Q8~9: 20 페이지에 나오는 스키마 다이어그램에 대한 질문이었습니다. 수업 중간에 Extened ER Diagram (EERD) 이라고 말한 기억이 있는데, 정확히 말하면 [Mysql Workbench](https://dev.mysql.com/doc/workbench/en/wb-creating-eer-diagram.html)에서 지원하는 EERD에 가까운 그림입니다. 20페이지 그림은 교재 47페이지 그림으로, 학사정보업무에 대한 relation modeling의 결과인 각 릴레이션들을 도식화해주는 그림입니다. 각 릴레이션은 박스로 나타나며, 어트리뷰트는 박스 안에 나열되어있습니다. primary key에 속하는 어트리뷰트들은 밑줄이 그어져있고, 질문해주신 화살표는 reference 관계를 나타내는 것 맞습니다.  
 
