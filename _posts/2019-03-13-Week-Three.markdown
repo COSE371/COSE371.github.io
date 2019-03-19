@@ -80,7 +80,7 @@ Q7. semantic 슈거가 무엇인가여..?
 
 Q8. 아까 작성하신 쿼리에서 ID가 겹치는데 리네이밍 없이 카티전 곱 했던게 말씀하신 슈거? 인가요?
 
->  Q3~Q8. 릴레이션 $r(R)$과 $s(S)$에 대해 $r \times s$를 수행하려고 합니다. 만약 $R \cap S = \empty$ 라면 (즉, [disjoint](https://en.wikipedia.org/wiki/Disjoint_sets)하다면) 아무 문제 없이 Cartesian Product 사용하시면 됩니다. 그러나 만약 $R \cap S \neq \empty$ 라면, 즉, 하나 이상의 attribute을 두 스키마에서 공유한다면 attribute name이 ambiguous해지겠죠? 이러한 모호성을 피하기 위해 Rename Operator를 사용하는 방법이 있습니다. 다만 Rename Operator가 다소 손이 많이가는 Operator입니다. 이때 Rename 대신, 간단하게 .을 찍어서 어떤 스키마에서 유래한 attribute인지 명시해주는 notation이 있다고 말씀드렸습니다 (교재 222페이지, 3주차 슬라이드 18페이지). 다소 SQL적인 표현이지만, 관계대수에서도 이러한 표기를 대부분 허용합니다. 그러한 차원에서 [semantic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)라는 용어를 사용했는데, 혼란이 가중된 것 같네요. semantic sugar라는 표현은 책이나 슬라이드에는 등장하지 않는 용어이니, 기억해두지 않으셔도 됩니다. 
+>  Q3~Q8. 릴레이션 $r(R)$과 $s(S)$에 대해 $r \times s$를 수행하려고 합니다. 만약 $R \cap S = \emptyset$ 라면 (즉, [disjoint](https://en.wikipedia.org/wiki/Disjoint_sets)하다면) 아무 문제 없이 Cartesian Product 사용하시면 됩니다. 그러나 만약 $R \cap S \neq \emptyset$ 라면, 즉, 하나 이상의 attribute을 두 스키마에서 공유한다면 attribute name이 ambiguous해지겠죠? 이러한 모호성을 피하기 위해 Rename Operator를 사용하는 방법이 있습니다. 다만 Rename Operator가 다소 손이 많이가는 Operator입니다. 이때 Rename 대신, 간단하게 .을 찍어서 어떤 스키마에서 유래한 attribute인지 명시해주는 notation이 있다고 말씀드렸습니다 (교재 222페이지, 3주차 슬라이드 18페이지). 다소 SQL적인 표현이지만, 관계대수에서도 이러한 표기를 대부분 허용합니다. 그러한 차원에서 [semantic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)라는 용어를 사용했는데, 혼란이 가중된 것 같네요. semantic sugar라는 표현은 책이나 슬라이드에는 등장하지 않는 용어이니, 기억해두지 않으셔도 됩니다. 
 
 
 Q9. natural join은 일반적인 경우에서 관계대수의 조합으로 정의롤 못하나요? 만약 못한다면 attribute가 아주 많은 relation에서 join을 하려면 일일이 다 해줘야하는건가요?
