@@ -94,6 +94,17 @@ Q10. 카티션 프로덕트 3개도 되나요?
 
 > 네
 
+
+### Join: Natrual, Theta, Outer
+
+---
+
+Q19. 방금 작성하셨던 쿼리문에서는 instructor.name 이 아니라 name으로 한 것은 natural join 했기 때문인가요?
+
+Q20. Outer Join Using Joins에서 (null,...,null) 이게 뭔지 다시한번만 말씀해주세요 ㅠㅠ
+
+
+
 ### 관계대수 Set operation
 
 ---
@@ -141,15 +152,6 @@ Q17. 11페이지에서 sql에서는 distinct 붙여야한다했는데 그럼 어
 Q18. 쿼리문 보여주신 것 중에 2번이 부담이 적다고 하셨는데 내츄럴 조인도 부담이 적나요?
 
 > 관계대수적 관점에서 보았을 때는 Natural Join 자체가 Cartesian Product -> Select -> Projection 입니다. Cartesian Product가 들어가니 단독 연산 중 비용이 큰 편이겠죠? 부담이 큰 편입니다. 다만 첨언허자면, 관계대수 연산자가 질의처리 구현체와 1:1 대응되지는 않습니다. 논리적 연산자인 Natural Join을 물리적 레벨에서 구현하는 방법은 여러가지입니다. [BNL](https://en.wikipedia.org/wiki/Block_nested_loop)과 [Hash Join](https://en.wikipedia.org/wiki/Hash_join) 등이 있습니다. 어떤 알고리즘으로 조인하는지에 따라 부담이 달라집니다. DBMS는 통계정보 등을 이용해서 최적의 알고리즘을 선택하여 질의를 수행합니다. 
-
-
-
-
-### Join: Natrual, Theta, Outer
-
-Q19. 방금 작성하셨던 쿼리문에서는 instructor.name 이 아니라 name으로 한 것은 natural join 했기 때문인가요?
-
-Q20. Outer Join Using Joins에서 (null,...,null) 이게 뭔지 다시한번만 말씀해주세요 ㅠㅠ
 
 
 
