@@ -3,6 +3,7 @@ layout: post
 title:  "Week 3: Formal Relational Query Languages"
 date: 2019-03-13
 categories: Lecturenote-and-QA
+math: true
 ---
 
 데이터베이스 COSE 371(2) 3주차 강의내용입니다. 
