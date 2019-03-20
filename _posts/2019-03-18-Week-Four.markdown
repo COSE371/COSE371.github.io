@@ -25,7 +25,9 @@ Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBy
 
 Q1. cose371 table에 어떻게 접근하나요?
 
-> 이 데이터베이스는 제겁니다. [서버 및 계정정보](https://cose371.github.io/serverInfo/) 확인하신 후 로그인하셔서 데이터베이스 접속하시면 됩니다.
+> 이 데이터베이스는 제겁니다. 
+
+> 각 학생마다 전용 데이터베이스 만들어드렸습니다. [서버 및 계정정보](https://cose371.github.io/serverInfo/) 확인하신 후 계정으로 로그인하셔서 접속하시면 됩니다. 또한 수업 중에 제가 사용했던 University Database를 각자의 데이터베이스에 import하기 위한 [SQL 명령문](https://cose371.github.io/sql-practice/2019/03/20/University-Database.html)도 올려놓았으니, 참고하시기 바랍니다.
 
 > 혹시 계정 접속 안되는 사람은 덧글달아주시거나 메일보내주세요 (청강생 포함)
 
