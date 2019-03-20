@@ -88,7 +88,7 @@ Q7. semantic 슈거가 무엇인가여..?
 
 Q8. 아까 작성하신 쿼리에서 ID가 겹치는데 리네이밍 없이 카티전 곱 했던게 말씀하신 슈거? 인가요?
 
->  Q3~Q8. 릴레이션 $r(R)$과 $s(S)$에 대해 $r \times s$를 수행하려고 합니다. 만약 $R \cap S = \emptyset$ 라면 (즉, [disjoint](https://en.wikipedia.org/wiki/Disjoint_sets)하다면) 아무 문제 없이 Cartesian Product 사용하시면 됩니다. 그러나 만약 $R \cap S \neq \emptyset$ 라면, 즉, 하나 이상의 attribute을 두 스키마에서 공유한다면 attribute name이 ambiguous해지겠죠? 이러한 모호성을 피하기 위해 Rename Operator를 사용하는 방법이 있습니다. 다만 Rename Operator가 다소 손이 많이가는 Operator입니다. 이때 Rename 대신, 간단하게 .을 찍어서 어떤 스키마에서 유래한 attribute인지 명시해주는 notation이 있다고 말씀드렸습니다 (교재 222페이지, 3주차 슬라이드 18페이지). 다소 SQL적인 표현이지만, 관계대수에서도 이러한 표기를 대부분 허용합니다. 그러한 차원에서 [semantic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)라는 용어를 사용했는데, 혼란이 가중된 것 같네요. semantic sugar라는 표현은 책이나 슬라이드에는 등장하지 않는 용어이니, 기억해두지 않으셔도 됩니다. 
+>  Q3~Q8. 릴레이션 $r(R)$과 $s(S)$에 대해 $r \times s$를 수행하려고 합니다. 만약 $R \cap S = \emptyset$ 라면 (즉, [disjoint](https://en.wikipedia.org/wiki/Disjoint_sets)하다면) 아무 문제 없이 Cartesian Product 사용할 수 있습니다. 그러나 만약 $R \cap S \neq \emptyset$ 라면, 즉, 하나 이상의 attribute을 두 스키마에서 공유한다면 attribute name이 ambiguous해지겠죠? 이러한 모호성을 피하기 위해 일반적으로는 Rename Operator를 사용합니다. 다만 Rename Operator가 다소 손이 많이갑니다. 이때 Rename 대신, 간단하게 .을 찍어서 어떤 스키마에서 유래한 attribute인지 명시해주는 notation이 있습니다 (교재 222페이지, 3주차 슬라이드 18페이지). 수학적으로는 엄밀하지 않는 표현이나, 관계대수를 다루는 대부분의 교재에서는 이러한 표기를 허용합니다. 그러한 측면에서 .찍고 사용하는 표현법이 [semantic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)라는 용어를 사용했는데, 혼란이 가중된 것 같네요. semantic sugar라는 표현은 책이나 슬라이드에는 등장하지 않는 용어이니, 기억해두지 않으셔도 됩니다. 
 
 
 Q10. 카티션 프로덕트 3개도 되나요?
@@ -160,7 +160,7 @@ Q17. 11페이지에서 sql에서는 distinct 붙여야한다했는데 그럼 어
 
 Q18. 쿼리문 보여주신 것 중에 2번이 부담이 적다고 하셨는데 내츄럴 조인도 부담이 적나요?
 
-> 관계대수적 관점에서 보았을 때는 Natural Join 자체가 Cartesian Product -> Select -> Projection 입니다. Cartesian Product가 들어가니 단독 연산 중 비용이 큰 편이겠죠? 부담이 큰 편입니다. 다만 첨언허자면, 관계대수 연산자가 질의처리 구현체와 1:1 대응되지는 않습니다. 논리적 연산자인 Natural Join을 물리적 레벨에서 구현하는 방법은 여러가지입니다. [BNL](https://en.wikipedia.org/wiki/Block_nested_loop)과 [Hash Join](https://en.wikipedia.org/wiki/Hash_join) 등이 있습니다. 어떤 알고리즘으로 조인하는지에 따라 부담이 달라집니다. DBMS는 통계정보 등을 이용해서 최적의 알고리즘을 선택하여 질의를 수행합니다. 
+> 관계대수적 관점에서 보았을 때는 Natural Join 자체가 Cartesian Product -> Select -> Projection 입니다. Cartesian Product가 들어가니 단독 연산 중 비용이 큰 편이겠죠? 부담이 큰 편입니다. 다만 첨언허자면, 관계대수 연산자가 질의처리 구현체와 1:1 대응되지는 않습니다. 논리적 연산자인 Natural Join을 물리적 레벨에서 구현하는 방법은 여러가지입니다. [BNL](https://en.wikipedia.org/wiki/Block_nested_loop)과 [Hash Join](https://en.wikipedia.org/wiki/Hash_join) 등이 있고, 이러한 기법은 중간고사 이후에 다룹니다. 어떤 알고리즘으로 조인하는지에 따라 부담이 달라집니다. DBMS는 통계정보 등을 이용해서 최적의 알고리즘을 선택하여 질의를 수행합니다. 만약 효율적인 물리적 내츄럴 조인 수행 기법을 사용할 수 있다면, 내추럴 조인의 부담은 생각보다 낮아지는 편입니다 (그래도 Projection이나 Selection에 비해 연산 비용이 높은 편).
 
 
 
@@ -197,6 +197,8 @@ Q28. 필기본 웹으로 올려주시나요?
 Q29.답 쓰는 칸이 너무 작아요 ㅠㅠ
 
 > 화이팅
+
+> 답 쓰는 칸 조정하셔도 됩니다. 문제 순서만 지켜주세요.
 
 Q30.혹시 윈도우랑 리눅스에 MariaDB 설치하는 방법은 알려주시나요?
 
