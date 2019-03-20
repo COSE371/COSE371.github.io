@@ -5,9 +5,48 @@ date: 2019-03-20
 categories: SQL-Practice
 ---
 
+## MariaDB 접속하기
+
+``` console
+dossa0328-18078 login: YOURID                                                
+Password: YOURPASSWD                                                                     
+Last login: Wed Mar 20 17:32:54 KST 2019 from 163.152.111.34 on pts/19        
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-116-generic x86_64)            
+                                                                              
+ * Documentation:  https://help.ubuntu.com                                    
+ * Management:     https://landscape.canonical.com                            
+ * Support:        https://ubuntu.com/advantage                               
+                                                                              
+  Get cloud support with Ubuntu Advantage Cloud Guest:                        
+    http://www.ubuntu.com/business/services/cloud                             
+                                                                              
+556 packages can be updated.                                                  
+0 updates are security updates.                                               
+                                                                              
+                                                                              
+YOURID@dossa0328-18078:~$ mysql -u db학번 -p                                
+Enter password: YOUR e-mail                                                               
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.                   
+Your MariaDB connection id is 559                                             
+Server version: 10.0.34-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04                 
+                                                                              
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.          
+                                                                              
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+                                                                              
+MariaDB [(none)]> use db학번                                                 
+Reading table information for completion of table and column names            
+You can turn off this feature to get a quicker startup with -A                
+                                                                              
+Database changed                                                              
+MariaDB [db학번]>                                                            
+
+```
+
 ## Import University Database
 
-```SQL
+``` sql
 -- classroom --
 
 DROP TABLE IF EXISTS `classroom`;
@@ -190,7 +229,7 @@ INSERT INTO `prereq` VALUES ('BIO-301','BIO-101'),('BIO-399','BIO-101'),('CS-190
 
 ### DROP University Database
 
-```SQL
+``` sql
 DROP TABLE IF EXISTS `prereq`;
 DROP TABLE IF EXISTS `takes`;
 DROP TABLE IF EXISTS `advisor`;

@@ -95,7 +95,7 @@ Q14. 혹시 입력했던 명령을 취소할 수 있는 명령문이 있나요? 
 
 Q15. 제공된 PPT에 슬라이드가 없어요!
 
-```SQL
+``` sql
 CREATE TABLE `department` (
         `dept_name` varchar(20) NOT NULL,
         `building` varchar(15) DEFAULT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE `instructor` (
 
 > 이때 DELETE CASCASE 옵션 대신 다른 옵션 사용 가능합니다: 예를 들어
 
-``` SQL
+``` sql
 DROP TABLE IF EXISTS `instructor`;
 
 CREATE TABLE `instructor` (
