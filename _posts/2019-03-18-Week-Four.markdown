@@ -23,5 +23,115 @@ Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBy
 
 ## 질의응답 Detail
 
+Q1. cose371 table에 어떻게 접근하나요?
+
+> 이 데이터베이스는 제겁니다. [서버 및 계정정보](https://cose371.github.io/serverInfo/) 확인하신 후 로그인하셔서 데이터베이스 접속하시면 됩니다.
+
+> 혹시 계정 접속 안되는 사람은 덧글달아주시거나 메일보내주세요 (청강생 포함)
+
+### SQL basic
+
 ---
-수업 전이라 아직 질문이 없습니다.
+
+Q2. 
+SQL에서 DDL, DML, DCL을 필요에 따라 선택해서 사용하는 건가요? 세가지를 다 알아야 SQL을 할 수 있는거죠?
+
+> [링크](https://cose371.github.io/lecturenote-and-qa/2019/03/06/Week-One.html)의 Q1~3 참조하세요.
+
+
+Q3. 우분투에서 mysql 로그인하는 명령어가 뭔가요? ㅠㅠ
+
+``` console
+foo@bar:~$ mysql -u db20xxxxxxxx -p
+password: your e-mail
+```
+
+Q4. 명령어들은 대소문자 구문 읎나용?
+
+> 일반적으로 대문자로 쓰지만, 소문자로 써도 잘 동작합니다.
+
+
+Q5. CHAR 와 VARCHAR 중에서 항상 VARCHAR를 써도 될 것 같은데 CHAR를 써야 하는 상황은 예를 들면 어떤 경우가 있나요?
+
+> [Performance implications of MySQL VARCHAR sizes](https://dba.stackexchange.com/questions/424/performance-implications-of-mysql-varchar-sizes/1915#1915)를 읽어보시면 도움이 될 듯합니다.
+
+> **TL;DR**: Since CHAR fields require less string manipulation because of fixed field widths, index lookups against CHAR field are on average 20% faster than that of VARCHAR fields.
+
+Q6. 방금 numeric(8,2)와 not null은 무슨뜻인가요 not null은 필수항목같은건가여
+
+> DDDDDD.DD 의 고정소수 십진법으로 숫자를 나타내라는 뜻이며 NOT NULL은 NULL 값을 허용하지 않겠다라는 뜻입니다.
+
+Q7. foreign key 에서 reference 라는게 instructor 테이블이 department를 참조한다는건가요? 아니면 양방향으로 참조할수있다는건가요?
+
+> 전자가 맞습니다.
+
+### View
+
+---
+
+Q8. view가 하는 기능을 보면 table과 다른점이 거의 없어 보이는데, view와 테이블의 차이점은 뭔가요? 특정 유저에게 특정 데이터를 숨긴다는데, 무슨 의미인지 잘 모르겠습니다 ㅠㅠ
+
+Q9. view에다 추가해도 원래 table에 추가되나요?
+
+Q10. view로 만든 table은 view를 만들 때 사용했던 table의 정보들이 업데이트되면 업데이트가 되나요?
+
+
+### Undo 
+
+---
+
+Q11. undo 기능 있나요?
+
+Q12. 업데이트 된 테이블 되돌릴수 있나요?
+
+Q13. update와 drop 의 undo 다시한번만 설명해주세요
+
+Q14. 혹시 입력했던 명령을 취소할 수 있는 명령문이 있나요? 예를 들어 아까 salary를 0원으로 바꾼 명령문을 되돌리는 것 같은 명령문이요!
+
+> Q11~14: [Transaction](https://www.sqlteam.com/articles/introduction-to-transactions) 배울 때 나옵니다.
+
+
+### 기타
+
+Q15. 제공된 PPT에 슬라이드가 없어요!
+
+```SQL
+CREATE TABLE `department` (
+        `dept_name` varchar(20) NOT NULL,
+        `building` varchar(15) DEFAULT NULL,
+        `budget` decimal(12,2) DEFAULT NULL,
+        PRIMARY KEY (`dept_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `instructor` (
+        `ID` char(5)  NOT NULL,
+        `name` varchar(20) NOT NULL,
+        `dept_name`  varchar(20) DEFAULT NULL, 
+        `salary` numeric(8,2) DEFAULT NULL, 
+        PRIMARY KEY (`ID`),            
+        FOREIGN KEY (`dept_name`) references department(dept_name) on DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+> 이때 DELETE CASCASE 옵션 대신 다른 옵션 사용 가능합니다: 예를 들어
+
+``` SQL
+DROP TABLE IF EXISTS `instructor`;
+
+CREATE TABLE `instructor` (
+	`ID` char(5)  NOT NULL,
+	`name` varchar(20) NOT NULL,
+	`dept_name`  varchar(20) NOT NULL, 
+	`salary` decimal(8,2) DEFAULT NULL, 
+	PRIMARY KEY (`ID`),            
+	FOREIGN KEY (`dept_name`) references `department`(`dept_name`) on delete RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+
+
+Q16. SQL은 기본적으로 정규표현식을 지원하나요?? *도 정규표현식의 *이랑 같은 의미인것 같아서 질문드립니다.
+
+> mariadb에서는 문자열 표현과 관련한 [REGular EXPression](https://mariadb.com/kb/en/library/regexp/)을 지원하는 것 같습니다. 모든 attribute 출력하라는 의미인 * 과는 다소 다른 듯하지만...
+
+Q17. Time이 보여주는 방식이 HH:MM:SS 인데 왜 838:59:59까지 범위를 준 건지 모르겠어요. HH가 24보다 커지는 경우가 있나요?

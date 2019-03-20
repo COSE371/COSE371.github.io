@@ -61,4 +61,8 @@ Q7. 과제는 DB Book 6판 기준인가요..??
 
 > 맞습니다.
 
+Q8. 과제에서 course section 이라는 말이 나오는데, 정확히 뭔가요??
+
+> course: 강의정보 (개념적), section: 강의(실제 구체화된 강의, 몇년도 몇학기 등 실체화된 개념)
+
 {% include dq.html %}

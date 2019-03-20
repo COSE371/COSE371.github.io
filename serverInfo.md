@@ -28,4 +28,9 @@ permalink: /serverInfo/
 |Maraidb|db학번|포털에 기재한 메일주소|db2009190719, ws_choi@korea.ac.kr|
 
 
+### Maria DB 접속방법
+
+``` console
+foo@bar:~$ mysql -u db학번 -p 
+```
 {% include dq.html %}
