@@ -33,6 +33,9 @@ permalink: /assignment/
   - 블랙보드에서의 무제한 제출을 허용하나,
   - 가장 마지막 제출시각으로 정상/지각/최종 여부를 판단하고, 가장 마지막 제출한 내용을 평가하여 채점합니다.
 
+### University Scheme
+
+-  교재 Appendix A 보시면 University Scheme가 나와있습니다. 그 뒷부분에는 예제 instance들이 들어있습니다. 이를 참조하셔서 문제 푸시면 됩니다.
 
 ### 과제관련 Q & A
 
