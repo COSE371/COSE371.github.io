@@ -20,7 +20,11 @@ Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_j
     <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214454&amp;authkey=AG6yawfC6yOWfKo&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
+## 슬라이드 정정
 
+---
+
+수업 중 말씀드렸듯 18페이지에 문제에서 요구하는 것이 instructor들의 name이었으므로, ID가 아닌 name을 Projection해주는 것이 맞습니다.
 
 ## 질의응답 Detail
 
