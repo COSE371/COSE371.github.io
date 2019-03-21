@@ -33,4 +33,13 @@ permalink: /serverInfo/
 ``` console
 foo@bar:~$ mysql -u db학번 -p 
 ```
+
+### QA
+
+Q1. 아이디 학번 비밀번호 메일 맞나여..
+
+> 온라인 쉘 접속을  id, 비밀번호는 수업시간에 말씀드렸습니다. 우분투의 경우 학번 비밀번호 맞고, Mariadb는 아이디가 db학번, 비밀번호는 메일주소입니다. 잘 안되시면 ws_choi@korea.ac.kr로 학번정보 보내주세요. 계정정보 드리겠습니다.
+
+
+
 {% include dq.html %}
