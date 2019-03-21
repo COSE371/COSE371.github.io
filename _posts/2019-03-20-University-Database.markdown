@@ -5,6 +5,19 @@ date: 2019-03-20
 categories: SQL-Practice
 ---
 
+## QA
+
+Q1. 마리아 db에 접속해 select * from student , select * from instructor 등의 명령어를 입력했는데 아무런 결과가 나오지 않습니다
+
+> 아래 방법을 따라 University Database를 먼저 import 시켜주셔야 합니다. 잘 import 되었는지 확인해보시려면
+
+``` sql
+show tables;
+```
+
+> 를 입력해보세요. Empty set이 나오면 제대로 import되지 않은 상태입니다.
+
+
 ## MariaDB 접속하기
 
 ``` console
