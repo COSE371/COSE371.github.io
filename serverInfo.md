@@ -18,6 +18,10 @@ permalink: /serverInfo/
 - [Online Shell](http://115.68.231.165/shell) 이용
   - Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
 - 또는 Putty 등의 SSH client 이용하셔서 접근하세요.
+- **로그인 잘 안될 경우**
+  - 접속이 잘 안되시는 분들은 온라인 쉘 말고, UTF-8 인코딩을 지원하는 다른 SSH 프로그램을 사용해보시기 바랍니다.
+    - ex) Window: [putty](http://hputty.org/) 설치후 115.68.231.165 접속 (포트 22)
+    - ex) Linux or MaxOS: 터미널 실행 후 ssh YOURID@115.68.231.165
 
 
 ### 개인별 계정정보
