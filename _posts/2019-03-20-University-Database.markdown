@@ -17,6 +17,12 @@ show tables;
 
 > 를 입력해보세요. Empty set이 나오면 제대로 import되지 않은 상태입니다.
 
+> 또한 중요한 것이 하나 있는데, 각 명령 뒤에는 ;을 입력해주셔야 합니다. 
+
+``` sql
+select * from student ;
+```
+
 
 ## MariaDB 접속하기
 
