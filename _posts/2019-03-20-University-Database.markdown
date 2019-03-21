@@ -2,7 +2,7 @@
 layout: post
 title:  "University Database Example (SQL)"
 date: 2019-03-20
-categories: SQL-Practice current
+categories: SQL-Practice
 ---
 
 ## QA
