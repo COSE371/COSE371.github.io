@@ -35,7 +35,7 @@ permalink: /serverInfo/
 ### Maria DB 접속방법
 
 ``` console
-foo@bar:~$ mysql -u db학번 -p 
+학번@bar:~$ mysql -u db학번 -p 
 ```
 
 ### QA
