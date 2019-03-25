@@ -2,6 +2,7 @@
 layout: page
 title: "Assignment #1: Formal Relational Query Language (~ 03/27) (Q&A 수정: 0325)"
 categories: current
+math: true
 permalink: /assignment/
 ---
 
@@ -63,7 +64,7 @@ Q5. 과제에서 답 부분에 쿼리를 쓰면 되는건가요?
 
 > 네~
 
-Q6. count-distinct는 써도 되나요?
+Q6. count-distinct는 써도 되나요? 
 
 $$
 \mathcal{G}_{count-distinct(ID)}(\sigma _{semester=``Spring'' \wedge year=2010}(teaches))
