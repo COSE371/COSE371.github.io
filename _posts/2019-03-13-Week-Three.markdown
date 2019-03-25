@@ -26,11 +26,30 @@ Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_j
 
 수업 중 말씀드렸듯 18페이지에 문제에서 요구하는 것이 instructor들의 name이었으므로, ID가 아닌 name을 Projection해주는 것이 맞습니다.
 
-## 질의응답 Detail
+## 질의응답 (new: 0325)
 
 ---
 
-질문이 너무 많네요. 다음주까지는 제가 시간이 나지 않을 것 같습니다. 바쁜 일 끝나고 답변해드리겠습니다.
+
+count(distinct ID)가 relational algebra에서도 되나요?
+
+관계대수에서 aggregation function의 결과를 그냥 숫자로 볼 수 있나요? 예를 들면 ρ_{salary=avg(salary)}(instructor) 로 평균 월급 받는 교수의 정보를 얻어낼 수 있을까요?
+
+한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.
+
+그럼 각 학과 내의 강사 수를 구하려면 dept_name G count (instructor) 이렇게 하면 되나요? 아 instructor 가 아니라 id 로 하면 되는 건가요
+
+caligraphic을 사용하는 경우 하나의 값이 return되는건지 relation이 return되는건지 궁금합니다
+
+
+relational algebra에서도 nested subquery를 써도 돠나요?!
+
+
+
+
+## 질의응답 (old)
+
+---
 
 
 Q1. **오늘도 열심히하겠습니다! - 강신환 올림**
