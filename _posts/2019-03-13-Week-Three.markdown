@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Week 3: Formal Relational Query Languages (슬라이드 정정)"
+title:  "Week 3: Formal Relational Query Languages"
 date: 2019-03-13
-categories: current Lecturenote-and-QA
+categories: Lecturenote-and-QA
 math: true
 ---
 
