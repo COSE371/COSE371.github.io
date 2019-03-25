@@ -13,4 +13,6 @@ permalink: /notes/
 
 - Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByoykPYstsiS6QXkGl) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW)
 
+- Week 5: Database Design and E-R Model​ [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByo1O2DzurPJVozyeV) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o)
+
 {% include dq.html %}

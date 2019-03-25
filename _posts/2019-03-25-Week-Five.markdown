@@ -13,7 +13,7 @@ Database Design and E-R Model​에 대해 알아봅니다.
 ## Lecture Note
 
 
-Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByome8seJVSPE-2-50) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoma6YccNyaN0iWZB)
+Week 5: Database Design and E-R Model​ [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByo1O2DzurPJVozyeV) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o)
 
 
 <div class="slide">
