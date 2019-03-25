@@ -37,8 +37,44 @@ permalink: /assignment/
 
 -  교재 Appendix A 보시면 University Scheme가 나와있습니다. 그 뒷부분에는 예제 instance들이 들어있습니다. 이를 참조하셔서 문제 푸시면 됩니다.
 
-### 과제관련 Q & A
+### 과제관련 Q & A (New: 0325)
 
+---
+
+Q1. *쓰면 무조건 오답인가요?
+
+Q2. 관게대수에서는 count(*) 쓰면 안되나요?
+
+Q3. 그냥 교수님도 채점하시기 편하게 count(*) 허용해주시면 안되나요ㅠㅠ
+
+Q4. 관계대수 피피티의 aggregate F에 count 있는데 쓰지 말고 풀라는 말씀이신가요 아니면 * 만 쓰지 말라고 하신건가요??
+
+> * 쓰셔도 답만 맞다면 정답처리하겠습니다. * 는 모든 어트리뷰트 나열 이라고 해석하겠습니다.
+
+Q5. 과제에서 답 부분에 쿼리를 쓰면 되는건가요?
+
+> 네~
+
+Q6. count-distinct는 써도 되나요?
+
+> 필요하시다면 쓰시면 됩니다. 다만 count-distinct는 수업 중에 언급하지 않은 내용이라, 안쓴 경우에도 그것을 제외하고 맞다면 정답처리 하겠습니다.
+
+Q7. * 안쓰면 모든 attribute를 다써야하나요? 관계대수에서요
+
+> 세야하는 대상을 attribute 집합으로 표현하시면 됩니다. 
+
+Q7. [6.12 a] 에서 “find course sections” 라는 말이 나오는데 여기서 course section이 무엇을 의미하는지 모르겠어요!!
+
+>  section의 primary key인 (course id, sec id, semester, year)를 찾으시면 됩니다.
+
+
+Q8.works relation 있는 person name이 employee relation에 존재하지 않을수도 있나요?
+
+> 필요하신 경우, 해당 사항을 가정하시고 문제를 푸시면 됩니다.
+
+### 과제관련 Q & A (old)
+
+---
 
 Q1. 풀이 써야 하는지, 태블릿 필기로 문제풀어도 되는지 궁금합니다
 
