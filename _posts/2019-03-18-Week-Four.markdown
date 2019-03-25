@@ -20,8 +20,58 @@ Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBy
 </div>
 
 
+## 질의응답 Detail (New: 0325)
 
-## 질의응답 Detail
+
+### Basic SELECT CLAUSE
+
+---
+
+Q1. 한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.
+
+Q2. null 이 없다고 가정하면 count()에 어떤 attribute를 넣든 같은 것 아닌가요?
+
+Q3. 방금 한 질문에서 각 id를 따로 rename을 안 한 상태에선 만약 student id가 필요한 경우에 따로 그 id만 선택하는 방법은 없는건가요?
+
+### Aggregation
+
+Q4. count(여기) 여기 안에 attribute들을 다 넣으면 *과 같은 효과를 낼 수 있나요?
+
+---
+
+### 기타
+
+Q5. explain 한번 예시 보여주실수 있나요?
+
+Q6. heide sql에서 maria db 연결하는 거 보여주실 수 있나요?
+
+Q7. DB 테이블 정의 / 데이터 포함한 sql query 올려주시나요?
+
+Q8. teaches, takes처럼 ID가 겹치면 natural join이 안되는데 이 경우 teaches와 takes에 ID의 내용이 다른데 name을 똑같이 지어준, DB를 만든 사람이 애초에 잘못했다고 평가해도 괜찮나요?
+
+Q9. 아래 질문한 사람인데 select * from teaches join takes using(course_id, sec_id, semester, year); 이 예제에서요!
+
+Q10. where에서 튜플로 쓸때랑 and로 따로따로 쓸때랑 처리하는 속도가 다른가요?
+
+### IN, NOT IN, EXISTS, NOT EXISTS
+
+---
+
+Correlation에서 방금 말씀하신 예제는 where 절에만 원하는 조건을 다써서 쿼리할수있는것아닌가요? 왜 EXISTS와 IN을 써야하는지 그 필요성 설명해주시면 감사하겠슴당
+
+
+저 EXISTS를 사용한 쿼리문도 코스 사이트에 올려주시나요.. 옮겨적기 힘들어요 ㅠ 아 피피티에도 비슷하게 잘 되어있네요 안올려주셔도 괜찮을것 같습니다ㅎ
+
+다음 시간에 IN이랑 EXISTS 차이 간략하게 한 번만 더 설명해주실 수 있을까요?
+
+IN 예제에서 그냥 INTERSECT하면 안 되는 이유가 뭔가요
+
+exists는 그럼 한 튜플 단위로 실행 되는거ㅔㅇ요?
+
+
+
+
+## 질의응답 Detail (old)
 
 Q1. cose371 table에 어떻게 접근하나요?
 
@@ -130,85 +180,12 @@ CREATE TABLE `instructor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-
-
 Q16. SQL은 기본적으로 정규표현식을 지원하나요?? *도 정규표현식의 *이랑 같은 의미인것 같아서 질문드립니다.
 
 > mariadb에서는 문자열 표현과 관련한 [REGular EXPression](https://mariadb.com/kb/en/library/regexp/)을 지원하는 것 같습니다. 모든 attribute 출력하라는 의미인 * 과는 다소 다른 듯하지만...
 
 Q17. Time이 보여주는 방식이 HH:MM:SS 인데 왜 838:59:59까지 범위를 준 건지 모르겠어요. HH가 24보다 커지는 경우가 있나요?
 
+Q18. 소크라티브 글자크기 키워주실 수 있나요?
 
-
-
-
----
-
-
---- 
-
-where에서 튜플로 쓸때랑 and로 따로따로 쓸때랑 처리하는 속도가 다른가요?
-
-null 이 없다고 가정하면 count()에 어떤 attribute를 넣든 같은 것 아닌가요?
-
-
-
-저 EXISTS를 사용한 쿼리문도 코스 사이트에 올려주시나요.. 옮겨적기 힘들어요 ㅠㅠ
-
-아 피피티에도 비슷하게 잘 되어있네요 안올려주셔도 괜찮을것 같습니다ㅎ
-
-다음 시간에 IN이랑 EXISTS 차이 간략하게 한 번만 더 설명해주실 수 있을까요?
-
-한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.
-
-IN 예제에서 그냥 INTERSECT하면 안 되는 이유가 뭔가요
-
-explain 한번 예시 보여주실수 있나요?
-
-exists는 그럼 한 튜플 단위로 실행 되는거ㅔㅇ요?
-
-heide sql에서 maria db 연결하는 거 보여주실 수 있나요?
-
-한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.
-
-
-
-
-방금 한 질문에서 각 id를 따로 rename을 안 한 상태에선 만약 student id가 필요한 경우에 따로 그 id만 선택하는 방법은 없는건가요?
-
-
-count(여기) 여기 안에 attribute들을 다 넣으면 *과 같은 효과를 낼 수 있나요?
-
-
-
-아래 질문한 사람인데 select * from teaches join takes using(course_id, sec_id, semester, year); 이 예제에서요!
-
-
-
-select count (*) from course를 과제에 왜 쓰면 안되는건가요??
-
-teaches 테이블을 예로 들자면, 캘리그라픽 앞에 cousre_id, ID 캘리그라픽 (teaches) 이런식으로 작성하면 output이 어떻게 나오나요?
-
-
-Correlation에서 방금 말씀하신 예제는 where 절에만 원하는 조건을 다써서 쿼리할수있는것아닌가요? 왜 EXISTS와 IN을 써야하는지 그 필요성 설명해주시면 감사하겠슴당
-
-
-DB 테이블 정의 / 데이터 포함한 sql query 올려주시나요?
-
-teaches, takes처럼 ID가 겹치면 natural join이 안되는데 이 경우 teaches와 takes에 ID의 내용이 다른데 name을 똑같이 지어준, DB를 만든 사람이 애초에 잘못했다고 평가해도 괜찮나요?
-
-
-
-
-
-
-
-
-
-
-소크라티브 글자크기 키워주실 수 있나요?
-
-질의 답변해주실 때 뒤에서는 질문이 안보여요. 다 읽어주세요.
-
-
-
+Q19. 질의 답변해주실 때 뒤에서는 질문이 안보여요. 다 읽어주세요.

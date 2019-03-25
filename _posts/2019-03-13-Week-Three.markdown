@@ -26,28 +26,39 @@ Week 3: Formal Relational Query Languages [[pdf]](https://1drv.ms/b/s!AszT-SZB_j
 
 수업 중 말씀드렸듯 18페이지에 문제에서 요구하는 것이 instructor들의 name이었으므로, ID가 아닌 name을 Projection해주는 것이 맞습니다.
 
-## 질의응답 (new: 0325)
+## 질의응답 Detail (new: 0325)
 
 ---
 
+Q1. count(distinct ID)가 relational algebra에서도 되나요?
 
-count(distinct ID)가 relational algebra에서도 되나요?
+> 교재 표현법에 따르면 다음과 같이 사용합니다.
 
-관계대수에서 aggregation function의 결과를 그냥 숫자로 볼 수 있나요? 예를 들면 ρ_{salary=avg(salary)}(instructor) 로 평균 월급 받는 교수의 정보를 얻어낼 수 있을까요?
+$$
+\mathcal{G}_{count-distinct(ID)}(\sigma _{semester=``Spring'' \wedge year=2010}(teaches))
+$$
+> The aggregate function count-distinct ensures that even if an instructor teaches more than one course, she is counted only once in the result. 
 
-한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.
+Q2. 관계대수에서 aggregation function의 결과를 그냥 숫자로 볼 수 있나요? 예를 들면 ρ_{salary=avg(salary)}(instructor) 로 평균 월급 받는 교수의 정보를 얻어낼 수 있을까요?
 
-그럼 각 학과 내의 강사 수를 구하려면 dept_name G count (instructor) 이렇게 하면 되나요? 아 instructor 가 아니라 id 로 하면 되는 건가요
+Q3. caligraphic을 사용하는 경우 하나의 값이 return되는건지 relation이 return되는건지 궁금합니다
 
-caligraphic을 사용하는 경우 하나의 값이 return되는건지 relation이 return되는건지 궁금합니다
+> Q2~Q3: aggregate 결과 역시 relation이며, scalar 값으로 활용할 수 없습니다. 다만, SQL에서는 attribute 개수가 하나이며, 그 domain이 numeric이며, tuple이 1개 밖에 없는 경우 숫자로 활용할 수 있습니다.
+
+Q4. 그럼 각 학과 내의 강사 수를 구하려면 dept_name G count (instructor) 이렇게 하면 되나요? 아 instructor 가 아니라 id 로 하면 되는 건가요
+
+> 과제 문제이므로 과제 채점 이후에 말씀드리겠습니다.
+
+Q5. relational algebra에서도 nested subquery를 써도 돠나요?!
+
+> 이미 사용하고 계십니다. 관계대수애서 사용되는 각 expression은 relation입니다.
+
+Q6. teaches 테이블을 예로 들자면, 캘리그라픽 앞에 cousre_id, ID 캘리그라픽 (teaches) 이런식으로 작성하면 output이 어떻게 나오나요?
+
+> 문법에 오류가 있는 듯합니다. $\mathcal{G}$ 뒤에 하나 이상의 aggregation function이 있어야 합니다.
 
 
-relational algebra에서도 nested subquery를 써도 돠나요?!
-
-
-
-
-## 질의응답 (old)
+## 질의응답 Detail (old)
 
 ---
 
