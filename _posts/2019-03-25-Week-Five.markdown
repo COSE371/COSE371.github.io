@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Week 5: Database Design and E-R Model​"
-date: 2019-03-13
+date: 2019-03-25
 categories: Lecturenote-and-QA
 math: true
 ---
