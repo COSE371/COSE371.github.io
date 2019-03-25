@@ -39,6 +39,12 @@ permalink: /assignment/
 
 -  교재 Appendix A 보시면 University Scheme가 나와있습니다. 그 뒷부분에는 예제 instance들이 들어있습니다. 이를 참조하셔서 문제 푸시면 됩니다.
 
+- Instance
+
+![Imgur](https://i.imgur.com/lzkM7EM.png)
+
+![Imgur](https://i.imgur.com/mU033zE.png)
+
 ### 과제관련 Q & A (New: 0325)
 
 ---
