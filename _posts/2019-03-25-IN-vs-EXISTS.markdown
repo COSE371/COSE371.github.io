@@ -13,6 +13,8 @@ categories: Lecturenote-and-QA
 <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214572&amp;authkey=AJdKTcISeaiIV-s&amp;em=2&amp;wdAr=1.7777777777777777"  frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
+---
+
 ### 1. 필요성?
 
 - 두 구문 모두 SQL의 표현력을 높여주는 역할을 합니다. 

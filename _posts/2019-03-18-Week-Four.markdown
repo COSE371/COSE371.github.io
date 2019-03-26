@@ -19,12 +19,13 @@ Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBy
 <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214395&amp;authkey=AIl5GRQUxgpe3Zc&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
+---
 
 ## 질의응답 Detail (New: 0325)
 
-### IN, NOT IN, EXISTS, NOT EXISTS
+### IN, NOT IN, EXISTS, NOT EXISTS ([IN-vs-EXISTS](https://cose371.github.io/lecturenote-and-qa/2019/03/24/IN-vs-EXISTS.html) 문서 참조)
 
----
+--- 
 
 Q1. Correlation에서 방금 말씀하신 예제는 where 절에만 원하는 조건을 다써서 쿼리할수있는것아닌가요? 왜 EXISTS와 IN을 써야하는지 그 필요성 설명해주시면 감사하겠슴당
 
