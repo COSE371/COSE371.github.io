@@ -17,6 +17,8 @@ categories: Lecturenote-and-QA
 
 ### 1. 필요성?
 
+---
+
 - 두 구문 모두 SQL의 표현력을 높여주는 역할을 합니다. 
   - 특히 MySQL이나 낮은 버전의 MariaDB에서는 INTERSECT 기능이나 EXCEPT 기능이 지원되지 않습니다. 이 경우 IN 또는 EXISTS 구문으로 구현할 수 있습니다 => Q4 참조.
 - 차이점?
@@ -37,6 +39,8 @@ MariaDB [cose371]> SELECT N_NATIONKEY, N_NAME, N_REGIONKEY
 ```
 
 ### 2. Correlated?
+
+---
 
 - IN은 correlated subquery 형태로 사용될 수도 있고, correlated subquery 형태로 사용되지 않을 수도 있습니다.
 
@@ -77,6 +81,8 @@ MariaDB [cose371]> SELECT COUNT(DISTINCT C_Name)
 ```
 
 ### 3. IN <-> EXISTS
+
+---
 
 - 많은 경우 non-correlated IN 구문은 correlated EXISTS구문으로, correlated EXISTS 구문은 non-correlated IN 구문으로 바꿀 수 있습니다.
   - [IN <-> EXISTS](https://stackoverflow.com/questions/31297417/how-to-replace-the-in-operator-with-exists-operator-for-the-where-clause-part-o)
@@ -175,6 +181,8 @@ MariaDB [cose371]> EXPLAIN
 
 ### 5. Performance (optimizer enabled)
 
+---
+
 - 상용 DBMS는 필요에 따라 IN을 동등한 EXISTS로, 또는 EXISTS를 동등한 IN으로 바꾸어 처리하는 최적화 과정을 가지고 있습니다.
   - [EXISTS-TO-IN (MariaDB)](https://mariadb.com/kb/en/library/exists-to-in-optimization/)
   - [IN-TO-EXISTS (MariaDB)](https://mariadb.com/kb/en/non-semi-join-subquery-optimizations/#the-in-to-exists-transformation)
@@ -257,6 +265,8 @@ MariaDB [cose371]> EXPLAIN
 ```
 
 ### 6. 주의
+
+---
 
 - **오해할 수 있는 진술**: 'EXISTS 보다 IN으로 처리하는 것이 더 빠르다' -> X
   - 4~5에서 사용한 예제는 DBMS optimizer 개입이 없다면 EXISTS가 IN보다 비효율적으로 처리되었던 예제입니다.
