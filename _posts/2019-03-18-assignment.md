@@ -49,7 +49,7 @@ permalink: /assignment/
 ### 공지!!! 긴급!!! 비상!!!
 
 - 물음에 답을 만들어 내는 관계대수 식을 답란에 적으셔야지, 특정 instance에 대해 결과를 적으시면 안됩니다. 
-- 예를 들어 6.1.a 번의 답은 $\Pi_{title}(\sigma_{credits > 3}(course))$ 이지, 로보틱스, 이미지 프로세싱, 데이터베이스 시스템 컨셉츠가 아닙니다.
+- 예를 들어 6.1.a 번의 답은 $\Pi_{title}(\sigma_{credits > 3 \wedge dept\_name = ``Comp. Sci.''}(course))$ 이지, 로보틱스, 이미지 프로세싱, 데이터베이스 시스템 컨셉츠가 아닙니다.
 
 ### 과제관련 Q & A (New: 0325)
 
