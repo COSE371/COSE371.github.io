@@ -3,6 +3,7 @@ layout: page
 title: "Assignment #2: SQL Practice (~ 04/03)"
 categories: current
 math: true
+permalink: /assignment/
 ---
 
 ## SQL Practice (~ 04/03)
