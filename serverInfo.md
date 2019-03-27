@@ -13,6 +13,8 @@ permalink: /serverInfo/
 |Encoding|UTF-8|
 |서버 주소|115.68.231.165|
 
+---
+
 ### 실습서버 접속 방법
 
 
@@ -63,10 +65,11 @@ Database changed
 MariaDB [db학번]> **(종료시: \q)**     
 ```
 
-- **로그인 잘 안될 경우**
-  - 접속이 잘 안되시는 분들은 온라인 쉘 말고, UTF-8 인코딩을 지원하는 다른 SSH 프로그램을 사용해보시기 바랍니다.
-    - ex) Window: [putty](http://hputty.org/) 설치후 115.68.231.165 접속 (포트 22)
-    - ex) Linux or MaxOS: 터미널 실행 후 ssh YOURID@115.68.231.165
+#### 로그인이 잘 안되는 경우
+
+- 접속이 잘 안되시는 분들은 온라인 쉘 말고, UTF-8 인코딩을 지원하는 다른 SSH 프로그램을 사용해보시기 바랍니다.
+  - ex) Window: [putty](http://hputty.org/) 설치후 115.68.231.165 접속 (포트 22)
+  - ex) Linux or MaxOS: 터미널 실행 후 ssh YOURID@115.68.231.165
 
 
 
