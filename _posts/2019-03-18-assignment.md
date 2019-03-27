@@ -55,6 +55,10 @@ permalink: /assignment/
 
 ---
 
+Q0. 과제에, Rename Operator 대신에 alias 써도 되나요? 연산이 실행되고 나서 나타나는 table을 rename operator로 하기에는 너무 길어져서 그냥 as 써서 풀었는데.....허용해주실수 있나요?..밤샛어요...
+
+> 수업 중에 말씀 드린 듯, assignment 연산자를 활용할 수 있습니다. aggregate 함수의 경우도 as 로 간단하게 alias 붙일 수 있습니다.
+
 Q0. 과제 관련 질문입니다. 6.1 e,f,g 에서 Autumn 2009년도라는 조건이 나오는데 교재나 교수님께서 홈페이지에 올려주신 relation들에는 Autumn이라고 표기된 것이 없습니다,,, 물론 semantic하게 Fall을 Autumn이라고 인지할수는 있겠으나 그래도 좀 찝찝하네요. 과제 기한이 38시간 정도 남은 시점인데 명확히 해주셨으면 좋겠습니다.
 
 > 교재에서 제공되는 relation instance에는 Fall로 되어 있으나 정작 문제에서는 Autumn으로 나와서 당황하셨을텐데, 수업 중에 말씀드렸듯 Semester 값을 FalL로 하시든 Autumn으로 하시든 둘 중에 하나로 하시면 됩니다. 둘 다 정답처리하겠습니다.
