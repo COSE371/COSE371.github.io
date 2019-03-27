@@ -70,7 +70,7 @@ math: true
    - city는 호텔이 위치한 도시를 가리킨다.
 - room (<u>hotel_id</u>, <u>room_id</u>, type, price)
    - 방의 유형(type)에는 “single_room”, “double_room”, “premium_room”이 있다.
-- booking (<u>guest_id</u>, <u>hotel_id</u>, <u>room_id</u>, date_from, date_to)
+- booking (<u>guest_id</u>, <u>hotel_id</u>, <u>room_id</u>, <u>date_from</u>, <u>date_to</u>)
    - booking 릴레이션은 호텔 방에 대한 예약 상세 정보 관리를 위해 사용되며 특정 교객(guest_id)에 의한 방의 예약은 호텔 번호(hotel_id), 방 번호(room_id), 예약 기간(date_from, date_to) 정보로 구성된다.
 - guest (<u>guest_id</u>, guest_name, age, guest_city)
    - guest_city는 고객이 거주하고 있는 도시를 가리킨다.
