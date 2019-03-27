@@ -20,7 +20,9 @@ permalink: /serverInfo/
    - (방법 1) [Online Shell](http://115.68.231.165/shell) 접속
      - Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
    - (방법 2) Putty 등의 SSH client 이용
+
 2. Ubuntu 접속: 아래와 같이 접속
+   
 ``` console
 dossa0328-18078 login: **학번**
 Password: **메일주소**                                                                     
@@ -38,7 +40,9 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-116-generic x86_64)
 0 updates are security updates.                                               
 
 ```
+
 3. MariaDB 접속: 아래와 같이 접속
+   
 ``` console
 cose371@dossa0328-18078:~$ mysql -u **db학번** -p                                
 Enter password: **메일주소**                                                               
