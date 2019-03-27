@@ -16,12 +16,13 @@ permalink: /serverInfo/
 ### 실습서버 접속 방법
 
 
-1. SSH 접속
-   - (방법 1) [Online Shell](http://115.68.231.165/shell) 접속
-     - Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
-   - (방법 2) Putty 등의 SSH client 이용
+#### 1. SSH 접속
 
-2. Ubuntu 접속: 아래와 같이 접속
+- (방법 1) [Online Shell](http://115.68.231.165/shell) 접속
+    - Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)
+- (방법 2) Putty 등의 SSH client 이용
+
+#### 2. Ubuntu 접속: 아래와 같이 접속
    
 ``` console
 dossa0328-18078 login: **학번**
@@ -41,10 +42,10 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-116-generic x86_64)
 
 ```
 
-3. MariaDB 접속: 아래와 같이 접속
+#### 3. MariaDB 접속: 아래와 같이 접속
    
 ``` console
-cose371@dossa0328-18078:~$ mysql -u **db학번** -p                                
+학번@dossa0328-18078:~$ mysql -u **db학번** -p                                
 Enter password: **메일주소**                                                               
 Welcome to the MariaDB monitor.  Commands end with ; or \g.                   
 Your MariaDB connection id is 1382                                            
@@ -59,7 +60,7 @@ Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A                
                                                                               
 Database changed                                                              
-MariaDB [cose371]> **(종료시: \q)**     
+MariaDB [db학번]> **(종료시: \q)**     
 ```
 
 - **로그인 잘 안될 경우**
