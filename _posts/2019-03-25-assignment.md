@@ -139,7 +139,3 @@ permalink: /assignment2/
   - **주의: 모든 작업은 지정 [서버](https://cose371.github.io/serverInfo/)에서 본인의 MariaDB 계정으로 수행하십시오.**
 
 {% include dq.html %}
-
-
-
-{% include dq.html %}
