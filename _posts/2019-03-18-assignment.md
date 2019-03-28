@@ -3,6 +3,7 @@ layout: page
 title: "Assignment #1: Formal Relational Query Language (~ 03/27) (Q&A 수정: 0325)"
 categories: current
 math: true
+permalink: /assignment/
 ---
 
 - Database System Concept 6th edition 연습문제 풀기 (총 27문제)
