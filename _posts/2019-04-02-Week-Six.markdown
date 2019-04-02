@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Week 6: Relational Database Design"
+date: 2019-04-02
+categories: Lecturenote-and-QA
+math: true
+---
+
+데이터베이스 COSE 371(2) 6주차 강의내용입니다. 
+
+Relational Database Design 에 대해 알아봅니다.
+
+## Lecture Note
+
+
+Week 6: Relational Database Design [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN)
+
+
+<div class="slide">
+    <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214738&amp;authkey=AMlcb3mAd7mYXb4&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+
+--- 
+
+## Q & A
+

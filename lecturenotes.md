@@ -15,4 +15,6 @@ permalink: /notes/
 
 - Week 5: Database Design and E-R Model​ [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByo1O2DzurPJVozyeV) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o)
 
+- Week 6: Relational Database Design [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN)
+
 {% include dq.html %}

@@ -47,10 +47,19 @@ derived attribute 다시 한번만 설명해주세요
 
 점이 왜 두갠가요?ㅠㅠ
 
-### E-RD - Arrow Notation
+### E-RD - Mapping Cardinality & Total/Partial Participation
 
 ---
 
+앞에서 쓰신 슬라이드가 강의 페이지에 올려주신 피피티에는 안보이는데 새로 올려주시나요??
+
+caution ppt 페이지 어디에서 볼 수 잇나요..?
+
+테트리스 블럭처럼 네모치신거 블랙보드에 올라온 슬라이드에는 없어요...
+
+> pdf 말고 slide 누르시면 반영이 되어 있을 겁니다. 나중에 pdf로 만들어서 공유링크 바꿔드릴게요.
+
+가운데는 1대다 맞나요? 왜 화살표가 없나요?
 
 화살표 다시한번만요. 화살표.....
 
@@ -62,19 +71,35 @@ many to many 에는 뽀린키가 양쪽 둘다 없다는 말씀이신가요?
 
 unary에서 선수과목에서 course-id가 스스로 관련을 맺고있지만 그 안에서는 서로 다른 튜플에 저장되는거죠?
 
+학생 여러명 도시 하나인데 학생쪽으로 1..1 도시쪽으로 0..* 이면 학생 1명에 도시 0~n개 라는 뜻 아닌가요
 
+timeslot이 일대다인거 한번만 더 설명해주실수있나요!!
 
+29페이지 두번째세번째 그림에서 1..1로 최소 1명 최대 1명이 태어났는데 location에서 어떻게 0이 최솟값이 될 수 있나요?
 
+어떤 노테이션을 쓸지 명시해야 된다는 부분을 잘 못 들었는데, 화살표를 쓸지 min..max를 쓸지 명시하고 써야 한다는 말인가요?
 
-### Total/Partial Participation
+어떤 건 다:1이고 어떤 건 1:다 인데 머라부르는지 뭘 기준으로 해요?
 
----
-
-weak entity 와 total participation은 entity의 관점과 relation 관점에서의 차이일뿐인가요? 둘이 같은말같아요
-
+두줄이 무슨 뜻인지 다시 설명해주실수있나요
 
 슬라이드 31에서 두번째 erd 표는 partial participation을 나타나는게 맞는거지요? total이면 꼭 두줄 그어줘야 하는건가요?
 
+### Weak Entitiy Set
+
+---
+
+sec_course가 두줄 마름모인거 다시한번 설명해주세요ㅜㅜ
+
+sec_course가 weak entity인가요? section이 weak entity인가요?
+
+primary key 가 없으면 weak entity 인가요?
+
+weak entity 와 total participation은 entity의 관점과 relation 관점에서의 차이일뿐인가요? 둘이 같은말같아요
+
+section에 밑줄이 왜 쳐져있는지 알 수 있을까요?
+
+student와 advisor 사이 두줄로 해야되는거아닌가요?
 
 ### 기타
 
@@ -99,3 +124,7 @@ weak entity 와 total participation은 entity의 관점과 relation 관점에서
 과제 너무 어려웠어요..... ㅠ ㅠ
 
 다들 감기조심하세요...
+
+오늘 수업 속도 좋아요..
+
+e가 뭔가요..?
