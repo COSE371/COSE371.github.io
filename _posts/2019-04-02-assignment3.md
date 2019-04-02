@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Assignment #3: E-R Modeling (~ 04/10)"
+title: "Assignment #3: E-R Modeling (~ 04/15)"
 categories: current
 math: true
 permalink: /assignment3/
 ---
 
-## E-R Modeling (~ 04/10)
+## E-R Modeling (~ 04/15)
 
 ---
 
