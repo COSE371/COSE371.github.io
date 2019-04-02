@@ -17,7 +17,7 @@ permalink: /assignment3/
   - Entity Sets (primary key 지정해야 함)
   - Relationship Sets
   - Attributes
-  - Cardinality Constraints & Participation Constraints (**arrow notation + minimum & maximum notation 모두 사용할것**)
+  - Cardinality Constraints & Participation Constraints (**모든 relation에 arrow notation + minimum & maximum notation 병기하여 작성할것**)
 
 ---
 
