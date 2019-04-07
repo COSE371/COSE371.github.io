@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "Week 7: Web DB Application Development"
+date: 2019-04-08
+categories: Lecturenote-and-QA
+math: true
+---
+
+데이터베이스 COSE 371(2) 5주차 강의내용입니다. 
+
+Web DB Application Development에 대해 알아봅니다.
+
+## Lecture Note
+
+
+Week 7: Web DB Application Development [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypW47ck2sEiZR5WwD) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypWlk_GSvMHq45tc3)
+
+
+<div class="slide">
+  <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214841&amp;authkey=AM1O9K8DUr6MdqA&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+
+--- 
+
+## Q & A
+
+
+---
