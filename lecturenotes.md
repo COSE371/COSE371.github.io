@@ -17,4 +17,7 @@ permalink: /notes/
 
 - Week 6: Relational Database Design [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN)
 
+- Week 7: Web DB Application Development [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypW47ck2sEiZR5WwD) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypWlk_GSvMHq45tc3)
+
+
 {% include dq.html %}
