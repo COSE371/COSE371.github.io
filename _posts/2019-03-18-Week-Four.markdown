@@ -12,7 +12,7 @@ Structured Query Language (SQL) 에 대해 알아봅니다.
 ## Lecture Note
 
 
-Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByoykPYstsiS6QXkGl) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW)
+Week 4: Structured Query Language (SQL) [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypiyECw5lTnzoCyDU) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW)
 
 
 <div class="slide">

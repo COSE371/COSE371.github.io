@@ -13,7 +13,7 @@ Relation Model에 대해 알아봅니다.
 ## Lecture Note
 
 
-Week 2: Introduction to Relational Model [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomOHD781jm8XBaAi) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx)
+Week 2: Introduction to Relational Model [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypiuAr_Wni7PYiotg) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx)
 
 
 <div class="slide">

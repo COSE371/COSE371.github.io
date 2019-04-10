@@ -13,7 +13,7 @@ Database Design and E-R Model​에 대해 알아봅니다.
 ## Lecture Note
 
 
-Week 5: Database Design and E-R Model​ [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByo1O2DzurPJVozyeV) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o)
+Week 5: Database Design and E-R Model​ [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypi1pMlh6IFs7O4XI) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o)
 
 
 <div class="slide">

@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Assignment #1: Formal Relational Query Language (~ 03/27) (Q&A 수정: 0325)"
-categories: current
+title: "Assignment #1: Formal Relational Query Language (~ 03/27)"
+categories: old-assignment
 math: true
 permalink: /assignment/
 ---
