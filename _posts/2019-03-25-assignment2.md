@@ -148,5 +148,88 @@ Q1. 다음 번에 과제2 같은 숙제 내주실 때는 기본 데이터셋 몇
 > 화이팅! 단순히 부정행위 방지를 위해 스스로 인스턴스 구성하라고 시키는 것은 아닙니다. 다양한 가능성을 염두하며 데이터 셋을 구성해보는 작업은 현재 작성하고 있는 질의가 제대로 동작하는지 확인하는 [좋은 방법](https://www.percona.com/blog/2014/09/10/generating-test-data-from-the-mysql-prompt/) 중 하나이며, 현업에서도 많이 사용된답니다. 과제 1은 교재에서 좋은 데이터 인스턴스를 주었기에 인스턴스 구성에 대한 깊은 고찰을 할 수 없는 반면, 과제 2의 경우 올바른 질의문 작성을 위해 스스로 다양한 케이스를 검토하셔야 합니다.
 
 
+---
+
+## 문제풀이
+
+``` SQL
+-- (1) “노량” 해전에서 “침몰”된 군함의 보유 국가명을 찾아라.
+
+-- (2) 취역한 년도에 해전에 참전하여 손상을 당한 군함의 이름을 찾아라.
+
+-- (3) 가장 많은 함포를 보유하고 있는 군함의 이름(class)을 찾아라.
+
+--- 관계대수형 풀이
+SELECT DISTINCT country
+FROM ships NATURAL JOIN classes NATURAL JOIN
+(
+   SELECT max(numGuns) as numGuns
+   FROM ships NATURAL JOIN classes
+) as temp;
+
+-- IN 응용 풀이
+SELECT DISTINCT country
+FROM ships NATURAL JOIN classes 
+	WHERE numGuns IN
+(
+   SELECT max(numGuns) as numGuns
+   FROM ships NATURAL JOIN classes
+);
+
+-- ALL 기반 풀이
+SELECT DISTINCT country
+FROM ships NATURAL JOIN classes
+WHERE numGuns >= 
+	ALL (SELECT numGuns FROM classes);
+
+
+-- 아래 풀이는 하나 밖에 못구하므로 좋은 풀이가 아님
+SELECT class, max(numGuns) as num
+FROM classes
+ORDER by num DESC
+LIMIt 1
+
+-- (4) 배수량이 5000톤보다 큰 모든 급(class)의 군함을 보유하고 있는 국가의 이름을 찾아라.
+
+-- (5) “대한민국”이 보유하고 있는 군함들의 이름들을 찾되 해당 군함들이 참전한 기록이 있다면 참전한 해전명을 함께 찾아라.
+
+SELECT s_name, b_name
+FROM ships NATURAL LEFT OUTER JOIN outcomes
+WHERE country="대한민국";
+
+-- (6) 국가별 보유 군함의 수와 총배수량을 구하여라(aggregate function을 이용).
+
+-- (7) 다섯 번 이상 해전에 참전한 군함을 보유한 국가명을 찾아라.
+SELECT country, s_name
+FROM ships NATURAL JOIN outcomes
+GROUP BY country, s_name
+HAVING count(b_name) >= 5;
+
+-- (8) “1945”에 발발한 해전에 참전한 군함의 이름과 취역 년도를 찾아라.
+
+-- (1) “한국호텔”의 “single_room”을 예약한 고객명(guest_name)을 찾아라.
+
+-- (2) 보유하고 있는 방들의 가격(price) 평균이 가장 큰 호텔명(hotel_name)을 찾아라.
+SELECT hotel_name, AVG(price) as price
+FROM hotel NATURAL JOIN room
+GROUP BY hotel_id, hotel_name
+HAVING price >= ALL
+(
+   SELECT AVG(price) as price
+   FROM hotel NATURAL JOIN room
+   GROUP BY hotel_id, hotel_name
+);
+-- (3) 나이(age)가 50세 이상의 모든 고객의 이름(guest_name)을 찾되 해당 고객들 중 호텔 방을 예약한 이력이 있는 경우에는 예약한 호텔명(hotel_name)도 함께 찾아라.
+
+-- (4) 호텔 방의 가격 중 가장 싼 가격(price)를 찾아라.
+
+-- (5) 고객이 거주하는 도시에 위치한 호텔을 예약한 고객의 이름(guest_name)을 찾아라.
+
+-- (6) “홍길동” 고객에 의해 예약된 호텔명(hotel_name)들을 찾아라.
+
+-- (7) 호텔별 가장 비싼 방의 가격들 중 가장 비싼 방의 가격을 구하여라.
+
+-- (8) London에 위치하는 모든 호텔에 방을 예약한 고객이름(guest_name)을 찾아라.
+```
 
 {% include dq.html %}
