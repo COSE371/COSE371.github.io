@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Assignment #2: SQL Practice (~ 04/03)"
-categories: current
+categories: old-assignment
 math: true
 permalink: /assignment2/
 ---
@@ -149,6 +149,8 @@ Q1. 다음 번에 과제2 같은 숙제 내주실 때는 기본 데이터셋 몇
 
 
 ---
+
+<a name = 'solution'>
 
 ## 문제풀이
 
