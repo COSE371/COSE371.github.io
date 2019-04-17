@@ -189,7 +189,47 @@ FROM classes
 ORDER by num DESC
 LIMIt 1
 
+-- Subquery as a scalar value 기반 풀이
+
+SELECT DISTINCT country
+FROM ships NATURAL JOIN classes 
+	WHERE numGuns =
+(
+   SELECT max(numGuns)
+   FROM ships NATURAL JOIN classes
+);
+
 -- (4) 배수량이 5000톤보다 큰 모든 급(class)의 군함을 보유하고 있는 국가의 이름을 찾아라.
+
+--- count based 풀이법 
+
+SELECT DISTINCT country
+FROM ships NATURAL JOIN classes
+WHERE displacement > 5000
+GROUP BY country
+HAVING count(DISTINCT class) = (
+   SELECT count(DISTINCT class) FROM classes
+   WHERE displacement > 5000
+   );
+
+-- 관계대수 기반 풀이법
+
+SELECT DISTINCT country FROM ships
+WHERE country NOT IN
+
+   -- 결격사유 대상 집합
+   (
+      SELECT DISTINCT country
+      FROM ships CROSS JOIN classes
+      WHERE displacement > 5000
+      AND (country, classes.class) NOT IN (
+
+         -- 5000톤 이상 보유 현황
+         SELECT DISTINCT country, class
+         FROM ships NATURAL JOIN classes
+         WHERE displacement > 5000
+         )
+   );
 
 -- (5) “대한민국”이 보유하고 있는 군함들의 이름들을 찾되 해당 군함들이 참전한 기록이 있다면 참전한 해전명을 함께 찾아라.
 
@@ -220,6 +260,11 @@ HAVING price >= ALL
    GROUP BY hotel_id, hotel_name
 );
 -- (3) 나이(age)가 50세 이상의 모든 고객의 이름(guest_name)을 찾되 해당 고객들 중 호텔 방을 예약한 이력이 있는 경우에는 예약한 호텔명(hotel_name)도 함께 찾아라.
+
+SELECT guest_name, hotel_name
+FROM guest NATURAL LEFT OUTER JOIN booking 
+           NATURAL LEFT OUTER JOIN hotel 
+WHERE age >= 50;
 
 -- (4) 호텔 방의 가격 중 가장 싼 가격(price)를 찾아라.
 
