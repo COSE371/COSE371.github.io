@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title:  "중간고사 통계"
 date: 2019-04-25
 categories: current
