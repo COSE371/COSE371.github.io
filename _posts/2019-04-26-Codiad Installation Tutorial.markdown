@@ -53,11 +53,11 @@ permalink: /codiadinstallationtutorial/
 * Pwd입력
 * Path 복사 후 -> 붙여 넣기  
 
-![pathcopy](/assets/img/codiadsetupimg/absolutepath.png)
+![pathcopy](/assets/img/codiadsetupimg/absolutepath.png){: width="30%" height="30%"}
 ---
 ## Setup 완료  
 
-![setupcomplete](/assets/img/codiadsetupimg/setupcomplete.png)
+![setupcomplete](/assets/img/codiadsetupimg/setupcomplete.png){: width="50%" height="50%"}
 ---
 ## Login  
 
