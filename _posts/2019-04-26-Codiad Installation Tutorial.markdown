@@ -1,7 +1,7 @@
 ---
-layout: page
-title: "Assignment #1: Formal Relational Query Language (~ 03/27)"
-categories: Codiad Installation Tutorial
+layout: default
+title: "Codiad Installation Tutorial"
+categories: Codiad
 math: true
 permalink: /codiadinstallationtutorial/
 ---
