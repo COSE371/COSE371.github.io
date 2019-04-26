@@ -63,7 +63,7 @@ permalink: /codiadinstallationtutorial/
 
 * 만든 계정으로 로그인  
 
-![login](/assets/img/codiadsetupimg/login.png)
+![login](/assets/img/codiadsetupimg/login.png){: width="30%" height="30%"}
 ---
 ## Login 완료  
 
