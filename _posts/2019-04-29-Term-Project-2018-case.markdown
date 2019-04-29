@@ -14,6 +14,10 @@ permallink: tp2018case
 <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214966&amp;authkey=AKOT6NtwIbD613g&amp;em=2&amp;wdAr=0.6923076923076923" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
+
+---
+
+
 ### 사이트 소개 - 여름
 
 여름은 고려대학교 음악 정보 사이트로서 php와 MariaDB를 이용한 사용자 참여형 음악 정보 사이트입니다.
