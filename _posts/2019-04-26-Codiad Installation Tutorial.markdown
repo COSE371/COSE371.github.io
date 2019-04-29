@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Codiad Installation Tutorial"
-categories: Codiad
+categories: term-project
 math: true
 permalink: /codiadinstallationtutorial/
 ---
