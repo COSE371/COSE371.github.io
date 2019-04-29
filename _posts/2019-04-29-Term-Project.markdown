@@ -13,6 +13,13 @@ permallink: tp2019
 
 ---
 
+### 과제 상세정보 및 제출양식
+
+- MS office 사용자: [pptx 다운로드](https://drive.google.com/open?id=12qD-9mfxYmNl9TkmKz1DyPv_C40J-pIq) 
+- Powerpoint가 없는 경우: [링크 접속](https://drive.google.com/open?id=12qD-9mfxYmNl9TkmKz1DyPv_C40J-pIq)  -> 구글 로그인 -> 내 드라이브에 추가 -> Google 프리젠테이션으로 열기
+
+---
+
 
 ### 목표​
 
