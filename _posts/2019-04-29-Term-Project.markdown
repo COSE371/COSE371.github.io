@@ -70,7 +70,11 @@ permallink: tp2019
 
 - 보고서 파일을 KULMS에 제출
 
+<<<<<<< HEAD
 ### 참고사이트
+=======
+### 참고자료
+>>>>>>> 25139b3e3729fb37e32a82decf135ac04ac87ac7
 
 - [Codiad 사용법](https://cose371.github.io/codiadinstallationtutorial/)
 - [2018 Term Project 모범 사례](https://cose371.github.io/tp2018case/)
