@@ -10,6 +10,10 @@ permallink: tp2019
 <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214852&amp;authkey=AOc0ZTftCugVcUo&amp;em=2&amp;wdAr=0.6923076923076923" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
 </div>
 
+
+---
+
+
 ### 목표​
 
 - 특정 업무를 지원하는 웹기반 데이터베이스 응용 시스템을 개발하는 것을 목적으로 함​
@@ -35,19 +39,36 @@ permallink: tp2019
   - 특정 정보의 검색 결과는 두 단계(검색 결과 전체에 대한 간략정보 & 특정 검색 결과에 대한 상세정보)로 볼 수 있도록 구현해야 함. ​
   - 구현되는 기능에서 필요한 정보이지만 시스템 구현 범위 내에  해당 데이터 생성(insert) 기능이 포함되어 있지 않는 경우 해당 테이블의 데이터는 MariaDB에서 직접 생성하여 사용.​
   - 시스템 구현 시 둘 이상의 테이블이 조인되어 처리되어야 하는 기능이 반드시 포함되어야 함.​
-  - 웹 페이지 디자인은 http://www.oswd.org 에서 구현 시스템에 적합한 디자인을 다운로드한 후 변경하여 사용할 수 있음.​
+  - 웹 페이지 디자인은 http://www.oswd.org 에서 구현 시스템에 적합한 디자인을 다운로드한 후 변경하여 사용할 수 있음
+  
 
-​
-​### Term Project Schedule​
+### 배점 및 제출기한
 
-- Requirements Analysis &  Design and Implementation (~5.27)
-- System Refinement & Report Submit
+#### 1. Development of Web DB application with no transaction [배점 7]
 
+- 제출내용
+   - Requirements Analysis
+   - Design and Implementation
+   - Report Submit 
+- 제출기한
+   - 정상제출: 5월 27일 14시까지 (채점결과의 **100%** 반영)
+   - 지각제출: 6월 03일 14시까지 (채점결과의 **80%** 반영)
+   - 최종제출: 6월 10일 14시까지 (채점결과의 **50%** 반영)
+
+
+#### 2. Development of Web DB application with transaction/CC/Recovery [배점 2] 
+
+- 제출 내용
+  - System Refinement
+  - Report Submit 
+- 제출기한
+   - 정상제출: 6월 10일 14시까지 (채점결과의 **100%** 반영)
+   - 지각제출: 6월 17일 14시까지 (채점결과의 **80%** 반영)
+   - **최종제출: 6월 23일 23시 59분까지 (채점결과의 50% 반영)**
 
 ### 제출방법
 
 - 보고서 파일을 KULMS에 제출
-
 
 ### 참고자료
 
