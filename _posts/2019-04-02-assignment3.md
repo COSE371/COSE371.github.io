@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Assignment #3: E-R Modeling (~ 04/15)"
-categories: current
+categories: old-assignment
 math: true
 permalink: /assignment3/
 ---

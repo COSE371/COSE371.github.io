@@ -3,6 +3,7 @@ layout: post
 title: "Term Project"
 categories: term-project
 math: true
+permallink: tp2019
 ---
 
 <div class="slide">

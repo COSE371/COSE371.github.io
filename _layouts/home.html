@@ -10,6 +10,23 @@ layout: default
   {% endif %}
 {% endfor %}
 
+<br>
+<hr>
+<br>
+
+{% for post in site.posts %}
+  {% if post.categories contains 'term-project' %}
+    <div class="post_title">
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title}}</a>
+    </div> 
+  {% endif %}
+{% endfor %}
+
+<br>
+<hr>
+<br>
+
+
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="artilce_header">

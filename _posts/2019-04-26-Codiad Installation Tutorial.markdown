@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Codiad Installation Tutorial"
 categories: term-project
 math: true
