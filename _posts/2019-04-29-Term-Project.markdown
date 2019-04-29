@@ -70,10 +70,13 @@ permallink: tp2019
 
 - 보고서 파일을 KULMS에 제출
 
+### 2018학년도 1학기 모범사례
+
+- [고려대학교 음악 정보 사이트(김영훈)](https://cose371.github.io/tp2018case/)
+
 ### 참고자료
 
 - [Codiad 사용법](https://cose371.github.io/codiadinstallationtutorial/)
-- [2018 Term Project 모범 사례](https://cose371.github.io/tp2018case/)
 - ERD 그리는 사이트
   - [Lucid Chart](https://www.lucidchart.com/) : [예시](https://www.lucidchart.com/invitations/accept/ab6dfb27-f3cd-412a-a9de-f919cdf15610)
   - [Vertabelo](https://www.vertabelo.com/): [예시](https://my.vertabelo.com/public-model-view/KKHmcf48F1LEF65bzFSnl4aj0SW0f7yvJw9sdHTnKOgjQNP2liUa9xQpPdd85Xl3?x=2040&y=2658&zoom=0.4786)
