@@ -44,8 +44,10 @@ permalink: /codiadinstallationtutorial/
 
 ![initialsetup1](/assets/img/codiadsetupimg/initialsetup1.png){: width="30%" height="30%"}  
 
-![initialsetup2](/assets/img/codiadsetupimg/initialsetup2.png){: width="30%" height="30%"}
+![initialsetup2](/assets/img/codiadsetupimg/initialsetup2.png)
+
 ---
+
 ## Folder Name or absolute Path 찾기 
 
 * PuTTY / Terminal 접속
