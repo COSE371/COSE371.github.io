@@ -42,9 +42,9 @@ permalink: /codiadinstallationtutorial/
 * Codiad의 Username과 password는 Linux와 달라도 무방합니다.
 * ***단, Path에는 정해진 path를 정확히 입력해주셔야 합니다.***  
 
-![initialsetup1](/assets/img/codiadsetupimg/initialsetup1.png)  
+![initialsetup1](/assets/img/codiadsetupimg/initialsetup1.png){: width="30%" height="30%"}  
 
-![initialsetup2](/assets/img/codiadsetupimg/initialsetup2.png)
+![initialsetup2](/assets/img/codiadsetupimg/initialsetup2.png){: width="30%" height="30%"}
 ---
 ## Folder Name or absolute Path 찾기 
 
