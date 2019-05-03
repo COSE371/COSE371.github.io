@@ -3,7 +3,7 @@ layout: post
 title: "Term Project 모범사례 (2018)"
 categories: term-project
 math: true
-permallink: tp2018case
+permalink: tp2018case
 ---
 
 ### 모범사례 소개
