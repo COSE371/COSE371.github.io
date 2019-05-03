@@ -79,7 +79,7 @@ permallink: tp2019
 
 ### 2018학년도 1학기 모범사례
 
-- [고려대학교 음악 정보 사이트(김영훈)](https://cose371.github.io/tp2018case/)
+- [고려대학교 음악 정보 사이트(김영훈)](https://cose371.github.io/tp2018case)
 
 ### 참고자료
 
