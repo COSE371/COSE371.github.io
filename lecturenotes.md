@@ -4,6 +4,12 @@ title: Lecture Notes
 permalink: /notes/
 ---
 
+- Week 11: Storage Management & Indexing [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByp2vAhU5xonuUIkUB) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypmTXAPUuBdkf6h8P)
+
+
+
+## 중간고사 이전
+
 - Week 1: Introduction [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomXmEK-RcdHfgabU) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomKzyRyAh5b45N7n)
 
 - Week 2: Introduction to Relational Model [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypiuAr_Wni7PYiotg) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx)
@@ -17,6 +23,7 @@ permalink: /notes/
 - Week 6: Relational Database Design [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN)
 
 - Week 7: Web DB Application Development [[pdf]](https://1drv.ms/b/s!AszT-SZB_jBypW47ck2sEiZR5WwD) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypWlk_GSvMHq45tc3)
+
 
 
 {% include dq.html %}

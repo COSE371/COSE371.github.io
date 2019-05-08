@@ -91,3 +91,100 @@ permallink: tp2019
   <div class="slide">
   <script>if (typeof VertabeloEmbededObject === 'undefined') {var VertabeloEmbededObject = "loading";var s=document.createElement("script");s.setAttribute("type","text/javascript");s.setAttribute("src", "https://my.vertabelo.com/js/public-model/v1/api.js");(document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(s);}</script><div class="vertabelo-public-model" data-height="400" data-width="640" data-logoType="created_with" data-modelGid="KKHmcf48F1LEF65bzFSnl4aj0SW0f7yvJw9sdHTnKOgjQNP2liUa9xQpPdd85Xl3" data-openLabel="EDIT MODEL IN YOUR BROWSER" data-x="4263" data-y="5554" data-zoom="0.4786" ></div>
   </div>
+
+---
+### Q & A
+
+#### 과제 관련
+
+- Term Project 구현할 때 ORM 사용해도 되나요? 아니면 반드시 SQL raw query를 사용해야 하나요?
+
+> 됩니다. 하지만 가급적 SQL raw query로 합시다!
+
+- 몰라요
+
+> 이거 질문이 뭐였죠?
+
+- "구현되는 기능에서 필요한 정보이지만 시스템 구현 범위 내에 해당 데이터 생성(insert) 기능이 포함되어 있지 않는 경우 해당 테이블의 데이터는 MariaDB에서 직접 생성하여 사용" 의미가 이해가 가지 않아요
+
+- 텀프로젝트는 mall 디렉토리가 아니라 project 디렉토리에서 작업하면 되나요?
+
+> 만약 codiad 안쓰고 ssh 로만 작업하실 경우는 project 디렉토리에서 작업하시면 됩니다.
+---
+
+#### PHP 관련
+
+- 교수님이 값을 바꾸니까 제 페이지에서 정보가 바꼈는데, 왜그런가요?
+
+- include는 해당 내용을 단순히 복붙하는 효과인가요?
+
+- 두가지 다 상관없나요?
+
+```php
+<input type="hidden" name="product_id" value="<?=$product['product_id']?>"/> <? echo "<input type='hidden' name="product_id" value='{$product['product_id']}'/>" ?> 
+```
+
+- 이런식으로 input 태그만 끝에 /가 있는 이유가 있나요?
+
+```php
+<input readonly type="text" id="manufacturer_id" name="manufacturer_id" value="<?= $product['manufacturer_id'] ?>"/> 
+```
+
+- 아까 foreach 문에서 if else문에 selected 있고 없고 차이가 뭔가요?
+
+```php
+echo "<option value='{$id}' selected>{$name}</option>"; 랑 echo "<option value='{$id}'>{$name}</option>"; 
+```
+
+- form에서 post 로 보내지는 변수 이름은 input tag들의 id 로 들어가나요 name으로 들어가나요?
+
+- 변수앞에있는 \$는 무엇을 의미하나요?
+
+- mysqli_query 부분 한번만 더 설명부탁드립니다!
+
+- 아까 form코드에서 ```<?php echo $action > ??``` 이부분 코드 다시 보여줄수있나요ㅠㅠ?
+
+- case insensitive하게 검색하는 게 like operator을 쓰면 자동으로 되나요?
+
+- php 뒤에 ?는 무슨의미인가요?
+
+- 새로운 php파일을 만드는 기준은 뭔가요??
+  
+> 피...필요할 때?
+
+--- 
+
+### Codiad 관련
+
+- codiad에서 만든 파일을 다른 디렉토리로 move 못하나요?
+
+- codiad에서 index.php 만든거 어떻게 웹페이지로 띄워서 볼 수 있나요 ?
+
+- CODIAD엔 MP3파일 못 넣나요??? 계속 넣어봤는데 분명 COMPLETE이라고 뜨는데 안 들어가있어요ㅠㅠ
+
+- 저희가 만든 index.php 는 (http://115.68.231.165/자기학번) 에서 확인이 가능한데, 처음 codiad들어가서 있는 mynameis.php나 mynameis_post.php 같은 파일은 어떻게 확인할 수 있나요?
+
+- 주석처리 하는 방법 다시 한번만 설명해주세요!!ㅠ
+
+> 블록잡고 ```ctrl + /``` 또는 ```ctrl + shift + /``` 
+
+- 방금 들어와서 잘 모르겠는데 User Name은 뭐로 해야 하나요?
+
+> 아...아무거나? 그런데 해보니까 한글쓰면 안돼요. 되기는 됩니다. 한글로 가입하면 아이디 공백으로 두시면 됩니다.
+
+---
+
+### Mall 관련
+
+- 아까 온라인쉘에서 mall로 들어가는 방법이 어떻게 되나요....?
+
+- 코디아드 안에서 한다는게 mall 파일안에서 새로 만들고 삭제하고 그러라는 건가용?
+
+- password는 이메일주소인가요?
+
+> 자신의 데이터베이스 사용해야하니 config.php에서 password는 이메일주소로 하면 되겠죠?
+
+- 개인 데이터베이스로 작업하고 싶을 때 dbconnect의 $host 값이 뭐였죠? ㅠㅠ
+
+> 바꾸시면 안되요 localhost에요.
+
