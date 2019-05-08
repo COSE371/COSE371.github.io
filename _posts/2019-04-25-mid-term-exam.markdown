@@ -2,7 +2,7 @@
 layout: page
 title:  "중간고사 통계"
 date: 2019-04-25
-categories: current
+categories: statistics
 ---
 
 중간고사 수고하셨습니다.

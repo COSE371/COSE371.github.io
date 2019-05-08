@@ -3,7 +3,7 @@ layout: post
 title: "Term Project: 로그인 기능 구현하기 (Optional)"
 categories: term-project
 math: true
-permallink: tpLogin
+permalink: tpLogin
 ---
 
 ### 주의: Optional!!!!
@@ -12,8 +12,12 @@ permallink: tpLogin
   - 사실 GPA 높이시려면 이거 구현할 시간에 다른거 공부하는게 유리합니다 :) 
 - 다만 관심이 있는 학생들에게 정보를 제공해드리기 위해 본 블로그를 작성했습니다.
 
+---
+
 - **Implementing user authentication is not necessary**. It is far beyond the scope and the goal of the term project.
 - I wrote this post just in case some students are interested in implementing it.
+
+---
 
 ### 구 버전의 mall
 
