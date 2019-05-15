@@ -4,7 +4,7 @@ title: Lecture Notes
 permalink: /notes/
 ---
 
-- Week 11: Storage Management & Indexing [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByp2vAhU5xonuUIkUB) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypmTXAPUuBdkf6h8P)
+- Week 11: Storage Management & Indexing [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqE7bDiHyDpc-BEgt) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypmTXAPUuBdkf6h8P)
 
 
 
