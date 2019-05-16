@@ -1,5 +1,8 @@
 ---
 layout: empty
+title: "Week 11+: Nested Loop Join + LRU Simulation"
+date: 2019-05-15
+categories: Lecturenote-and-QA
 ---
 
 <!DOCTYPE html>
