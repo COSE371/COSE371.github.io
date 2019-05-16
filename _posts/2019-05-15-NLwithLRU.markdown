@@ -1,11 +1,10 @@
 ---
 layout: empty
-title: "Week 11+: Nested Loop Join + LRU Simulation"
+title: "Week 11+: Nested Loop Join + LRU/MRU Simulation"
 date: 2019-05-15
 categories: Lecturenote-and-QA
 ---
 
-<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
 <title>LRU vs MRU</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
