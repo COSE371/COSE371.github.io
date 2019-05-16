@@ -1,12 +1,10 @@
 ---
-layout: post
-title: "Week 11+: Nested Loop Join + LRU Simulation"
-date: 2019-05-15
-categories: Lecturenote-and-QA
-math: true
+layout: empty
 ---
 
-
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
 <title>LRU vs MRU</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -11748,14 +11746,40 @@ div#notebook {
 }
 </style>
 
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="custom.css">
 
-<div tabindex="-1" id="notebook" class="border-box-sizing">
-<div class="container" id="notebook-container">
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Week-11+:-Nested-Loop-Join-+-LRU-Simulation">Week 11+: Nested Loop Join + LRU Simulation<a class="anchor-link" href="#Week-11+:-Nested-Loop-Join-+-LRU-Simulation">&#182;</a></h1><p>시험범위 아닙니다. 그냥 한겁니다.</p>
 <h2 id="Page-&#44396;&#51312;">Page &#44396;&#51312;<a class="anchor-link" href="#Page-&#44396;&#51312;">&#182;</a></h2><p>시뮬레이션에 필요한 간단한 구조만 구현했습니다. 파일입출력으로 구현하지는 않았습니다.</p>
 
 </div>
@@ -12831,5 +12855,9 @@ Statistics
 </div>
     </div>
   </div>
+</body>
+
+ 
 
 
+</html>
