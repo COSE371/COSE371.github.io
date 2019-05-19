@@ -6,6 +6,7 @@ permalink: /notes/
 
 - Week 11: Storage Management & Indexing [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqE7bDiHyDpc-BEgt) [[slide]](https://1drv.ms/p/s!AszT-SZB_jBypmTXAPUuBdkf6h8P)
 
+- Week 12: Query processing & Optimization [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqF8z1yVmG5E3oh1G) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByp26DpzPWg6npVBvs)
 
 
 ## 중간고사 이전
