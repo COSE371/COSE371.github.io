@@ -1,7 +1,7 @@
 ---
 layout: empty
 title: "Week 12+: Nested Loop Join VS Block Nested Loop Join with Simple Simulation"
-date: 2019-05-2
+date: 2019-05-20
 categories: Lecturenote-and-QA
 ---
 <html>
@@ -11789,7 +11789,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Page</span> <span class="p">():</span>
@@ -11851,7 +11851,7 @@ r2
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Disk</span> <span class="p">():</span>
@@ -11944,7 +11944,7 @@ SEEKs: 3, Block Transfers: 5
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Buffer</span><span class="p">():</span>
@@ -12049,7 +12049,7 @@ r4
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
@@ -12181,10 +12181,10 @@ Statistics
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Table_BlockRader</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TableBlockReader</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">list_of_page_name</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">page_names</span> <span class="o">=</span> <span class="n">list_of_page_name</span>
@@ -12220,7 +12220,7 @@ Statistics
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
@@ -12234,8 +12234,8 @@ Statistics
 
 <span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">([</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">G1</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">G1</span><span class="p">])</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">Table_BlockRader</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">Table_BlockRader</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">Br</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">Bs</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
