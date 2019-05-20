@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Assignment #4: E-R Modeling (~ 06/03)"
+title: "Assignment #4: Query Processing & Optimization (~ 06/03)"
 categories: current
 math: true
 permalink: /assignment4/
