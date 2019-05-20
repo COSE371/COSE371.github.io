@@ -1,6 +1,6 @@
 ---
 layout: empty
-title: "Week 12+: Nested Loop Join VS Block Nested Loop Join with Simple Simulation"
+title: "Week 12+: Nested Loop Join VS Block Nested Loop Join Simulation"
 date: 2019-05-20
 categories: Lecturenote-and-QA
 ---
