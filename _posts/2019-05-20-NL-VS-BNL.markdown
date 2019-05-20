@@ -11782,7 +11782,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">Week 12+: Nested Loop Join + Block Nested Loop Join<a class="anchor-link" href="#Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">&#182;</a></h1><p>시험범위 아닙니다. 그냥 한겁니다.</p>
 <h2 id="Page">Page<a class="anchor-link" href="#Page">&#182;</a></h2><p>지난 번 <a href="https://cose371.github.io/lecturenote-and-qa/2019/05/15/NLwithLRU.html">LRU 시뮬레이션</a> 에서는 Page를 다소 대충 짠 감이있었죠?</p>
-<p>이번에는 Page를 iterable하게 구현함으로써 조금 더 fency하게 동작하도록 만들어봅시다.</p>
+<p>이번에는 Page를 iterable하게 구현함으로써 조금 더  동작하도록 만들어봅시다.</p>
 
 </div>
 </div>
