@@ -21,3 +21,35 @@ Week 12: Query processing & Optimization [[pdf]](https://1drv.ms/b/s!AszT-SZB_jB
 
 
 ## Q & A
+
+- 애초부터 equivalence rule도 튜플의 사이즈를 줄이려고 하는것이 아닌가요?? 그런데도 또 selection size estimation을 하네요
+
+- 2014190518
+
+- 11
+
+- physical plan한번만 더 설명해주세요
+
+- V(A,r) 의 정의가 뭔가요?
+
+- 감자기 생각났는데 과제 ERD를 손으로 그려서 붙야넣으면 안되나요 꼭 그 사이트 두개 써야하는지요 ㅠㅠ
+
+- use index 1이 무슨말인가요ㅠㅠ
+
+- 혹시 기말 범위는 어디까진가요?
+
+- cose371
+
+- Select 적용된 릴레이션 투플 수 알아보려면 실제로 linear scan해야 해서 플랜 짜는게 비용이 너무 커지는 것 아닌가요?
+
+- logical plan은 plan tree 를 결정하는 거고, physical plan은 같은 트리 모양에서 각 단위연산을 세부적으로 어떻게 할지 결정하는 것으로 이해했는데 맞나요?
+
+- legal database instance가 뭔가용?ㅠㅠ
+
+- 텀프 config 파일에 들어갈 것 이거 맞나요? 이렇게 했는데 연결이 안되네요ㅠ host:local host dbid: 학번 dbpass: 블보 이메일 dbname: db학번 맞나요?
+
+- l.q.e.p의 size와 cost의 차이가 무엇인가요?
+
+- 무슨 말씀이신지....
+
+- 기말고사 언제보나요 ㅎ
