@@ -8,6 +8,7 @@ permalink: /assignment4/
 
 ### Database System Concept 6th edition 연습문제 풀기 (총 7문제)
 
+각 문제에 대해 상세히 서술하시오.
 
 #### Chapter 12. Query Processing
 
@@ -28,7 +29,7 @@ permalink: /assignment4/
 - Exercises
   - 13.15
 
-#### 제출 기한/방법/양식 및 채점방법
+### 제출 기한/방법/양식 및 채점방법
 
 - 제출기한
   - 정상제출: 6월 03일 14시까지 (채점결과의 **100%** 반영)
@@ -38,9 +39,8 @@ permalink: /assignment4/
 - 제출방법: [KULMS(블랙보드)](https://kulms.korea.ac.kr/) 에 파일 (**pdf**) 제출
   - 블랙보드 접속이 원할하지 않을 시, ws_choi@kore.ac.kr 로 보내주세요.
 
-- 제출양식: [pdf, 한글, ms_word](https://1drv.ms/f/s!AszT-SZB_jByoyr84sI3g4jMWN8W) 중 택1
-  - pdf: 인쇄하여 작성 후 스캔하여 제출해주세요. 스캐너가 없을 경우 스마트폰에 dropbox ([android](https://play.google.com/store/apps/details?id=com.dropbox.android&hl=ko), [iphone](https://itunes.apple.com/kr/app/dropbox/id327630330?mt=8))등의 application 설치하여 카메라로 스캔하시면 됩니다. 
-  - [한글, MS_word] 한글이나 MS_word에 직접 타이핑해서 과제하시는 경우는 최종적으로 PDF로 변환하여 제출해주세요. 가급적 페이지 레이아웃 달라지지 않게해주세요.
+- 제출방법: [KULMS(블랙보드)](https://kulms.korea.ac.kr/) 에 파일 (**pdf**) 제출
+  - 블랙보드 접속이 원할하지 않을 시, ws_choi@kore.ac.kr 로 보내주세요.
 
 - 채점방법: 총 7문제이며, 각 틀린문제 당 0.5 점 감점 (총점 4점에서 차감)
   - 블랙보드에서의 무제한 제출을 허용하나,
