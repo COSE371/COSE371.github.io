@@ -6,10 +6,10 @@ math: true
 permalink: /assignment4/
 ---
 
-## Database System Concept 6th edition 연습문제 풀기 (총 7문제)
+### Database System Concept 6th edition 연습문제 풀기 (총 7문제)
 
 
-### Chapter 12. Query Processing
+#### Chapter 12. Query Processing
 
 - Practical Exercises
   - 12.2
@@ -17,7 +17,7 @@ permalink: /assignment4/
     - a
     - b
 
-### Chapter 13. Query Optimization - Practical Exercises
+#### Chapter 13. Query Optimization - Practical Exercises
 
 - Practical Exercises
   - 13.1
