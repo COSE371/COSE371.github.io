@@ -8,7 +8,7 @@ math: true
 
 ## Lecture Note
 
-Week 13: Transactions [[pdf]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B)
+Week 13: Transactions [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqGJG0p35COWBmzv5) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B)
 
 
 <div class="slide">

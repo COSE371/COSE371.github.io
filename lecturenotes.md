@@ -8,7 +8,7 @@ permalink: /notes/
 
 - Week 12: Query processing & Optimization [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqF8z1yVmG5E3oh1G) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByp26DpzPWg6npVBvs)
 
-- Week 13: Transactions [[pdf]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B)
+- Week 13: Transactions [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqGJG0p35COWBmzv5) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B)
 
 ## 중간고사 이전
 
