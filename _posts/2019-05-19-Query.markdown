@@ -19,8 +19,76 @@ Week 12: Query processing & Optimization [[pdf]](https://1drv.ms/b/s!AszT-SZB_jB
 ---
 
 
+## Q & A (1)
 
-## Q & A
+### Size Estimation
+
+Q1. 근데 예를들면 2009년도에 튜플이 하나, 2010년도에 튜플이 12개 이렇다면 구간을 계산하는 방법은 정확도가 굉장히 떨어지는 것 아닌가요?
+
+> 맞습니다. 추정치일 뿐입니다. 그러나 학교 예제에 한정해서는 큰 문제 없겠죠?? 
+
+Q2. 방금 Join size estimation두번째 다시 한번 설명해주실 수 있나요? 2번이요!
+
+Q3. 21페이지의 학과의 수나 20페이지의 max(A, r), min(A, r) 을 구하려면 결국 linear 스캔해야하는거 아닌가요?
+
+Q4. v(id,takes)가 왜 2500인가요ㅠㅠ
+
+Q5. size of tuple 은어떻게 계산되는건가요? 예시에서는 column이 4개인데 l_r는 10이네요
+
+> 그..그냥 예제라서 그렇게 되어 있는 것이고, 실제로는 column들의 type 용량 (e.g. int 4Byte) 을 다 더한 값 + 알파입니다.
+
+Q6. takes 테이블의 튜플 수가 students 보다 적으면 어떻게 되나요
+
+> 그래도 takes의 개수가 조인의 개수와 같겠죠? Foreign key constraints에 의해 보호받는한?
+
+Q7. ntakes>=4의 의미가 뭔가요ㅠㅠ<=여야하지 않나요?
+
+Q8. foreign key integrity 를 만족하지 않으므로 foreign key 관계가 아니라고 하는 건가요?
+
+> 의미적으로는 foreign key이나, DBMS에 foreign key 제약을 걸어놓지 않은 상황을 이야기하는 것입니다.
+
+Q9. V(ID, takes) = 2500 부분이 이해가 가지 않습니다
+
+Q11. 학생 5000명 중에서 수업 듣는 학생은 2500명 밖에 없는건가요?
+
+> 저 예제에 한해서 맞습니다.
+
+Q12. 25 슬라이드에서 'dangling tuple' 이란 용어는 그냥 참조되는 키가 실존하지 않는 튜플을 말하는거지요?
+
+> 넹
+
+Q13. n_r 값을 구하기 위해서는 결국 linear scan 해야 하는 것 아닌가요?
+
+> 노노 절대 노노!! 통계값을 관리합니다. 적어도 블락 수를 관리합니다. 
+
+### Disk
+
+Q14. 블록 이동하는게 transfer이고 읽는 게 seek인 줄 알았는데 반대인건가요?
+
+> 반대반대반대
+
+Q15. t_t + t_s 하는 이유가 트리의 노드 하나를 이동할 때 마다 팔돌려서 찾은 다음에 그 포인터가 있는 블락을 찾아야해서인가요?
+
+> 찾고($t_s$) 메모리로 보내서 ($t_t$)요. 메모리에서 읽은 다음에 다시 그 포인터가 있는 블락을 찾고($t_s$) 메모리로 보내겠죠? ($t_t$)
+
+Q16. 저 식이 SSD 에도 그대로 적용될 수 있는건가요?
+
+> 그렇기도 하고 아니기도 합니다. 엄밀히 하고 싶은 경우 SSD에 대해서는 다른 코스트 모델을 도입할 수 있습니다. 참고: Do, Jaeyoung, and Jignesh M. Patel. "Join processing for flash SSDs: remembering past lessons." Proceedings of the Fifth International Workshop on Data Management on New Hardware. ACM, 2009.
+
+
+Q17. 혹시 기말고사도 중간고사와 같이 월요일에 보나요?
+
+> 특별한 일 없으면요
+
+Q18. 좀 빨라서 이해가 안되요 ㅋㅋㅋㅋ
+
+> 화이팅... 미안합니다 진도가 밀려서
+
+Q19. 근데 테이블에 튜플 계속 추가하면 자꾸 늘어나는데 다음 테이블 저장위치 직전까지 가면 컨세큐티브하게 저장하는게 되나요?
+
+> [실제로는 그렇게되지 않을 수 있으나](https://unix.stackexchange.com/questions/344623/are-files-saved-on-disk-sequentially), 비용 모델을 간소화하기 위해 우리 수업의 이론적 모델에서는 consecutive하게 저장되어 있다라고 가정합시다. 
+
+## Q & A (2)
 
 - 애초부터 equivalence rule도 튜플의 사이즈를 줄이려고 하는것이 아닌가요?? 그런데도 또 selection size estimation을 하네요
 
