@@ -11781,39 +11781,443 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">Week 12+: Nested Loop Join + Block Nested Loop Join<a class="anchor-link" href="#Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">&#182;</a></h1><p>시험범위 아닙니다. 그냥 한겁니다.</p>
-<h2 id="Page">Page<a class="anchor-link" href="#Page">&#182;</a></h2><p>지난 번 <a href="https://cose371.github.io/lecturenote-and-qa/2019/05/15/NLwithLRU.html">LRU 시뮬레이션</a> 에서는 Page를 다소 대충 짠 감이있었죠?</p>
-<p>이번에는 Page를 iterable하게 구현함으로써 조금 더 그럴싸하게 동작하도록 만들어봅시다.</p>
+<p>1~3은 시뮬레이션을 위한 기본 구조인 Block, Page, Table, TableReader를 정의하는 부분입니다.</p>
+<p>관심 없으시면 스킵하셔도 됩니다.</p>
+<h2 id="1.-Block&#44284;-Page">1. Block&#44284; Page<a class="anchor-link" href="#1.-Block&#44284;-Page">&#182;</a></h2><p>지난 번 <a href="https://cose371.github.io/lecturenote-and-qa/2019/05/15/NLwithLRU.html">LRU 시뮬레이션</a> 에서는 Block/Page를 엄밀하게 정의하고 가지 않았는데, 이번에는 보다 엄밀하게 정의하고, 구현해보겠습니다.</p>
+<h3 id="1.1-&#44060;&#45392;">1.1 &#44060;&#45392;<a class="anchor-link" href="#1.1-&#44060;&#45392;">&#182;</a></h3><p>Block은 Disk에서의 입출력 단위이고, Page의 경우 OS나 DBMS에서 사용되는 메모리 관리 단위입니다.</p>
+<p>전자는 다소 물리적 개념이며, 후자는 논리적  개념입니다.</p>
+<h3 id="1.2-&#51060;&#48264;-&#49884;&#48044;&#47112;&#51060;&#49496;&#50640;&#49436;&#51032;-&#44032;&#51221;">1.2 &#51060;&#48264; &#49884;&#48044;&#47112;&#51060;&#49496;&#50640;&#49436;&#51032; &#44032;&#51221;<a class="anchor-link" href="#1.2-&#51060;&#48264;-&#49884;&#48044;&#47112;&#51060;&#49496;&#50640;&#49436;&#51032;-&#44032;&#51221;">&#182;</a></h3><p>이번 시뮬레이션에서는 편의상 Disk에 저장된 한 Block을 읽어들여 Page라는 이름으로 관리한다라고 가정하겠습니다.</p>
+<p>또한 편의상 둘 다 size가 같다고 가정할 것이며, table과 관계없이 한 block에는 두 개의 tuple만 저장된다고 가정하겠습니다.</p>
+<p>그러나 실제로는 Block과 Page의 size는 다를 수 있습니다. 이를테면 한 블락이 1KB이고, 한 페이지가 4KB이일 수 있습니다.</p>
+<h3 id="1.3-Block&#44284;-Disk-&#44396;&#54788;">1.3 Block&#44284; Disk &#44396;&#54788;<a class="anchor-link" href="#1.3-Block&#44284;-Disk-&#44396;&#54788;">&#182;</a></h3><p>시뮬레이션을 위해 Block과 Disk를 구현해보겠습니다.</p>
+<p>편의상 20개의 Block이 있으며, 모든 Block이 같은 Track 위에 있다고 가정하겠습니다.</p>
+<p><img src="https://i.imgur.com/zge34ye.png" alt="Imgur"></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Block</span> <span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">,</span> <span class="n">content</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_id</span> <span class="o">=</span> <span class="n">block_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;block_id(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">block_id</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">Disk</span> <span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_of_block</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">Block</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_of_block</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_statistics</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">readBlock</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">):</span>
+        
+        <span class="n">target</span> <span class="o">=</span> <span class="n">block_id</span>
+        
+        <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[SYSTEM] Block SEEK:</span><span class="se">\t</span><span class="s1">    block_id(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">block_id</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">target</span> <span class="c1"># SEEK!</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span>  <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">target_block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[SYSTEM] Block Transferred: block_id(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">block_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BT</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">target_block</span>
+
+    <span class="k">def</span> <span class="nf">writeBlock</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        
+        <span class="n">target_block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="n">block_id</span><span class="p">)</span>
+        <span class="n">target_block</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+        
+    <span class="k">def</span> <span class="nf">init_statistics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1">#STATISTIC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#SEEKs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BT</span>   <span class="o">=</span> <span class="mi">0</span> <span class="c1">#BLOCK TRANSFERs</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;num_of_block: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">SEEKs: &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, Block Transfers: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BT</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>20개의 블록을 가지는 디스크를 만든 후, id가 1인 블록을 읽어와 보겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>num_of_block: 20
+SEEKs: 0, Block Transfers: 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">block1</span> <span class="o">=</span> <span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;read: &#39;</span><span class="p">,</span> <span class="n">block1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+read:  block_id(1)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>17,18,19,0,1 순서대로 block을 읽으면 Seek과 Transfer 통계가 어떻게 나오는지 확인해봅시다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">disk</span><span class="o">.</span><span class="n">init_statistics</span><span class="p">()</span>
+
+<span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(17)
+[SYSTEM] Block Transferred: block_id(17)
+[SYSTEM] Block Transferred: block_id(18)
+[SYSTEM] Block Transferred: block_id(19)
+[SYSTEM] Block Transferred: block_id(0)
+[SYSTEM] Block Transferred: block_id(1)
+num_of_block: 20
+SEEKs: 1, Block Transfers: 5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.4-Page-&#44396;&#54788;">1.4 Page &#44396;&#54788;<a class="anchor-link" href="#1.4-Page-&#44396;&#54788;">&#182;</a></h3><p>튜플들이 저장되는 Page를 구현해보겠습니다. 간단한 시뮬레이션이 목적이니, insert tuple, delete tuple 등의 기능 등은 생략합시다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Page</span> <span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tuples</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">block_id</span><span class="p">,</span> <span class="n">tuples</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tuples</span> <span class="o">=</span> <span class="n">tuples</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_id</span> <span class="o">=</span> <span class="n">block_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span>
         
+        <span class="bp">self</span><span class="o">.</span><span class="n">disk</span><span class="o">.</span><span class="n">writeBlock</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">block_id</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuples</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">();</span>
     
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Page:&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-    
-<span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
-<span class="n">R2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r3&#39;</span><span class="p">,</span> <span class="s1">&#39;r4&#39;</span><span class="p">])</span>
-<span class="n">S1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">])</span>
-<span class="n">S2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span> <span class="s1">&#39;s4&#39;</span><span class="p">])</span>
-<span class="n">S3</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s5&#39;</span><span class="p">,</span> <span class="s1">&#39;s6&#39;</span><span class="p">])</span>
-<span class="n">S4</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s7&#39;</span><span class="p">,</span> <span class="s1">&#39;s8&#39;</span><span class="p">])</span>
-<span class="n">G1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;g1&#39;</span><span class="p">])</span> <span class="c1"># GARBAGE Page</span>
+</pre></div>
 
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>디스크의 1번 block에 저장되는 'R1'이라는 별칭의 페이지를 만들어보겠습니다.</p>
+<p>이 페이지에는 두 개의 튜플이 있으며, 각각 r1, r2라는 이름의 튜플입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이번에는 역으로, Disk에서 1번 블락을 읽어들여 페이지로 만든 후, 이 페이지에서 튜플들을 읽어보겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">block</span> <span class="o">=</span> <span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">content</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=====read tuples from page=====&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+
+=====read tuples from page=====
+r1
+r2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2.-Buffer">2. Buffer<a class="anchor-link" href="#2.-Buffer">&#182;</a></h2><p>이번에는 buffer를 만들어 볼텐데, 저번에 다룬 복잡한 구조의 LRU Buffer가 아닌 굉장히 단순한 버전의 Buffer를 만들어 볼 겁니다. Join Simulation을 위한 buffer는 슬라이드에서 나온 바와 같이, 각 테이블마다 따로 관리되되, 오직 하나의 frame만 가지도록 만들 것입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SingleBuffer4Table</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disk</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1">#Statistic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">HIT</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FAULT</span> <span class="o">=</span> <span class="mi">0</span>
+            
+    <span class="k">def</span> <span class="nf">getPage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">):</span>
+        
+        <span class="c1"># HIT</span>
+        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            
+            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chached</span><span class="o">.</span><span class="n">block_id</span> <span class="o">==</span> <span class="n">block_id</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">HIT</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chached</span><span class="o">.</span><span class="n">content</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FAULT</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="o">=</span> <span class="n">disk</span><span class="o">.</span><span class="n">readBlock</span><span class="p">(</span><span class="n">block_id</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chached</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>buffer에 block_id가 1인 Block을 읽어와 보겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">buffer</span> <span class="o">=</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+Page:R1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>다시 block_id가 1인 block을 읽어본 후 tuple들을 출력해보겠습니다. 이미 caching되어 있으니 따로 SEEK &amp; Transfer는 발생하지 않을 것입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11844,59 +12248,50 @@ r2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Disk">Disk<a class="anchor-link" href="#Disk">&#182;</a></h2><p>지난 번에는 Disk를 따로 구현하지 않았는데, SEEK과 BLOCK TRENSFER를 모델링하기 위해 Disk를 구현해봅시다.</p>
+<h2 id="3.-Table&#44284;-Tuple-Reader">3. Table&#44284; Tuple Reader<a class="anchor-link" href="#3.-Table&#44284;-Tuple-Reader">&#182;</a></h2><p>먼저 Table을 만들어봅시다.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Disk</span> <span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocks</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span> <span class="o">=</span> <span class="n">blocks</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name_to_key</span> <span class="o">=</span> <span class="p">{</span><span class="n">page</span><span class="o">.</span><span class="n">name</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">blocks</span><span class="p">)}</span>
-        
-        <span class="c1">#STATISTIC</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#SEEKs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">BT</span>   <span class="o">=</span> <span class="mi">0</span> <span class="c1">#BLOCK TRANSFERs</span>
-        
-    <span class="k">def</span> <span class="nf">readPage</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page_name</span><span class="p">):</span>
-        
-        <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_to_key</span><span class="p">[</span><span class="n">page_name</span><span class="p">]</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Block SEEK:</span><span class="se">\t</span><span class="s1">  &#39;</span> <span class="p">,</span> <span class="n">page_name</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">target</span> <span class="c1"># SEEK!</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span>  <span class="o">+=</span> <span class="mi">1</span>
-        
-        <span class="n">target_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">+=</span> <span class="mi">1</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">)):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="mi">0</span>
-        
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Block Transferred:&#39;</span> <span class="p">,</span> <span class="n">page_name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">BT</span> <span class="o">+=</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Table</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">list_of_pages</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="n">table_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">block_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">page</span><span class="o">.</span><span class="n">block_id</span> <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">list_of_pages</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">page_name_to_block_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">page</span><span class="o">.</span><span class="n">name</span><span class="p">:</span><span class="n">page</span><span class="o">.</span><span class="n">block_id</span> <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">list_of_pages</span><span class="p">}</span>
+</pre></div>
 
-        <span class="k">return</span> <span class="n">target_page</span>
-    
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;SEEKs: &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SEEK</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, Block Transfers: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BT</span><span class="p">)</span>
+</div>
+</div>
+</div>
 
-<span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">([</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">G1</span><span class="p">])</span>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이제 r이라는 이름의 테이블을 만들어 볼겁니다. r은 r1,r2,r3,r4 네 개의 튜플을 두 개의 block에 나눠 저장하고있습니다.</p>
 
-<span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">)</span>
-<span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="s1">&#39;S2&#39;</span><span class="p">)</span>
-<span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="s1">&#39;S3&#39;</span><span class="p">)</span>
-<span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="s1">&#39;S4&#39;</span><span class="p">)</span>
-<span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">)</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">============Statistic============&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> 
+          <span class="p">[</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">]),</span> 
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r3&#39;</span><span class="p">,</span> <span class="s1">&#39;r4&#39;</span><span class="p">])</span>
+          <span class="p">]</span>
+         <span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11913,17 +12308,9 @@ r2
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Block SEEK:	   R2
-Block Transferred: R2
-Block SEEK:	   S2
-Block Transferred: S2
-Block Transferred: S3
-Block Transferred: S4
-Block SEEK:	   R1
-Block Transferred: R1
-
-============Statistic============
-SEEKs: 3, Block Transfers: 5
+<pre>[SYSTEM] Block SEEK:	    block_id(0)
+[SYSTEM] Block Transferred: block_id(0)
+[SYSTEM] Block Transferred: block_id(1)
 </pre>
 </div>
 </div>
@@ -11936,48 +12323,19 @@ SEEKs: 3, Block Transfers: 5
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Buffer-&amp;-Table-Reader">Buffer &amp; Table Reader<a class="anchor-link" href="#Buffer-&amp;-Table-Reader">&#182;</a></h2><p>이번에는 buffer를 만들어 볼텐데, 저번에 다룬 복잡한 구조의 LRU Buffer가 아닌 굉장히 단순한 버전의 Buffer를 만들어 볼 겁니다. Join Simulation을 위한 buffer는 슬라이드에서 나온 바와 같이, 각 테이블마다 따로 관리되되, 오직 하나의 frame만 가지도록 만들 것입니다.</p>
-<p><img src="https://i.imgur.com/ufg7ndO.png" alt="Imgur"></p>
+<p>이제 이 테이블에서 tuple을 iterative하게 읽을 수 있도록 Tuple Reader를 만들어봅시다.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Buffer</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disk</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">disk</span> <span class="o">=</span> <span class="n">disk</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="c1">#Statistic</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">HIT</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">FAULT</span> <span class="o">=</span> <span class="mi">0</span>
-            
-    <span class="k">def</span> <span class="nf">getPage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        
-        <span class="c1"># HIT</span>
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-            
-            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chached</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">HIT</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chached</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">FAULT</span> <span class="o">+=</span> <span class="mi">1</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">chached</span> <span class="o">=</span> <span class="n">disk</span><span class="o">.</span><span class="n">readPage</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chached</span>
-
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chached</span><span class="o">.</span><span class="n">tuples</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">();</span>
-    
-<span class="k">class</span> <span class="nc">Table</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">list_of_page_name</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">page_names</span> <span class="o">=</span> <span class="n">list_of_page_name</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TupleReader</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">table</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -11988,25 +12346,47 @@ SEEKs: 3, Block Transfers: 5
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         
         <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">]))</span>
+            <span class="n">block_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">block_ids</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="n">block_id</span><span class="p">))</span>
             
         <span class="k">try</span><span class="p">:</span>
             <span class="n">next_tuple</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">+=</span> <span class="mi">1</span>
             
-            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_names</span><span class="p">)):</span>
+            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">block_ids</span><span class="p">)):</span>
                 <span class="k">raise</span> <span class="ne">StopIteration</span> <span class="c1"># No more tuple</span>
-            
-            <span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">]))</span>
+
+            <span class="n">block_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">block_ids</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="n">block_id</span><span class="p">))</span>
             <span class="n">next_tuple</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cur_pages</span><span class="p">)</span>
                     
         <span class="k">return</span> <span class="n">next_tuple</span>
-    
-<span class="n">r</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+</pre></div>
 
-<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>tuple들을 읽어보겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_reader</span> <span class="o">=</span> <span class="n">TupleReader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">r_reader</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tuple read:&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12023,13 +12403,13 @@ SEEKs: 3, Block Transfers: 5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Block SEEK:	   R1
-Block Transferred: R1
-r1
-r2
-Block Transferred: R2
-r3
-r4
+<pre>[SYSTEM] Block SEEK:	    block_id(0)
+[SYSTEM] Block Transferred: block_id(0)
+tuple read: r1
+tuple read: r2
+[SYSTEM] Block Transferred: block_id(1)
+tuple read: r3
+tuple read: r4
 </pre>
 </div>
 </div>
@@ -12042,7 +12422,17 @@ r4
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">Nested Loop Join &#49884;&#48044;&#47112;&#51060;&#49496;<a class="anchor-link" href="#Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">&#182;</a></h2><p>이제 Nested Loop Join을 실행해봅시다.</p>
+<h2 id="4.-Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">4. Nested Loop Join &#49884;&#48044;&#47112;&#51060;&#49496;<a class="anchor-link" href="#4.-Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">&#182;</a></h2><p>이제 Nested Loop Join을 실행해봅시다.</p>
+<p><img src="https://i.imgur.com/ufg7ndO.png" alt="Imgur"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>먼저 실험 환경 구축 및 데이터 구성을 해봅시다.</p>
 
 </div>
 </div>
@@ -12052,22 +12442,81 @@ r4
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
-<span class="n">R2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r3&#39;</span><span class="p">,</span> <span class="s1">&#39;r4&#39;</span><span class="p">])</span>
-<span class="n">G1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;g1&#39;</span><span class="p">])</span> <span class="c1"># GARBAGE Page</span>
-<span class="n">S1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">])</span>
-<span class="n">S2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span> <span class="s1">&#39;s4&#39;</span><span class="p">])</span>
-<span class="n">S3</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s5&#39;</span><span class="p">,</span> <span class="s1">&#39;s6&#39;</span><span class="p">])</span>
-<span class="n">S4</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s7&#39;</span><span class="p">,</span> <span class="s1">&#39;s8&#39;</span><span class="p">])</span>
-<span class="n">G2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;g2&#39;</span><span class="p">])</span> <span class="c1"># GARBAGE Page</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 실험 환경 정의 및 데이터 구성</span>
 
-<span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">([</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">G1</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">G1</span><span class="p">])</span>
+<span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> 
+          <span class="p">[</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">]),</span> 
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r3&#39;</span><span class="p">,</span> <span class="s1">&#39;r4&#39;</span><span class="p">])</span>
+          <span class="p">]</span>
+         <span class="p">)</span>
 
-<span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> 
+          <span class="p">[</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">]),</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span> <span class="s1">&#39;s4&#39;</span><span class="p">]),</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s5&#39;</span><span class="p">,</span> <span class="s1">&#39;s6&#39;</span><span class="p">]),</span>
+              <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s7&#39;</span><span class="p">,</span> <span class="s1">&#39;s8&#39;</span><span class="p">])</span>
+          <span class="p">]</span>
+         <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[SYSTEM] Block SEEK:	    block_id(0)
+[SYSTEM] Block Transferred: block_id(0)
+[SYSTEM] Block Transferred: block_id(1)
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
+[SYSTEM] Block Transferred: block_id(6)
+[SYSTEM] Block Transferred: block_id(7)
+[SYSTEM] Block Transferred: block_id(8)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>테이블 r과 s를 Nested Loop Join을 하면 어떻게되는지 살펴보겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">disk</span><span class="o">.</span><span class="n">init_statistics</span><span class="p">()</span>
+
+<span class="n">r_reader</span> <span class="o">=</span> <span class="n">TupleReader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+<span class="n">s_reader</span> <span class="o">=</span> <span class="n">TupleReader</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+
+
+<span class="c1"># Nested Loop Join</span>
+
+<span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="n">r_reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">s_reader</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">match:&#39;</span><span class="p">,</span> <span class="n">tt</span><span class="p">,</span> <span class="s1">&#39; and &#39;</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> ==================SIMULATION ENDED==================</span><span class="se">\n</span><span class="s1">Statistics&#39;</span><span class="p">)</span>
@@ -12090,60 +12539,60 @@ r4
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Block SEEK:	   R1
-Block Transferred: R1
-Block SEEK:	   S1
-Block Transferred: S1
+<pre>[SYSTEM] Block SEEK:	    block_id(0)
+[SYSTEM] Block Transferred: block_id(0)
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	match: r1  and  s1
 	match: r1  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	match: r1  and  s3
 	match: r1  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	match: r1  and  s5
 	match: r1  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	match: r1  and  s7
 	match: r1  and  s8
-Block SEEK:	   S1
-Block Transferred: S1
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	match: r2  and  s1
 	match: r2  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	match: r2  and  s3
 	match: r2  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	match: r2  and  s5
 	match: r2  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	match: r2  and  s7
 	match: r2  and  s8
-Block SEEK:	   R2
-Block Transferred: R2
-Block SEEK:	   S1
-Block Transferred: S1
+[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	match: r3  and  s1
 	match: r3  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	match: r3  and  s3
 	match: r3  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	match: r3  and  s5
 	match: r3  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	match: r3  and  s7
 	match: r3  and  s8
-Block SEEK:	   S1
-Block Transferred: S1
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	match: r4  and  s1
 	match: r4  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	match: r4  and  s3
 	match: r4  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	match: r4  and  s5
 	match: r4  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	match: r4  and  s7
 	match: r4  and  s8
 
@@ -12174,20 +12623,19 @@ Statistics
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Block-Nested-Loop-Join">Block Nested Loop Join<a class="anchor-link" href="#Block-Nested-Loop-Join">&#182;</a></h2><p>이번에는 BNLJ을 시뮬레이션해봅시다. BNLJ에서는 테이블에서 튜플을 직접불러오지 않고 페이지 단위로 불러오죠? 이를 반영하여 Table Reader를 새로 짜봅시다.</p>
+<h2 id="5.-Block-Nested-Loop-Join">5. Block Nested Loop Join<a class="anchor-link" href="#5.-Block-Nested-Loop-Join">&#182;</a></h2><p>이번에는 BNLJ을 시뮬레이션해봅시다. BNLJ에서는 테이블에서 튜플을 직접불러오지 않고 페이지 단위로 불러오죠? 이를 반영하여 TableBlockReader라는 이름의 Reader를 새로 짜봅시다.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TableBlockReader</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">list_of_page_name</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">page_names</span> <span class="o">=</span> <span class="n">list_of_page_name</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">table</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -12195,10 +12643,10 @@ Statistics
         <span class="k">return</span> <span class="bp">self</span>    
     
     <span class="k">def</span> <span class="nf">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_names</span><span class="p">)):</span>
+        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">block_ids</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">StopIteration</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">page</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">page_names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">])</span>
+            <span class="n">page</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">block_ids</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">page_pointer</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">return</span> <span class="n">page</span>
 </pre></div>
@@ -12213,32 +12661,22 @@ Statistics
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>이제 시뮬레이션 해 봅시다.</p>
-<p><img src="https://i.imgur.com/xzgYSY9.png" alt="Imgur"></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">R1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">])</span>
-<span class="n">R2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r3&#39;</span><span class="p">,</span> <span class="s1">&#39;r4&#39;</span><span class="p">])</span>
-<span class="n">G1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;g1&#39;</span><span class="p">])</span> <span class="c1"># GARBAGE Page</span>
-<span class="n">S1</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span> <span class="s1">&#39;s2&#39;</span><span class="p">])</span>
-<span class="n">S2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span> <span class="s1">&#39;s4&#39;</span><span class="p">])</span>
-<span class="n">S3</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s5&#39;</span><span class="p">,</span> <span class="s1">&#39;s6&#39;</span><span class="p">])</span>
-<span class="n">S4</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;s7&#39;</span><span class="p">,</span> <span class="s1">&#39;s8&#39;</span><span class="p">])</span>
-<span class="n">G2</span> <span class="o">=</span> <span class="n">Page</span><span class="p">(</span><span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;g2&#39;</span><span class="p">])</span> <span class="c1"># GARBAGE Page</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">disk</span><span class="o">.</span><span class="n">init_statistics</span><span class="p">()</span>
 
-<span class="n">disk</span> <span class="o">=</span> <span class="n">Disk</span><span class="p">([</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="n">G1</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">G1</span><span class="p">])</span>
+<span class="n">r_reader</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
+<span class="n">s_reader</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">SingleBuffer4Table</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">TableBlockReader</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">,</span> <span class="s1">&#39;S3&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">],</span> <span class="n">Buffer</span><span class="p">(</span><span class="n">disk</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">Br</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">Bs</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">Br</span> <span class="ow">in</span> <span class="n">r_reader</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">Bs</span> <span class="ow">in</span> <span class="n">s_reader</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Block Match:&#39;</span><span class="p">,</span> <span class="n">Br</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39; and &#39;</span><span class="p">,</span> <span class="n">Bs</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         
         <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">Br</span><span class="p">:</span>
@@ -12266,55 +12704,55 @@ Statistics
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Block SEEK:	   R1
-Block Transferred: R1
-Block SEEK:	   S1
-Block Transferred: S1
+<pre>[SYSTEM] Block SEEK:	    block_id(0)
+[SYSTEM] Block Transferred: block_id(0)
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	Block Match: R1  and  S1
 		Tuple Match: r1  and  s1
 		Tuple Match: r1  and  s2
 		Tuple Match: r2  and  s1
 		Tuple Match: r2  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	Block Match: R1  and  S2
 		Tuple Match: r1  and  s3
 		Tuple Match: r1  and  s4
 		Tuple Match: r2  and  s3
 		Tuple Match: r2  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	Block Match: R1  and  S3
 		Tuple Match: r1  and  s5
 		Tuple Match: r1  and  s6
 		Tuple Match: r2  and  s5
 		Tuple Match: r2  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	Block Match: R1  and  S4
 		Tuple Match: r1  and  s7
 		Tuple Match: r1  and  s8
 		Tuple Match: r2  and  s7
 		Tuple Match: r2  and  s8
-Block SEEK:	   R2
-Block Transferred: R2
-Block SEEK:	   S1
-Block Transferred: S1
+[SYSTEM] Block SEEK:	    block_id(1)
+[SYSTEM] Block Transferred: block_id(1)
+[SYSTEM] Block SEEK:	    block_id(5)
+[SYSTEM] Block Transferred: block_id(5)
 	Block Match: R2  and  S1
 		Tuple Match: r3  and  s1
 		Tuple Match: r3  and  s2
 		Tuple Match: r4  and  s1
 		Tuple Match: r4  and  s2
-Block Transferred: S2
+[SYSTEM] Block Transferred: block_id(6)
 	Block Match: R2  and  S2
 		Tuple Match: r3  and  s3
 		Tuple Match: r3  and  s4
 		Tuple Match: r4  and  s3
 		Tuple Match: r4  and  s4
-Block Transferred: S3
+[SYSTEM] Block Transferred: block_id(7)
 	Block Match: R2  and  S3
 		Tuple Match: r3  and  s5
 		Tuple Match: r3  and  s6
 		Tuple Match: r4  and  s5
 		Tuple Match: r4  and  s6
-Block Transferred: S4
+[SYSTEM] Block Transferred: block_id(8)
 	Block Match: R2  and  S4
 		Tuple Match: r3  and  s7
 		Tuple Match: r3  and  s8
@@ -12346,6 +12784,19 @@ Statistics
 </div>
     </div>
   </div>
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname  = '{{ site.disqus_shortname }}';
+    var disqus_identifier = '{{ page.id }}';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  
 </body>
 
  
