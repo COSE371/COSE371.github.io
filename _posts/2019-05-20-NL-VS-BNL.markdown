@@ -12423,7 +12423,7 @@ tuple read: r4
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="4.-Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">4. Nested Loop Join &#49884;&#48044;&#47112;&#51060;&#49496;<a class="anchor-link" href="#4.-Nested-Loop-Join-&#49884;&#48044;&#47112;&#51060;&#49496;">&#182;</a></h2><p>이제 Nested Loop Join을 실행해봅시다.</p>
-<p><img src="https://i.imgur.com/ufg7ndO.png" alt="Imgur"></p>
+<p><img src="https://i.imgur.com/nPGE0ql.png" alt="Imgur"></p>
 
 </div>
 </div>
@@ -12661,6 +12661,7 @@ Statistics
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>이제 시뮬레이션 해 봅시다.</p>
+<p><img src="https://i.imgur.com/nPGE0ql.png" alt="Imgur"></p>
 
 </div>
 </div>
@@ -12784,19 +12785,6 @@ Statistics
 </div>
     </div>
   </div>
-
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_shortname  = '{{ site.disqus_shortname }}';
-    var disqus_identifier = '{{ page.id }}';
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-
-  
 </body>
 
  
