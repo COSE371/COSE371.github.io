@@ -4,6 +4,7 @@ title: "Week 12+: Nested Loop Join VS Block Nested Loop Join Simulation"
 date: 2019-05-20
 categories: Lecturenote-and-QA
 ---
+<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
 <title>NL vs BNL</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -11782,7 +11783,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">Week 12+: Nested Loop Join + Block Nested Loop Join<a class="anchor-link" href="#Week-12+:-Nested-Loop-Join-+-Block-Nested-Loop-Join">&#182;</a></h1><p>시험범위 아닙니다. 그냥 한겁니다.</p>
 <p>1~3은 시뮬레이션을 위한 기본 구조인 Block, Page, Table, TableReader를 정의하는 부분입니다.</p>
-<p>관심 없으시면 스킵하셔도 됩니다.</p>
+<p>관심 없으시면 4장: <a href="https://cose371.github.io/lecturenote-and-qa/2019/05/20/NL-VS-BNL.html#4.-Nested-Loop-Join-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98">Nested Loop Join 시뮬레이션</a> 부터 읽으시면 됩니다.</p>
 <h2 id="1.-Block&#44284;-Page">1. Block&#44284; Page<a class="anchor-link" href="#1.-Block&#44284;-Page">&#182;</a></h2><p>지난 번 <a href="https://cose371.github.io/lecturenote-and-qa/2019/05/15/NLwithLRU.html">LRU 시뮬레이션</a> 에서는 Block/Page를 엄밀하게 정의하고 가지 않았는데, 이번에는 보다 엄밀하게 정의하고, 구현해보겠습니다.</p>
 <h3 id="1.1-&#44060;&#45392;">1.1 &#44060;&#45392;<a class="anchor-link" href="#1.1-&#44060;&#45392;">&#182;</a></h3><p>Block은 Disk에서의 입출력 단위이고, Page의 경우 OS나 DBMS에서 사용되는 메모리 관리 단위입니다.</p>
 <p>전자는 다소 물리적 개념이며, 후자는 논리적  개념입니다.</p>
