@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Term Project"
-categories: term-project
+categories: term-project-old
 math: true
 permallink: tp2019
 ---
@@ -63,7 +63,7 @@ permallink: tp2019
    - 최종제출: 6월 10일 14시까지 (채점결과의 **50%** 반영)
 
 
-#### 2. Development of Web DB application with transaction/CC/Recovery [배점 2] 
+#### 2. Development of Web DB application with transaction/CC/Recovery [배점 3] 
 
 - 제출 내용
   - System Refinement

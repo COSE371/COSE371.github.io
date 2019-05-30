@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Term Project: Transaction 기능 구현 예시 (for the Final Term Project)"
+title: "Term Project: Transaction 기능 구현 예시 (2차 Final Term Project 참고사항)"
 categories: term-project
 math: true
 permalink: tpfinal-transaction
