@@ -1,14 +1,12 @@
 ---
 layout: post
-title: "Term Project - 2차 제출 (~06/10)"
+title: "[Term Project 2] Development of Web DB application with transaction (~06/10)"
 categories: term-project
 math: true
 permalink: tp2019-2
 ---
 
-### 배점 및 제출기한
-
-#### 2. Development of Web DB application with transaction/CC/Recovery [배점 3] 
+### Development of Web DB application with transaction/CC/Recovery [배점 3] 
 
 - 제출 내용
   1. System Refinement
@@ -30,4 +28,7 @@ permalink: tp2019-2
 ### 제출방법
 
 - 보고서 파일을 KULMS에 제출
+- code 제출
+  - 과제 서버에서 과제 수행 시 code 제출 불필요
+  - 자체 환경에서 과제 수행 시 code 제출
 
