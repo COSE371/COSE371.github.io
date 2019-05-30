@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Term Project: 로그인 기능 구현하기 (Optional)"
-categories: term-project-old
+categories: old-term-project
 math: true
 permalink: tpLogin
 ---

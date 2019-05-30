@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Term Project 모범사례 (2018)"
-categories: term-project-old
+categories: old-term-project
 math: true
 permalink: tp2018case
 ---
