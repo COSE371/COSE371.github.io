@@ -6,11 +6,11 @@ math: true
 permalink: tp2019-2
 ---
 
-### Development of Web DB application with transaction/CC/Recovery [배점 3] 
+### Development of Web DB application with transaction [배점 3] 
 
 - 제출 내용
   1. System Refinement
-    - 다음 작업의 경우 TRANSACTION 형태로 처리([예시](https://cose371.github.io/tpfinal-transaction)]할 것
+    - 다음 작업의 경우 TRANSACTION 형태로 처리([예시](https://cose371.github.io/tpfinal-transaction))할 것
       - Insert, Update, Delete를 하나 이상 포함하는 발생하는 작업
         - e.g. 아티스트 등록
       - 하나의 데이터 아이템에 대한 Insert, Update, Delete의 경우에도 Transaction 처리해줄것!  
