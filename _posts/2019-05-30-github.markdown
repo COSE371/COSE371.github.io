@@ -9,15 +9,15 @@ categories: etc
 
 과제 아닙니다 :)
 
-### 1. [github](https://github.com)에 빈 repository 생성
+### 1. github에 빈 repository 생성
 
 - [github](https://github.com)에 가입하신 후, 다음과 같이 빈 repository를 생성하세요.
 
-![](../assets/img/github1.png)
+![](/assets/img/github1.PNG)
 
 - repository 이름 등을 설정하시고 'create repository'를 누르세요.
 
-![](../assets/img/github2.png)
+![](/assets/img/github2.PNG)
 
 ### 2. 서버에서 git 계정 설정하기
 
@@ -32,7 +32,7 @@ user.email=ws_choi@korea.ac.kr
 
 - 빈 프로젝트의 git 주소를 복사하세요.
 
-![](../assets/img/github3.png)
+![](/assets/img/github3.PNG)
 
 - 서버에 접속하여 해당 git을 복사
   
@@ -104,7 +104,7 @@ To https://github.com/ws-choi/mall.git
 ### 7. (Optional) Read Me File 만들기
 
 - 아래와 같이 repository를 설명하고, 소스코드를 받은 사람들이 프로젝트를 재구현할수 있도록 가이드라인을 제시해주는 read me file을 만들어보세요.
-![](../assets/img/github4.png)
+![](/assets/img/github4.PNG)
 
 - mark down 형태로 작성하시면 됩니다.
 
