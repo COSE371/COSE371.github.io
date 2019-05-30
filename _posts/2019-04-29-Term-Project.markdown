@@ -3,7 +3,7 @@ layout: post
 title: "Term Project"
 categories: old-term-project
 math: true
-permalink: tp2019
+permalink: term-project/2019/04/29/Term-Project.html
 ---
 
 <div class="slide">

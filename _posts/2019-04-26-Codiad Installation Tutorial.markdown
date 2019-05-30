@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Codiad Installation Tutorial"
-categories: term-project-old
+categories: old-term-project
 math: true
 permalink: /codiadinstallationtutorial/
 ---

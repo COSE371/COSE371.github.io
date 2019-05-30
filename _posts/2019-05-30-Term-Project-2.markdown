@@ -3,7 +3,7 @@ layout: post
 title: "Term Project - 2차 제출 (~06/10)"
 categories: term-project
 math: true
-permalink: term-project/2019/04/29/Term-Project.html
+permalink: tp2019-2
 ---
 
 ### 배점 및 제출기한
