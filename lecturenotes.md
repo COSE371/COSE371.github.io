@@ -10,6 +10,8 @@ permalink: /notes/
 
 - Week 13: Transactions [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqGJG0p35COWBmzv5) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B)
 
+- Week 14: Recovery System [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByqGxOUuvU4_SyUjfM) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByqGimYhx_IkxkG6PI?e=7iA9Ca)
+
 ## 중간고사 이전
 
 - Week 1: Introduction [[pdf]](https://1drv.ms/b/s!AszT-SZB_jByomXmEK-RcdHfgabU) [[slide]](https://1drv.ms/p/s!AszT-SZB_jByomKzyRyAh5b45N7n)
