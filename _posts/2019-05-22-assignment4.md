@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Assignment #4: Query Processing & Optimization (~ 06/03)"
-categories: current
+categories: old-assignment
 math: true
 permalink: /assignment4/
 ---
