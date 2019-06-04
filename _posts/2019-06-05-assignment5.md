@@ -26,10 +26,10 @@ permalink: /assignment5/
 
 - 제출형식: 다음 O/X table을 완성하여 제출해주세요. 풀이과정은 따로 제출하지 않아도 되지만, 연습삼아 작성해보시는 것을 추천합니다.
 
-|Schedule|Conflict Serializable|Recoverable Schedule|Cascadless Schedule|
-|:---:|:---:|:---:|:---:|
-| A  |O/X|O/X|O/X|
-| B  |O/X|O/X|O/X|
+  |Schedule|Conflict Serializable|Recoverable Schedule|Cascadless Schedule|
+  |:---:|:---:|:---:|:---:|
+  | A  |O/X|O/X|O/X|
+  | B  |O/X|O/X|O/X|
 
 - 채점방법: 각 스케줄당 2점. 총 4점
   - 블랙보드에서의 무제한 제출을 허용하나,
