@@ -4,7 +4,7 @@ title: 명예의 전당 (2019)
 permalink: /hall-of-fame-2019/
 ---
 
-## 2019년 COSE371(2) 우수 Term Project
+### Term Project 우수작 모음 (2019)
 
 - [K-Camera: 카메라 & 렌즈 정보 (윤치환)](http://115.68.231.165/~2015410104/camera/index.php)
 
