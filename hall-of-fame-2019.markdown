@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 명예의 전당 (2019)
-permalink: /hall-of-fram-2019/
+permalink: /hall-of-fame-2019/
 ---
 
 ## 2019년 COSE371(2) 우수 Term Project
