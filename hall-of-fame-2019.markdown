@@ -10,7 +10,7 @@ permalink: /hall-of-fame-2019/
 
 ### Term Project 우수작 모음 (2019)
 
-- [K-Camera: 카메라 & 렌즈 정보 (윤치환)](http://115.68.231.165/~2015410104/camera/index.php)
+- [K-Camera: 카메라 & 렌즈 정보 (윤지환)](http://115.68.231.165/~2015410104/camera/index.php)
 
 - [LOL-info (윤성하)](http://115.68.231.165/~2017320196/tp/index.php)
 
