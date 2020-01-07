@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Term Project 2] Development of Web DB application with transaction (~06/10)"
-categories: term-project
+categories: old-term-project
 math: true
 permalink: tp2019-2
 ---

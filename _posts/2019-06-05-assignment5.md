@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Assignment #5: Transaction (~ 06/19)"
-categories: current
+categories: old-assignment
 math: true
 permalink: /assignment5/
 ---
