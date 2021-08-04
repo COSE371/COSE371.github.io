@@ -1,0 +1,134 @@
+I"d<p>데이터베이스 COSE 371(2) 5주차 강의내용입니다.</p>
+
+<p>Database Design and E-R Model​에 대해 알아봅니다.</p>
+
+<h2 id="lecture-note">Lecture Note</h2>
+
+<p>Week 5: Database Design and E-R Model​ <a href="https://1drv.ms/b/s!AszT-SZB_jBypi1pMlh6IFs7O4XI">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o">[slide]</a></p>
+
+<div class="slide">
+    <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214557&amp;authkey=AEoydtVqMffYM-k&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+<hr />
+
+<h2 id="q--a">Q &amp; A</h2>
+
+<hr />
+
+<h3 id="e-r-model">E-R Model</h3>
+
+<hr />
+
+<p>An entity set is a set of entities of the same type that share the same properties 라는 정의에서 properties가 attributes랑 같은건가요?</p>
+
+<h3 id="e-rd">E-RD</h3>
+
+<hr />
+
+<p>One-to-One relationship이면, entity의 instance(?)의 갯수가 항상 일치해야 되나요?</p>
+
+<p>derived attribute 다시 한번만 설명해주세요</p>
+
+<ul>
+  <li>무슨 뜻인가요?</li>
+</ul>
+
+<p>점이 왜 두갠가요?ㅠㅠ</p>
+
+<h3 id="e-rd---mapping-cardinality--totalpartial-participation">E-RD - Mapping Cardinality &amp; Total/Partial Participation</h3>
+
+<hr />
+
+<p>앞에서 쓰신 슬라이드가 강의 페이지에 올려주신 피피티에는 안보이는데 새로 올려주시나요??</p>
+
+<p>caution ppt 페이지 어디에서 볼 수 잇나요..?</p>
+
+<p>테트리스 블럭처럼 네모치신거 블랙보드에 올라온 슬라이드에는 없어요…</p>
+
+<blockquote>
+  <p>pdf 말고 slide 누르시면 반영이 되어 있을 겁니다. 나중에 pdf로 만들어서 공유링크 바꿔드릴게요.</p>
+</blockquote>
+
+<p>가운데는 1대다 맞나요? 왜 화살표가 없나요?</p>
+
+<p>화살표 다시한번만요. 화살표…..</p>
+
+<p>one to many 화살표 다시 설명해주실 수 있나요??</p>
+
+<p>그럼 many to many에서 는 참조키를 사용할수 없는건가요?</p>
+
+<p>many to many 에는 뽀린키가 양쪽 둘다 없다는 말씀이신가요?</p>
+
+<p>unary에서 선수과목에서 course-id가 스스로 관련을 맺고있지만 그 안에서는 서로 다른 튜플에 저장되는거죠?</p>
+
+<p>학생 여러명 도시 하나인데 학생쪽으로 1..1 도시쪽으로 0..* 이면 학생 1명에 도시 0~n개 라는 뜻 아닌가요</p>
+
+<p>timeslot이 일대다인거 한번만 더 설명해주실수있나요!!</p>
+
+<p>29페이지 두번째세번째 그림에서 1..1로 최소 1명 최대 1명이 태어났는데 location에서 어떻게 0이 최솟값이 될 수 있나요?</p>
+
+<p>어떤 노테이션을 쓸지 명시해야 된다는 부분을 잘 못 들었는데, 화살표를 쓸지 min..max를 쓸지 명시하고 써야 한다는 말인가요?</p>
+
+<p>어떤 건 다:1이고 어떤 건 1:다 인데 머라부르는지 뭘 기준으로 해요?</p>
+
+<p>두줄이 무슨 뜻인지 다시 설명해주실수있나요</p>
+
+<p>슬라이드 31에서 두번째 erd 표는 partial participation을 나타나는게 맞는거지요? total이면 꼭 두줄 그어줘야 하는건가요?</p>
+
+<h3 id="weak-entitiy-set">Weak Entitiy Set</h3>
+
+<hr />
+
+<p>sec_course가 두줄 마름모인거 다시한번 설명해주세요ㅜㅜ</p>
+
+<p>sec_course가 weak entity인가요? section이 weak entity인가요?</p>
+
+<p>primary key 가 없으면 weak entity 인가요?</p>
+
+<p>weak entity 와 total participation은 entity의 관점과 relation 관점에서의 차이일뿐인가요? 둘이 같은말같아요</p>
+
+<p>section에 밑줄이 왜 쳐져있는지 알 수 있을까요?</p>
+
+<p>student와 advisor 사이 두줄로 해야되는거아닌가요?</p>
+
+<h3 id="기타">기타</h3>
+
+<hr />
+
+<p>ㅎㅎ…</p>
+
+<p>나는 차은우다..</p>
+
+<p>흰 배경에 노란 글씨라 안 보여요 ㅠ</p>
+
+<p>과제 최종본 딱 14:00 에 제출했는데 괜찮나요?</p>
+
+<p>많이 헷갈려요.. 천천히 하면 안 되나요…?</p>
+
+<p>아래 질문 2개 넘어갔어요</p>
+
+<p>마리아디비 로그인이 안돼요ㅠㅠ login incorrect 뜨는데 분명 db학번과 포털 이메일로 로그인하고 있습니다ㅠㅠ</p>
+
+<p>과제 너무 어려웠어요….. ㅠ ㅠ</p>
+
+<p>다들 감기조심하세요…</p>
+
+<p>오늘 수업 속도 좋아요..</p>
+
+<p>e가 뭔가요..?</p>
+
+<p>composite field 를 해당 엔티티의 primary key 와 함께 아예 다른 테이블로 따로 담는 것은 안티패턴인가요?</p>
+
+<p>그러면 화살표도 방향 바뀌나요?</p>
+
+<p>employee의 cardinality 1..1이어야하지않나요?</p>
+
+<p>수업 아주 처음에 과제 관련 얘기해주셨던거 다시 해주세요!ㅜㅜ</p>
+
+<p>과제 너무 많아요… 살려주세요ㅜㅜㅜㅜ</p>
+
+<p>위크 엔티티에서 erd를 그릴 때, partial key만 밑줄 쳐서 정의하는데, 실제로 테이블을 만들 때는 column 하나를 더 추가해서 foreign key를 추가해서 primary key를 만든다는 의미이신가요?</p>
+
+<p>한 항목이 여러 주문서에 있을 수는 없나요?</p>
+:ET

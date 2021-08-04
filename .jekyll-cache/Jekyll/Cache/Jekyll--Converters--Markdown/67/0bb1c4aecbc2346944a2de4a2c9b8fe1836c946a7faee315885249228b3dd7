@@ -1,0 +1,59 @@
+I"r<ul>
+  <li>
+    <p>모바일 view에 최적화가 되어있지 않습니다!</p>
+  </li>
+  <li>
+    <p>모바일에서 접속할 경우, 가로보기로 봐주세요 :)</p>
+  </li>
+</ul>
+
+<h3 id="term-project-우수작-모음-2019">Term Project 우수작 모음 (2019)</h3>
+
+<ul>
+  <li>
+    <p><a href="http://115.68.231.165/~2015410104/camera/index.php">K-Camera: 카메라 &amp; 렌즈 정보 (윤지환)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320196/tp/index.php">LOL-info (윤성하)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2011210078/project/">나만의 가계부 (장두호)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320132/bitag/index.php">BitAG: 비트코인 거래소 (장연석)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017160339/">쿠플릭스: 영화 평가 (이수영)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2015410036/project/mall/index.php">유기동물 보호소 관리프로그램 (김범준)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2014130911/index.php">DB-Library (채민수)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320206/kuisine/index.php">kusine: 메뉴 공유 커뮤니티 (조동혁)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320179/index.php">O-Class: 세계 최초의 과외 사이트 (안수영)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320214/gamematch/">Game Matcing: 게임 매칭 (이지원)</a></p>
+  </li>
+  <li>
+    <p><a href="http://115.68.231.165/~2017320198/prof101/index.php">professor 101: 당신의 교수님꼐 투표하세요! (오정우)</a></p>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+  var disqus_shortname  = 'COSE371';
+  var disqus_identifier = '';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+  </li>
+</ul>
+
+:ET

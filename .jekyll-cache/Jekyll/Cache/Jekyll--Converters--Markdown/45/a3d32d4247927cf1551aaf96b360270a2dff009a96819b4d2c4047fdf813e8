@@ -1,0 +1,120 @@
+I"�<p>여러분들이 이때까지 작업하신 소스코드를 Github에 공유하는 방법을 소개해드립니다.</p>
+
+<p>과제 아닙니다 :)</p>
+
+<h3 id="1-github에-빈-repository-생성">1. github에 빈 repository 생성</h3>
+
+<ul>
+  <li><a href="https://github.com">github</a>에 가입하신 후, 다음과 같이 빈 repository를 생성하세요.</li>
+</ul>
+
+<p><img src="/assets/img/github1.PNG" alt="" /></p>
+
+<ul>
+  <li>repository 이름 등을 설정하시고 ‘create repository’를 누르세요.</li>
+</ul>
+
+<p><img src="/assets/img/github2.PNG" alt="" /></p>
+
+<h3 id="2-서버에서-git-계정-설정하기">2. 서버에서 git 계정 설정하기</h3>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span>git config <span class="nt">--global</span> user.name <span class="s2">"ws-choi"</span>
+<span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span>git config <span class="nt">--global</span> user.email <span class="s2">"ws_choi@korea.ac.kr"</span>                             cose371@dossa0328-18078:/home/db2019/cose371<span class="nv">$ </span>git config <span class="nt">--list</span>
+<span class="go">user.name=ws-choi
+user.email=ws_choi@korea.ac.kr
+</span></code></pre></div></div>
+
+<h3 id="3-github의-빈-repository를-clone하기">3. github의 빈 repository를 clone하기</h3>
+
+<ul>
+  <li>빈 프로젝트의 git 주소를 복사하세요.</li>
+</ul>
+
+<p><img src="/assets/img/github3.PNG" alt="" /></p>
+
+<ul>
+  <li>서버에 접속하여 해당 git을 복사</li>
+</ul>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span>git clone https://github.com/ws-choi/mall.git
+<span class="go">Cloning into 'mall'...
+warning: You appear to have cloned an empty repository.
+Checking connectivity... done.
+</span><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span><span class="nb">ls</span>
+<span class="go">mall  public_html
+</span></code></pre></div></div>
+
+<h3 id="4-repository로-프로젝트-파일-옮기기">4. repository로 프로젝트 파일 옮기기</h3>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span><span class="nb">cp</span> <span class="nt">-R</span> ./public_html/mall/ ./mall/
+<span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span><span class="nb">ls</span> ./mall/mall/
+<span class="go">banner.PNG  config.php  footer.php  header.php  images  index.php  product_delete.php  product_form.php  product_insert.php  product_list.php  product_modify.php  product_view.php  site_info.php  styles.css  table_rel.PNG  util.php
+</span></code></pre></div></div>
+
+<h3 id="5-commit--push">5. Commit &amp; Push</h3>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371$</span><span class="w"> </span><span class="nb">cd </span>mall/
+<span class="gp">cose371@dossa0328-18078:/home/db2019/cose371/mall$</span><span class="w"> </span><span class="nb">ls</span> <span class="nt">-al</span>
+<span class="go">total 16
+drwxr-xr-x 4 cose371 www-data 4096 May 30 13:55 .
+drwxr-xr-x 9 cose371 www-data 4096 May 30 13:53 ..
+drwxr-xr-x 7 cose371 www-data 4096 May 30 13:53 .git
+drwxr-xr-x 3 cose371 www-data 4096 May 30 13:55 mall
+</span><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371/mall$</span><span class="w"> </span>git add <span class="nt">-A</span>                                                                                                                                                                                                                             
+<span class="gp">cose371@dossa0328-18078:/home/db2019/cose371/mall$</span><span class="w"> </span>git commit <span class="nt">-m</span> <span class="s2">"init"</span>
+<span class="go">[master (root-commit) 663801d] init
+ 17 files changed, 630 insertions(+)
+ create mode 100644 mall/banner.PNG
+ create mode 100644 mall/config.php
+ create mode 100644 mall/footer.php
+ create mode 100644 mall/header.php
+ create mode 100644 mall/images/banner.PNG
+ create mode 100644 mall/images/table_rel.PNG
+ create mode 100644 mall/index.php
+ create mode 100644 mall/product_delete.php
+ create mode 100644 mall/product_form.php
+ create mode 100644 mall/product_insert.php
+ create mode 100644 mall/product_list.php
+ create mode 100644 mall/product_modify.php
+ create mode 100644 mall/product_view.php
+ create mode 100644 mall/site_info.php
+ create mode 100644 mall/styles.css
+ create mode 100644 mall/table_rel.PNG
+ create mode 100644 mall/util.php
+</span><span class="gp">cose371@dossa0328-18078:/home/db2019/cose371/mall$</span><span class="w"> </span>git push origin master 
+<span class="go">Username for 'https://github.com': ws_choi@korea.ac.kr
+Password for 'https://ws_choi@korea.ac.kr@github.com': 
+Counting objects: 19, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (19/19), 276.84 KiB | 0 bytes/s, done.
+Total 19 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.                        
+To https://github.com/ws-choi/mall.git
+</span><span class="gp"> * [new branch]      master -&gt;</span><span class="w"> </span>master
+</code></pre></div></div>
+
+<h3 id="6-확인해보기">6. 확인해보기</h3>
+
+<ul>
+  <li><a href="https://github.com/ws-choi/mall">mall repository</a></li>
+</ul>
+
+<h3 id="7-optional-read-me-file-만들기">7. (Optional) Read Me File 만들기</h3>
+
+<ul>
+  <li>
+    <p>아래와 같이 repository를 설명하고, 소스코드를 받은 사람들이 프로젝트를 재구현할수 있도록 가이드라인을 제시해주는 read me file을 만들어보세요.
+<img src="/assets/img/github4.PNG" alt="" /></p>
+  </li>
+  <li>
+    <p>mark down 형태로 작성하시면 됩니다.</p>
+  </li>
+</ul>
+
+<h3 id="참고">참고</h3>
+
+<ul>
+  <li><a href="https://backlog.com/git-tutorial/kr/">Git 설명자료</a></li>
+</ul>
+:ET

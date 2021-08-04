@@ -1,0 +1,113 @@
+---
+layout: post
+title: "Github: Project 공유하기"
+date: 2019-05-30
+categories: etc
+---
+
+여러분들이 이때까지 작업하신 소스코드를 Github에 공유하는 방법을 소개해드립니다.
+
+과제 아닙니다 :)
+
+### 1. github에 빈 repository 생성
+
+- [github](https://github.com)에 가입하신 후, 다음과 같이 빈 repository를 생성하세요.
+
+![](/assets/img/github1.PNG)
+
+- repository 이름 등을 설정하시고 'create repository'를 누르세요.
+
+![](/assets/img/github2.PNG)
+
+### 2. 서버에서 git 계정 설정하기
+
+```console
+cose371@dossa0328-18078:/home/db2019/cose371$ git config --global user.name "ws-choi"
+cose371@dossa0328-18078:/home/db2019/cose371$ git config --global user.email "ws_choi@korea.ac.kr"                             cose371@dossa0328-18078:/home/db2019/cose371$ git config --list
+user.name=ws-choi
+user.email=ws_choi@korea.ac.kr
+```
+
+### 3. github의 빈 repository를 clone하기
+
+- 빈 프로젝트의 git 주소를 복사하세요.
+
+![](/assets/img/github3.PNG)
+
+- 서버에 접속하여 해당 git을 복사
+  
+```console
+cose371@dossa0328-18078:/home/db2019/cose371$ git clone https://github.com/ws-choi/mall.git
+Cloning into 'mall'...
+warning: You appear to have cloned an empty repository.
+Checking connectivity... done.
+cose371@dossa0328-18078:/home/db2019/cose371$ ls
+mall  public_html
+```
+
+### 4. repository로 프로젝트 파일 옮기기
+
+```console
+cose371@dossa0328-18078:/home/db2019/cose371$ cp -R ./public_html/mall/ ./mall/
+cose371@dossa0328-18078:/home/db2019/cose371$ ls ./mall/mall/
+banner.PNG  config.php  footer.php  header.php  images  index.php  product_delete.php  product_form.php  product_insert.php  product_list.php  product_modify.php  product_view.php  site_info.php  styles.css  table_rel.PNG  util.php
+```
+
+### 5. Commit & Push
+
+```console
+cose371@dossa0328-18078:/home/db2019/cose371$ cd mall/
+cose371@dossa0328-18078:/home/db2019/cose371/mall$ ls -al
+total 16
+drwxr-xr-x 4 cose371 www-data 4096 May 30 13:55 .
+drwxr-xr-x 9 cose371 www-data 4096 May 30 13:53 ..
+drwxr-xr-x 7 cose371 www-data 4096 May 30 13:53 .git
+drwxr-xr-x 3 cose371 www-data 4096 May 30 13:55 mall
+cose371@dossa0328-18078:/home/db2019/cose371/mall$ git add -A                                                                                                                                                                                                                             
+cose371@dossa0328-18078:/home/db2019/cose371/mall$ git commit -m "init"
+[master (root-commit) 663801d] init
+ 17 files changed, 630 insertions(+)
+ create mode 100644 mall/banner.PNG
+ create mode 100644 mall/config.php
+ create mode 100644 mall/footer.php
+ create mode 100644 mall/header.php
+ create mode 100644 mall/images/banner.PNG
+ create mode 100644 mall/images/table_rel.PNG
+ create mode 100644 mall/index.php
+ create mode 100644 mall/product_delete.php
+ create mode 100644 mall/product_form.php
+ create mode 100644 mall/product_insert.php
+ create mode 100644 mall/product_list.php
+ create mode 100644 mall/product_modify.php
+ create mode 100644 mall/product_view.php
+ create mode 100644 mall/site_info.php
+ create mode 100644 mall/styles.css
+ create mode 100644 mall/table_rel.PNG
+ create mode 100644 mall/util.php
+cose371@dossa0328-18078:/home/db2019/cose371/mall$ git push origin master 
+Username for 'https://github.com': ws_choi@korea.ac.kr
+Password for 'https://ws_choi@korea.ac.kr@github.com': 
+Counting objects: 19, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (18/18), done.
+Writing objects: 100% (19/19), 276.84 KiB | 0 bytes/s, done.
+Total 19 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.                        
+To https://github.com/ws-choi/mall.git
+ * [new branch]      master -> master
+```
+
+### 6. 확인해보기
+
+- [mall repository](https://github.com/ws-choi/mall)
+
+### 7. (Optional) Read Me File 만들기
+
+- 아래와 같이 repository를 설명하고, 소스코드를 받은 사람들이 프로젝트를 재구현할수 있도록 가이드라인을 제시해주는 read me file을 만들어보세요.
+![](/assets/img/github4.PNG)
+
+- mark down 형태로 작성하시면 됩니다.
+
+### 참고
+
+- [Git 설명자료](https://backlog.com/git-tutorial/kr/)

@@ -1,0 +1,45 @@
+I"�<h3 id="실습서버-환경">실습서버 환경</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OS</td>
+      <td>Ubuntu</td>
+    </tr>
+    <tr>
+      <td>DBMS</td>
+      <td>MariaDB</td>
+    </tr>
+    <tr>
+      <td>Encoding</td>
+      <td>UTF-8</td>
+    </tr>
+    <tr>
+      <td>서버 주소</td>
+      <td>TBA</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="실습서버-접속-방법">실습서버 접속 방법</h3>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname  = 'COSE371';
+    var disqus_identifier = '';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+:ET

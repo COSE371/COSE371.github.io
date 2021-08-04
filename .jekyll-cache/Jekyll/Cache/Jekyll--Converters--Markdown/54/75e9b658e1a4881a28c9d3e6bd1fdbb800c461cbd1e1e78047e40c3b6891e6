@@ -1,0 +1,35 @@
+I"/<p>여러분들이 이때까지 작업하신 데이터베이스를 DDL+DML Script 형태로 출력하는 방법을 소개해드립니다.</p>
+
+<p>과제 아닙니다 :)</p>
+
+<h3 id="1-mysqldump-이용해보기">1. mysqldump 이용해보기</h3>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">2019KU0080@dossa0328-18078:~$</span><span class="w"> </span><span class="nb">cd</span>                
+<span class="gp">2019KU0080@dossa0328-18078:~$</span><span class="w"> </span><span class="nb">pwd</span>                                                 
+<span class="go">/home/db2019/2019KU0080                                                           
+
+</span><span class="gp">2019KU0080@dossa0328-18078:~$</span><span class="w"> </span>mysqldump <span class="nt">-u</span> db2019KU0080 db2019KU0080 <span class="nt">-p</span> <span class="o">&gt;</span> dump.sql                      
+<span class="go">Enter password: ***********
+</span></code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysqldump</span><span class="p">:</span> <span class="n">Couldn</span><span class="s1">'t execute '</span><span class="k">SHOW</span> <span class="n">FIELDS</span> <span class="k">FROM</span> <span class="nv">`cnt_class`</span><span class="s1">': View '</span><span class="n">db2019KU0080</span><span class="p">.</span><span class="n">cnt_class</span><span class="s1">' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them (1356)                  
+</span></code></pre></div></div>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">2019KU0080@dossa0328-18078:~$</span><span class="w"> </span><span class="nb">ls</span>                            
+<span class="go">dump.sql  public_html
+
+</span><span class="gp">2019KU0080@dossa0328-18078:~$</span><span class="w"> </span><span class="nb">head </span>dump.sql                                                                                         <span class="nt">--</span> MySQL dump 10.15  Distrib 10.0.38-MariaDB, <span class="k">for </span>debian-linux-gnu <span class="o">(</span>x86_64<span class="o">)</span>                                                         <span class="nt">--</span>                                      
+<span class="go">-- Host: localhost    Database: db2019KU0080                                                                                                                                     
+-- ------------------------------------------------------                                                                           -- Server version       10.0.38-MariaDB-0ubuntu0.16.04.1
+</span><span class="gp">/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;</span><span class="w">
+</span><span class="gp">/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;</span><span class="w">                               
+</span><span class="gp">/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="2-debugging">2. Debugging</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysqldump</span><span class="p">:</span> <span class="n">Couldn</span><span class="s1">'t execute '</span><span class="k">SHOW</span> <span class="n">FIELDS</span> <span class="k">FROM</span> <span class="nv">`cnt_class`</span><span class="s1">':
+ View '</span><span class="n">db2019KU0080</span><span class="p">.</span><span class="n">cnt_class</span><span class="s1">' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them (1356)  
+</span></code></pre></div></div>
+
+<p>dump 명령 후에 발생하는 위와 같은 에러는 주로 View를 등록한 후 View가 Referencing하고 있는 테이블 (즉, 피연산자 테이블)을 삭제하거나 컬럼을 삭제하는 경우에 발생합니다. invalid한 View를 삭제해주신 후 mysqldump를 수행하시면 정상적으로 dump.sql 만드실 수 있을 겁니다. 에러가 발생하면, 그 이후로는 dump가 진행되지 않으니 반드시 에러를 모두 잡아주셔야합니다.</p>
+:ET

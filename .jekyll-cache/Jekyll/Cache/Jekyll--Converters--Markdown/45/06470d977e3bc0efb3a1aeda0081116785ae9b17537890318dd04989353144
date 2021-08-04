@@ -1,0 +1,28 @@
+I"x<p>데이터베이스 COSE 371(2) 6주차 강의내용입니다.</p>
+
+<p>Relational Database Design 에 대해 알아봅니다.</p>
+
+<h2 id="lecture-note">Lecture Note</h2>
+
+<p>Week 6: Relational Database Design <a href="https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN">[slide]</a></p>
+
+<div class="slide">
+    <iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214738&amp;authkey=AMlcb3mAd7mYXb4&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+<hr />
+
+<h2 id="q--a">Q &amp; A</h2>
+
+<p>과제가너무많소</p>
+
+<p>table R에 있는 임의의 알파와 베타에 대해서 위 관계가 만족해야 functional dependency가 있다고 할 수 있을 것 같은데, 이는 사실상 절대적으로 보여줄 수 없는 것 아닌가요?</p>
+
+<p>candidate key의 정의에서 K스스로도 a가 될 수 있으니 a는 K의 부분집합이되 K자체는 아니라는 가정도 필요하지 않나요?</p>
+
+<p>2.70 다시 설명해주시겠어요…? ㅠ ㅠ</p>
+
+<p>2-6 슬라이드에서 쪼개는게 오히려 더 손해 아닌가요? 같은 정보를 더 많이 저장하는것 같아서요ㅠㅠ</p>
+
+<p>프라이머리키 -&gt; 나머지 attribute 라는 functional dependency가 이해가 안돼요ㅠㅠ 프라이머리키가 틀리면 아까 말하신 p-&gt; q 처럼 그냥 프라이머리 키가 상관 없어지는거 아닌가요?</p>
+:ET

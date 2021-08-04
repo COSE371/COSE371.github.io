@@ -1,0 +1,57 @@
+I"Y<h3 id="development-of-web-db-application-with-transaction-배점-3">Development of Web DB application with transaction [배점 3]</h3>
+
+<ul>
+  <li>제출 내용
+    <ol>
+      <li>System Refinement
+        <ul>
+          <li>다음 작업의 경우 TRANSACTION 형태로 처리(<a href="https://cose371.github.io/tpfinal-transaction">예시</a>)할 것</li>
+        </ul>
+        <ul>
+          <li>Insert, Update, Delete를 하나 이상 포함하는 발생하는 작업
+            <ul>
+              <li>e.g. 아티스트 등록</li>
+            </ul>
+          </li>
+          <li>하나의 데이터 아이템에 대한 Insert, Update, Delete의 경우에도 Transaction 처리해줄것!</li>
+        </ul>
+      </li>
+      <li>Report Submit (간소화)
+        <ul>
+          <li>
+            <ol>
+              <li>System Refinement 수행을 위해 어떤 부분을 수정했는지 간략하게 정리하여 제출
+                <ul>
+                  <li>보고서 양식은 따로 없음</li>
+                  <li>주석을 활용하여 수정 부분을 표시</li>
+                  <li>pdf로 제출</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>제출기한
+    <ul>
+      <li>정상제출: 6월 10일 14시까지 (채점결과의 <strong>100%</strong> 반영)</li>
+      <li>지각제출: 6월 17일 14시까지 (채점결과의 <strong>80%</strong> 반영)</li>
+      <li><strong>최종제출: 6월 23일 23시 59분까지 (채점결과의 50% 반영)</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="제출방법">제출방법</h3>
+
+<ul>
+  <li>보고서 파일을 KULMS에 제출</li>
+  <li>code 제출
+    <ul>
+      <li>과제 서버에서 과제 수행 시 code 제출 불필요</li>
+      <li>자체 환경에서 과제 수행 시 code 제출</li>
+    </ul>
+  </li>
+</ul>
+
+:ET

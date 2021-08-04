@@ -1,0 +1,98 @@
+I"3<h2 id="lecture-note">Lecture Note</h2>
+
+<p>Week 14: Recovery System <a href="https://1drv.ms/b/s!AszT-SZB_jByqGxOUuvU4_SyUjfM">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByqGimYhx_IkxkG6PI?e=7iA9Ca">[slide]</a></p>
+
+<div class="slide">
+<iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%215226&amp;authkey=ADBW3iiIHav0iRY&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+<hr />
+
+<h2 id="q--a">Q &amp; A</h2>
+
+<p>밑밑에거 작성잔데 홈피에 있는 텀프 질문 답변해주신거 늦게 들어와서 잘 못들어서요…ㅠㅠ</p>
+
+<p>엊그제한게 안들어간다는게 로그베이스 리커버리 전의 슬라이드가 전부안들어간다는건가요??</p>
+
+<p>log force정확한 의미가 뭐인지 다시한번 설명해주실 수 있나요</p>
+
+<p>수행안내서를 일단 대충 후딱 만들어서 내고, 지금 계속 코디아드 코드 고치고 있는데 이거 혹시 점수에 반영 되는건가요,,,?</p>
+
+<p>첫 failure에서 undo를 위해 로그를 추가한 뒤 다시 failure가 생겨서 redo를 할 때 undo를 위해 추가했던 log인지 아닌지 어떻게 구분하나요?</p>
+
+<p>커밋되지 않았어도 래치쓰면 라이트백되지 않나요ㅠㅠ</p>
+
+<p>이해되었습니다ㅠㅠ</p>
+
+<p>log force를 쓸 경우 일정 수 이상의 commit이 발생해야 stable storage에 logging을 할 텐데, 만약 abort된 transaction이나 commit이 정상적으로 수행되지 않은 transaction의 log같은 것들은 애초에 buffer에서 stable storage로 넘길 필요가 없지 않나요? 어차피 commit이 발생하기 까지 기다릴 수 있으니깐요.</p>
+
+<p>old value logging 은 오로지 abort case를 위한 건가요?</p>
+
+<p>rollback 시에도 undo로 복원하나요?</p>
+
+<p>어디서부터 뻗엇는지 모르는데 그럼 redo를 어디서부터하는지는 어떻게 아나용</p>
+
+<p>동일한 블록에 대해서는 동기식 처리라고 이해하면 될까요? 서로 다른 블록에 대해서는 비동기식으로 처리된다면, 서로 다른 블록에 대해서는 작업 순서에 대한 보장을 어떤식으로 해주나요..? 못해주는건가요?</p>
+
+<p>당연히 수요일아닌가여</p>
+
+<p>slide업데이트안된건가요ㅜㅜ 슬라이드가 같지않아요!!ㅜㅜ</p>
+
+<p>28슬라이드의 첫문단 한번만 다시 설명해주실 수 있나용..? undo info? uncommited updates?????</p>
+
+<p>더 위의 new value 로그를 봄으로써 굳이 매번 old value logging을 안 해서 크기를 줄일수도 있지 않을까요?</p>
+
+<p>수요일!</p>
+
+<p>log force정확한 의미가 뭐인지 다시한번 설명해주실 수 있나요</p>
+
+<p>방금 질문 못들었는데 다시 설명해주실 수 있을까요</p>
+
+<p>redo list는 t2밖에 없나요?</p>
+
+<p>혹시 서버에 저장된 Database는 못 옮기나요?</p>
+
+<p>로그가.. 스테이블 스토리지에 저장이 된다면 결국에는 하드디스크 속 데이터를 업데이트 시켜주는거랑 속도는 똑같지 않나요?ㅠㅠ..</p>
+
+<p>(a) 문제에서 T0를 맨 처음에 redo 해주나요???</p>
+
+<p>undo 로그를 남김으로써 다음에는 동일한 작업을 undo가 아니라 redo로 할수 있다는 말씀이신가요?</p>
+
+<p>steal 과 force의 의미를 잘 모르겠어요 ㅜ</p>
+
+<p>그러면 wal은 시험에 안나오는건가용? 너무 헷갈려서.. ㅠㅠ</p>
+
+<p>근데 로그가 여러블록을 사용하면 flush할 때 1 싴 다 블록트랜스퍼아닌가요</p>
+
+<p>혹시 방금 내용 다시 설명해주실 수 있나요</p>
+
+<p>WAL 사용 시 아직 commit 전의 변화는 절대 디스크에 쓰여지지 않고 memory에만 들고있어야하는 것이 맞나요?</p>
+
+<p>커밋이 완료가 안되어서 (크래쉬가 도중에?) 버퍼가 업데이트 안된건가요 아니면 커밋완료되고 크래쉬되었는데 버퍼가 자동적으로 디스크에 업데이트를 안해서 문제인건가요?</p>
+
+<p>홈피에 있는 텀프 댓글 남겨주시면 안될까요 ㅠㅠ</p>
+
+<p>늦제출로 받아주시면 안되나요,,?</p>
+
+<p>죄송한데 에어컨 켜주시면 안될까요…ㅠㅠ</p>
+
+<p>redo 하는건 따로 로그를 또 써줄 필요가 없는건가요?</p>
+
+<p>commit되어 buffer에 반영은 되었으나 storage에는 반영이 안된 상태에서 비정상종료되면 dbms는 모르지 않나요? 사용자가 판단해서 복구명령을 해야하나요?</p>
+
+<p>제 생각에는 말씀주신 것처럼 바다에 물한방울 뿌리는 정도의 차이가 아니라 꽤 많은 시간차이가 날 것 같습니다. 애초에 recovery 하는 과정은 문제가 생겼다고 판단되는 경우에서 할텐데 abort되거나 정상 수행되지 않은 transaction에대한 로그를 남기지 않는다면 역사를 반복할 필요가 없고 역순으로 각 transaction의 가장 가까운 값만 찾아내면 되는거 아닌가요..?</p>
+
+<p>logging 하는 과정은 각 transaction과 비동기적으로 처리되나요?? 동기식 처리방식이면 말씀 주신 상황처럼 write에 대한 기록을 logging하는 과정에서 동일한 블록에 대해서 write하는 과정이 끼어들 수 없을 것 같아서 질문드립니다..!</p>
+
+<p>check point전 트랜잭션은 왜 다시 볼필요가 없나요?</p>
+
+<p>과제 풀이 과정 쓰면 추가 점수가 있나요?</p>
+
+<p>그러면 commit 직전에만 체크포인트 줄경우에 commit 전에 crash 나면 inconsistency 발생하는것 아닌가요?</p>
+
+<p>flush한다는 작업이 정확히 무엇인가요? 그냥 비우는 걸로 생각하면 될까요?</p>
+
+<p>undo는 list를 Ti 기준으로 스캔하여 생성한다면, redo 시에도 Xi(데이터) 기준으로 스캔하여 제일 마지막 Xi 만을 redo한다면 더 빠른 복원이 가능할 수 있을까요?</p>
+
+<p>래치를 걸고 로그를 아웃풋하고 래치를 풀고 디비에 쓴다는 의미죠? 커밋을 안했는데도 디스크에 쓰고싶으면?</p>
+:ET

@@ -1,0 +1,157 @@
+I"$<h1 id="what-is-codiad">What is Codiad?</h1>
+<ul>
+  <li>Codiad is a web-based IDE framework</li>
+  <li>Requirements
+    <ul>
+      <li>Apache2</li>
+      <li>PHP5+</li>
+      <li>Basic r/w access to several directories</li>
+    </ul>
+  </li>
+  <li>Working on IE, Chrome, Firefox, etc</li>
+</ul>
+
+<h2><img src="/assets/img/codiadsetupimg/codiadmain.png" alt="codiadscreenshot" /></h2>
+
+<h2 id="codiad">Codiad</h2>
+
+<ul>
+  <li>기능
+    <ul>
+      <li>
+        <p>Codiad를 이용하면 웹 브라우저를 이용하여 linux 서버의 파일을 생성, 추가 삭제 할 수 있음.</p>
+      </li>
+      <li>
+        <p>참고 : <strong><em>Codiad 사용은 의무가 아님</em></strong></p>
+        <ul>
+          <li>Coidiad를 쓰지 않고 ssh만으로 과제를 수행해도 됨.</li>
+          <li>codiad는 ssh를 이용한 php 파일 조작이 익숙치 않은 사용자들을 위해 제공됨.
+            <ul>
+              <li><strong><em>즉, vi나 nano등의 편집기가 편한 사용자는 Codiad 설치가 불필요.</em></strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Installation
+    <ul>
+      <li>기본적인 setting은 다 되어 있음</li>
+      <li>학생들이 해야할 부분 : <strong><em>가입, 접속, 활용</em></strong></li>
+      <li><strong><em>경고</em></strong> : 다른 학생의 Codiad에 가입/접속하지 마십시오.
+        <ul>
+          <li>만약 타인이 Codiad에 접속했다면 해당 학생의 Codiad를 재설치 해드리겠습니다.</li>
+          <li>해당 사항에 대해서는 메일로 문의바랍니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="site-link">Site link</h2>
+
+<h2 id="-1"><img src="/assets/img/codiadsetupimg/sitelinkexample.png" alt="sitelinkexample" /></h2>
+
+<h2 id="initial-setup-화면">Initial Setup 화면</h2>
+<ul>
+  <li>Codiad의 Username과 password는 Linux와 달라도 무방합니다.</li>
+  <li><strong><em>단, Path에는 정해진 path를 정확히 입력해주셔야 합니다.</em></strong></li>
+</ul>
+
+<h2 id="-2"><img src="/assets/img/codiadsetupimg/initialsetup1.png" alt="initialsetup1" /></h2>
+<p><img src="/assets/img/codiadsetupimg/initialsetup2.png" alt="initialsetup2" />
+—</p>
+<h2 id="folder-name-or-absolute-path-찾기">Folder Name or absolute Path 찾기</h2>
+
+<ul>
+  <li>PuTTY / Terminal 접속</li>
+  <li>cd public_html/  입력</li>
+  <li>Pwd입력</li>
+  <li>Path 복사 후 -&gt; 붙여 넣기</li>
+</ul>
+
+<h2 id="-3"><img src="/assets/img/codiadsetupimg/absolutepath.png" alt="pathcopy" width="30%" height="30%" /></h2>
+<h2 id="setup-완료">Setup 완료</h2>
+
+<h2 id="-4"><img src="/assets/img/codiadsetupimg/setupcomplete.png" alt="setupcomplete" width="50%" height="50%" /></h2>
+<h2 id="login">Login</h2>
+
+<ul>
+  <li>만든 계정으로 로그인</li>
+</ul>
+
+<h2 id="-5"><img src="/assets/img/codiadsetupimg/login.png" alt="login" width="30%" height="30%" /></h2>
+<h2 id="login-완료">Login 완료</h2>
+
+<ul>
+  <li>정상적으로 로그인 했을 때 이 화면을 볼 수 있습니다.</li>
+</ul>
+
+<h2 id="-6"><img src="/assets/img/codiadsetupimg/logincomplete.png" alt="logincomplete" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-1">Codiad를 활용하여 Index 페이지 만들기 (1)</h2>
+<ul>
+  <li>115.68.231.165/~학번/ 으로 접속 했을 때의 화면.</li>
+  <li>index page가 없으므로 기본 화면만 출력된다.</li>
+</ul>
+
+<h2 id="-7"><img src="/assets/img/codiadsetupimg/defaultpage.png" alt="defaultpage" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-2">Codiad를 활용하여 Index 페이지 만들기 (2)</h2>
+<ul>
+  <li>index page를 만들기 위해, 프로젝트 명에 <strong>오른쪽 마우스</strong> 클릭 한다.</li>
+  <li>그 후 <strong>New file</strong> 을 클릭한다.</li>
+</ul>
+
+<h2 id="-8"><img src="/assets/img/codiadsetupimg/makeindexpage.png" alt="makeindexpage" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-3">Codiad를 활용하여 Index 페이지 만들기 (3)</h2>
+<ul>
+  <li>화면 중앙에 아래와 같은 <strong>팝업 창</strong>이 생성됨을 볼 수 있다.</li>
+</ul>
+
+<h2 id="-9"><img src="/assets/img/codiadsetupimg/makeindexpage2.png" alt="makeindexpage2" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-4">Codiad를 활용하여 Index 페이지 만들기 (4)</h2>
+<ul>
+  <li>파일명을 <strong>index.php</strong> 로 한 후 <strong>create</strong> 해준다.</li>
+</ul>
+
+<h2 id="-10"><img src="/assets/img/codiadsetupimg/makeindexpage3.png" alt="makeindexpage3" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-5">Codiad를 활용하여 Index 페이지 만들기 (5)</h2>
+<ul>
+  <li><strong>index.php</strong> 가 생성됨을 확인 할 수 있다.</li>
+</ul>
+
+<h2 id="-11"><img src="/assets/img/codiadsetupimg/makeindexpage4.png" alt="makeindexpage4" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-6">Codiad를 활용하여 Index 페이지 만들기 (6)</h2>
+<ul>
+  <li>Edit창에 hello world! 를 입력 후 저장(ctrl+s) 한다.</li>
+</ul>
+
+<p><img src="/assets/img/codiadsetupimg/makeindexpage5.png" alt="makeindexpage5" /></p>
+
+<ul>
+  <li>저장 할 때 우측 하단의 File saved를 확인해준다.</li>
+</ul>
+
+<h2 id="-12"><img src="/assets/img/codiadsetupimg/checkfilesaved.png" alt="checkfilesaved" /></h2>
+<h2 id="codiad를-활용하여-index-페이지-만들기-완료">Codiad를 활용하여 Index 페이지 만들기 (완료)</h2>
+<ul>
+  <li>115.68.231.165/2017010613/ 으로 접속한다. <strong>(예시)</strong></li>
+  <li>입력한 hello world!를 확인할 수 있다.</li>
+</ul>
+
+<p><img src="/assets/img/codiadsetupimg/makeindexpage6.png" alt="makeindexpage6" /></p>
+
+<h2 id="etc">ETC</h2>
+
+<ul>
+  <li>
+    <p>PW분실 등의 문제 발생 시 메일로 Codiad 재설치 요청을 해주시기 바랍니다.</p>
+  </li>
+  <li>
+    <p><strong>참고: Codiad 재설치는 작업내용에 영향을 끼치지 않습니다.</strong></p>
+  </li>
+  <li>
+    <p><strong>경고: 절대 다른 학생의 Codiad에 가입/접속하지 마십시오.</strong></p>
+  </li>
+</ul>
+
+:ET

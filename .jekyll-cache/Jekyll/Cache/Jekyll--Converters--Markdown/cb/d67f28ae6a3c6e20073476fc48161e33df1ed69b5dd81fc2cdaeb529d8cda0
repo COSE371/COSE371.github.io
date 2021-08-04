@@ -1,0 +1,145 @@
+I"�<h3 id="실습서버-환경">실습서버 환경</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OS</td>
+      <td>Ubuntu</td>
+    </tr>
+    <tr>
+      <td>DBMS</td>
+      <td>MariaDB</td>
+    </tr>
+    <tr>
+      <td>Encoding</td>
+      <td>UTF-8</td>
+    </tr>
+    <tr>
+      <td>서버 주소</td>
+      <td>115.68.231.165</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="실습서버-접속-방법">실습서버 접속 방법</h3>
+
+<h4 id="1-ssh-접속">1. SSH 접속</h4>
+
+<ul>
+  <li>(방법 1) <a href="http://115.68.231.165/shell">Online Shell</a> 접속
+    <ul>
+      <li>Online Shell 접속 시 id와 passwd는 socrative 접속 코드와 동일 (소문자만 사용)</li>
+    </ul>
+  </li>
+  <li>(방법 2) Putty 등의 SSH client 이용</li>
+</ul>
+
+<h4 id="2-ubuntu-접속-아래와-같이-접속">2. Ubuntu 접속: 아래와 같이 접속</h4>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">dossa0328-18078 login: **학번**
+Password: **메일주소**                                                                     
+Last login: Wed Mar 27 11:12:48 KST 2019 from 163.152.111.34 on pts/16        
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-116-generic x86_64)            
+                                                                              
+ * Documentation:  https://help.ubuntu.com                                    
+ * Management:     https://landscape.canonical.com                            
+ * Support:        https://ubuntu.com/advantage                               
+                                                                              
+  Get cloud support with Ubuntu Advantage Cloud Guest:                        
+    http://www.ubuntu.com/business/services/cloud                             
+                                                                              
+557 packages can be updated.                                                  
+0 updates are security updates.                                               
+
+</span></code></pre></div></div>
+
+<h4 id="3-mariadb-접속-아래와-같이-접속">3. MariaDB 접속: 아래와 같이 접속</h4>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">학번@dossa0328-18078:~$</span><span class="w"> </span>mysql <span class="nt">-u</span> <span class="k">**</span>db학번<span class="k">**</span> <span class="nt">-p</span>                                
+<span class="go">Enter password: **메일주소**                                                               
+</span><span class="gp">Welcome to the MariaDB monitor.  Commands end with ;</span><span class="w"> </span>or <span class="se">\g</span><span class="nb">.</span>                   
+<span class="go">Your MariaDB connection id is 1382                                            
+Server version: 10.0.34-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04                 
+                                                                              
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.          
+                                                                              
+</span><span class="gp">Type 'help;</span><span class="s1">' or '</span><span class="se">\h</span><span class="s1">' for help. Type '</span><span class="se">\c</span><span class="s1">' to clear the current input statement.
+</span><span class="go">                                                                              
+</span><span class="gp">MariaDB [(none)]&gt;</span><span class="w"> </span>use <span class="k">**</span>db학번<span class="k">**</span>                                                 
+<span class="go">Reading table information for completion of table and column names            
+You can turn off this feature to get a quicker startup with -A                
+                                                                              
+Database changed                                                              
+</span><span class="gp">MariaDB [db학번]&gt;</span><span class="w"> </span><span class="k">**</span><span class="o">(</span>종료시: <span class="se">\q</span><span class="o">)</span><span class="k">**</span>     
+</code></pre></div></div>
+
+<h4 id="로그인이-잘-안되는-경우">로그인이 잘 안되는 경우</h4>
+
+<ul>
+  <li>접속이 잘 안되시는 분들은 온라인 쉘 말고, UTF-8 인코딩을 지원하는 다른 SSH 프로그램을 사용해보시기 바랍니다.
+    <ul>
+      <li>ex) Window: <a href="http://hputty.org/">putty</a> 설치후 115.68.231.165 접속 (포트 22)</li>
+      <li>ex) Linux or MaxOS: 터미널 실행 후 ssh YOURID@115.68.231.165</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="개인별-계정정보">개인별 계정정보</h3>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>계정</th>
+      <th>비밀번호</th>
+      <th>예제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ubuntu</td>
+      <td>학번</td>
+      <td>포털에 기재한 메일주소</td>
+      <td>2009190719, ws_choi@korea.ac.kr</td>
+    </tr>
+    <tr>
+      <td>Maraidb</td>
+      <td>db학번</td>
+      <td>포털에 기재한 메일주소</td>
+      <td>db2009190719, ws_choi@korea.ac.kr</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="qa">QA</h3>
+
+<hr />
+
+<p>Q1. 아이디 학번 비밀번호 메일 맞나여..</p>
+
+<blockquote>
+  <p>온라인 쉘 접속을  id, 비밀번호는 수업시간에 말씀드렸습니다. 우분투의 경우 학번 비밀번호 맞고, Mariadb는 아이디가 db학번, 비밀번호는 메일주소입니다. 잘 안되시면 ws_choi@korea.ac.kr로 학번정보 보내주세요. 계정정보 드리겠습니다.</p>
+</blockquote>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname  = 'COSE371';
+    var disqus_identifier = '';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+:ET

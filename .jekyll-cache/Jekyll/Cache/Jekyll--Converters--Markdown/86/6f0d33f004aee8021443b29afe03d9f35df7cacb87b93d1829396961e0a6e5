@@ -1,0 +1,294 @@
+I"g�<p>데이터베이스 COSE 371(2) 4주차 강의내용 중 IN VS EXISTS에 대한 보충 설명입니다.</p>
+
+<h2 id="lecture-note">Lecture Note</h2>
+
+<div class="slide">
+<iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214572&amp;authkey=AJdKTcISeaiIV-s&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+<hr />
+
+<h3 id="1-필요성">1. 필요성?</h3>
+
+<hr />
+
+<ul>
+  <li>두 구문 모두 SQL의 표현력을 높여주는 역할을 합니다.
+    <ul>
+      <li>특히 MySQL이나 낮은 버전의 MariaDB에서는 INTERSECT 기능이나 EXCEPT 기능이 지원되지 않습니다. 이 경우 IN 또는 EXISTS 구문으로 구현할 수 있습니다 =&gt; Q4 참조.</li>
+    </ul>
+  </li>
+  <li>차이점?
+    <ul>
+      <li>IN의 경우 값의 존재성을 검사할 때 사용하며, EXISTS의 경우 TUPLE의 존재성을 검사할 때 사용합니다.</li>
+      <li>NULL과 관련된 이슈에 있어서도 두 구문이 차이납니다.</li>
+      <li>다음과 같은 간략한 constant value set에 대한 검사를 수행할 때 IN을 유용하게 사용할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">N_NATIONKEY</span><span class="p">,</span> <span class="n">N_NAME</span><span class="p">,</span> <span class="n">N_REGIONKEY</span> 
+    <span class="o">-&gt;</span>                    <span class="k">FROM</span> <span class="n">NATION</span> 
+    <span class="o">-&gt;</span>                    <span class="k">WHERE</span> <span class="n">N_NAME</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">'U.S.A.'</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">,</span> <span class="s1">'UNITED STATES'</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-------------+---------------+-------------+</span>
+<span class="o">|</span> <span class="n">N_NATIONKEY</span> <span class="o">|</span> <span class="n">N_NAME</span>        <span class="o">|</span> <span class="n">N_REGIONKEY</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+---------------+-------------+</span>
+<span class="o">|</span>          <span class="mi">24</span> <span class="o">|</span> <span class="n">UNITED</span> <span class="n">STATES</span> <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------+---------------+-------------+</span>
+</code></pre></div></div>
+
+<h3 id="2-correlated">2. Correlated?</h3>
+
+<hr />
+
+<ul>
+  <li>
+    <p>IN은 correlated subquery 형태로 사용될 수도 있고, correlated subquery 형태로 사용되지 않을 수도 있습니다.</p>
+  </li>
+  <li>
+    <p>반면 <strong>EXISTS 구분은 일반적으로 correlated subquery로 사용</strong>됩니다. correlated가 아닌 EXISTS 구문은 별 의미가 없기 때문입니다. 아래 예제에서 볼 수 있듯 correlated 되어있지 않은 EXISTS 구문이 subquery에 대해 항상 FALSE 나 TRUE를 반환합니다.</p>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">-- Correlated Subquery가 아닌 EXISTS 구문 --</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+<span class="o">-&gt;</span>         <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+<span class="o">-&gt;</span>              <span class="c1">------------ which is always true ------------</span>
+<span class="o">-&gt;</span>              <span class="k">EXISTS</span>
+<span class="o">-&gt;</span>              <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+<span class="o">-&gt;</span>                      <span class="k">FROM</span> <span class="n">ORDERS</span>
+<span class="o">-&gt;</span>                      <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+<span class="o">-&gt;</span>              <span class="p">)</span>
+<span class="o">-&gt;</span>              <span class="c1">------------ which is always true ------------</span>
+<span class="o">-&gt;</span>              <span class="p">;</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">99</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">09</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- 위에서 EXISTS 구문을 제외시킴 --</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span> <span class="k">TRUE</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">99</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">09</span> <span class="n">sec</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="3-in---exists">3. IN &lt;-&gt; EXISTS</h3>
+
+<hr />
+
+<ul>
+  <li>많은 경우 non-correlated IN 구문은 correlated EXISTS구문으로, correlated EXISTS 구문은 non-correlated IN 구문으로 바꿀 수 있습니다.
+    <ul>
+      <li><a href="https://stackoverflow.com/questions/31297417/how-to-replace-the-in-operator-with-exists-operator-for-the-where-clause-part-o">IN &lt;-&gt; EXISTS</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-performance-optimizer-disabled">4. Performance (optimizer disabled)</h3>
+
+<ul>
+  <li>(DBMS의 Optimizer가 개입하지 않는다는 가정하에) IN과 EXISTS는 상황에 따라 다른 성능을 보입니다.</li>
+  <li>아래 예제는 correlated EXISTS 구문이 non-correlated IN 구문 보다 30배 가량 빠른 예제입니다.</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">-- 현재 Session에 한해 EXISTS-TO-IN Optimization Rule을 적용하지 않음 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">'exists_to_in=off'</span><span class="p">;</span>
+<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- Correlated EXISTS =&gt; 35.26초 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span>         <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span>         <span class="k">EXISTS</span>
+    <span class="o">-&gt;</span>         <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>                 <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>                 <span class="k">WHERE</span> <span class="n">O_custKey</span> <span class="o">=</span> <span class="n">C_CustKey</span> <span class="k">AND</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span>         <span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">62</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">35</span><span class="p">.</span><span class="mi">26</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- Non-correlated IN =&gt; 1.69초 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span>  <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span>  <span class="n">C_CustKey</span> <span class="k">IN</span>
+    <span class="o">-&gt;</span>  <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>          <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>          <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span>  <span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">62</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">69</span> <span class="n">sec</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<ul>
+  <li>위 Query를 처리할 때 DBMS가 어떤 Plan을 사용했는지 확인해보겠습니다.</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">-- Correlated EXISTS =&gt; DEPENDENT SUBQUERY 기반 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span>
+    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="k">EXISTS</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>         <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>         <span class="k">WHERE</span> <span class="n">O_custKey</span> <span class="o">=</span> <span class="n">C_CustKey</span> <span class="k">AND</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------+--------------------+----------+------+---------------+------+---------+------+---------+-------------+</span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span>        <span class="o">|</span> <span class="k">table</span>    <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span>    <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------------+----------+------+---------------+------+---------+------+---------+-------------+</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>            <span class="o">|</span> <span class="n">CUSTOMER</span> <span class="o">|</span> <span class="k">ALL</span>  <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>  <span class="mi">147940</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="n">DEPENDENT</span> <span class="n">SUBQUERY</span> <span class="o">|</span> <span class="n">ORDERS</span>   <span class="o">|</span> <span class="k">ALL</span>  <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">1481240</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------------+----------+------+---------------+------+---------+------+---------+-------------+</span>
+<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- Non-correlated IN =&gt; MATERIALIZED 기반 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span>
+    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="n">C_CustKey</span> <span class="k">IN</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>  <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>  <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span>  <span class="o">|</span> <span class="k">table</span>       <span class="o">|</span> <span class="k">type</span>   <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>          <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span>    <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="n">CUSTOMER</span>    <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">PRIMARY</span>       <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>  <span class="mi">147940</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="o">&lt;</span><span class="n">subquery2</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">eq_ref</span> <span class="o">|</span> <span class="n">distinct_key</span>  <span class="o">|</span> <span class="n">distinct_key</span> <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span> <span class="n">func</span> <span class="o">|</span>       <span class="mi">1</span> <span class="o">|</span>             <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="n">MATERIALIZED</span> <span class="o">|</span> <span class="n">ORDERS</span>      <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">1481240</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="5-performance-optimizer-enabled">5. Performance (optimizer enabled)</h3>
+
+<hr />
+
+<ul>
+  <li>상용 DBMS는 필요에 따라 IN을 동등한 EXISTS로, 또는 EXISTS를 동등한 IN으로 바꾸어 처리하는 최적화 과정을 가지고 있습니다.
+    <ul>
+      <li><a href="https://mariadb.com/kb/en/library/exists-to-in-optimization/">EXISTS-TO-IN (MariaDB)</a></li>
+      <li><a href="https://mariadb.com/kb/en/non-semi-join-subquery-optimizations/#the-in-to-exists-transformation">IN-TO-EXISTS (MariaDB)</a></li>
+    </ul>
+  </li>
+  <li>그러나 DBMS에 전적으로 성능 최적화를 맡기는 것은 바람직하지 않습니다.
+    <ul>
+      <li>사용하는 DBMS에서 제공하는 문서를 잘 읽어보시고 다양하게 변형 질의문을 실험해봄으로써 최적화된 질의문을 찾으시는 것이 바람직합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">-- Correlated EXISTS =&gt; 1.69초 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="k">EXISTS</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>         <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>         <span class="k">WHERE</span> <span class="n">O_custKey</span> <span class="o">=</span> <span class="n">C_CustKey</span> <span class="k">AND</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">62</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">69</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- Non-correlated IN =&gt; 1.80초 --</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="n">C_CustKey</span> <span class="k">IN</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>  <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>  <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="o">|</span>                     <span class="mi">62</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------------------+</span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">80</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="c1">-- 처리 방법 비교</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span>
+    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="k">EXISTS</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>         <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>         <span class="k">WHERE</span> <span class="n">O_custKey</span> <span class="o">=</span> <span class="n">C_CustKey</span> <span class="k">AND</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span>  <span class="o">|</span> <span class="k">table</span>       <span class="o">|</span> <span class="k">type</span>   <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>          <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span>    <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="n">CUSTOMER</span>    <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">PRIMARY</span>       <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>  <span class="mi">147940</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="o">&lt;</span><span class="n">subquery2</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">eq_ref</span> <span class="o">|</span> <span class="n">distinct_key</span>  <span class="o">|</span> <span class="n">distinct_key</span> <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span> <span class="n">func</span> <span class="o">|</span>       <span class="mi">1</span> <span class="o">|</span>             <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="n">MATERIALIZED</span> <span class="o">|</span> <span class="n">ORDERS</span>      <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">1481240</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span>
+    <span class="o">-&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">C_Name</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="k">FROM</span> <span class="n">CUSTOMER</span> <span class="k">WHERE</span> <span class="n">C_ADDRESS</span> <span class="k">LIKE</span> <span class="s1">'%abc%'</span> <span class="k">AND</span>
+    <span class="o">-&gt;</span> <span class="n">C_CustKey</span> <span class="k">IN</span>
+    <span class="o">-&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">O_CustKey</span>
+    <span class="o">-&gt;</span>  <span class="k">FROM</span> <span class="n">ORDERS</span>
+    <span class="o">-&gt;</span>  <span class="k">WHERE</span> <span class="k">LOWER</span><span class="p">(</span><span class="n">O_COMMENT</span><span class="p">)</span> <span class="k">LIKE</span> <span class="s1">'%quickly%'</span>
+    <span class="o">-&gt;</span> <span class="p">);</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span>  <span class="o">|</span> <span class="k">table</span>       <span class="o">|</span> <span class="k">type</span>   <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>          <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span>    <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="n">CUSTOMER</span>    <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">PRIMARY</span>       <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>  <span class="mi">147940</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">PRIMARY</span>      <span class="o">|</span> <span class="o">&lt;</span><span class="n">subquery2</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">eq_ref</span> <span class="o">|</span> <span class="n">distinct_key</span>  <span class="o">|</span> <span class="n">distinct_key</span> <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span> <span class="n">func</span> <span class="o">|</span>       <span class="mi">1</span> <span class="o">|</span>             <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="n">MATERIALIZED</span> <span class="o">|</span> <span class="n">ORDERS</span>      <span class="o">|</span> <span class="k">ALL</span>    <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span>         <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">1481240</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+--------------+-------------+--------+---------------+--------------+---------+------+---------+-------------+</span>
+<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="6-주의">6. 주의</h3>
+
+<hr />
+
+<ul>
+  <li><strong>오해할 수 있는 진술</strong>: ‘EXISTS 보다 IN으로 처리하는 것이 더 빠르다’ -&gt; X
+    <ul>
+      <li>4~5에서 사용한 예제는 DBMS optimizer 개입이 없다면 EXISTS가 IN보다 비효율적으로 처리되었던 예제입니다.</li>
+      <li>그러나 IN이 EXISTS보다 비효율적으로 동작하는 경우도 존재합니다.</li>
+    </ul>
+  </li>
+</ul>
+:ET

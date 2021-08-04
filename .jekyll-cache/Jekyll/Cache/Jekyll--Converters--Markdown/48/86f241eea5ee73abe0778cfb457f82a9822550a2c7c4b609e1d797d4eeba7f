@@ -1,0 +1,54 @@
+I"�
+<ul>
+  <li>
+    <p>Week 11: Storage Management &amp; Indexing <a href="https://1drv.ms/b/s!AszT-SZB_jByqE7bDiHyDpc-BEgt">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jBypmTXAPUuBdkf6h8P">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 12: Query processing &amp; Optimization <a href="https://1drv.ms/b/s!AszT-SZB_jByqF8z1yVmG5E3oh1G">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByp26DpzPWg6npVBvs">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 13: Transactions <a href="https://1drv.ms/b/s!AszT-SZB_jByqGJG0p35COWBmzv5">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByqGGHMo-hH0qKpb2B">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 14: Recovery System <a href="https://1drv.ms/b/s!AszT-SZB_jByqGxOUuvU4_SyUjfM">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByqGimYhx_IkxkG6PI?e=7iA9Ca">[slide]</a></p>
+  </li>
+</ul>
+
+<h2 id="중간고사-이전">중간고사 이전</h2>
+
+<ul>
+  <li>
+    <p>Week 1: Introduction <a href="https://1drv.ms/b/s!AszT-SZB_jByomXmEK-RcdHfgabU">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByomKzyRyAh5b45N7n">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 2: Introduction to Relational Model <a href="https://1drv.ms/b/s!AszT-SZB_jBypiuAr_Wni7PYiotg">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByomQGW9M0s19tHeDx">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 3: Formal Relational Query Languages <a href="https://1drv.ms/b/s!AszT-SZB_jByome8seJVSPE-2-50">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByoma6YccNyaN0iWZB">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 4: Structured Query Language (SQL) <a href="https://1drv.ms/b/s!AszT-SZB_jBypiyECw5lTnzoCyDU">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 5: Database Design and E-R Model​ <a href="https://1drv.ms/b/s!AszT-SZB_jBypi1pMlh6IFs7O4XI">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByo006nBEaJb6thk7o">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 6: Relational Database Design <a href="https://1drv.ms/b/s!AszT-SZB_jBypQ1tkq4GHZjoq1ND">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jBypQKZ2_YBwZjxNkwN">[slide]</a></p>
+  </li>
+  <li>
+    <p>Week 7: Web DB Application Development <a href="https://1drv.ms/b/s!AszT-SZB_jBypW47ck2sEiZR5WwD">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jBypWlk_GSvMHq45tc3">[slide]</a></p>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+  var disqus_shortname  = 'COSE371';
+  var disqus_identifier = '';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+  </li>
+</ul>
+
+:ET

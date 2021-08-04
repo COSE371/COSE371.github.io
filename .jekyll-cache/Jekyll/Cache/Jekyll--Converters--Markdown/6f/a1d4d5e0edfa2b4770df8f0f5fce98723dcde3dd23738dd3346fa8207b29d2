@@ -1,0 +1,227 @@
+I"vH<p>데이터베이스 COSE 371(2) 4주차 강의내용입니다.</p>
+
+<p>Structured Query Language (SQL) 에 대해 알아봅니다.</p>
+
+<h2 id="lecture-note">Lecture Note</h2>
+
+<p>Week 4: Structured Query Language (SQL) <a href="https://1drv.ms/b/s!AszT-SZB_jBypiyECw5lTnzoCyDU">[pdf]</a> <a href="https://1drv.ms/p/s!AszT-SZB_jByoiu_uSM_NfvPohMW">[slide]</a></p>
+
+<div class="slide">
+<iframe src="https://onedrive.live.com/embed?cid=7230FE4126F9D3CC&amp;resid=7230FE4126F9D3CC%214395&amp;authkey=AIl5GRQUxgpe3Zc&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">포함된 <a target="_blank" href="https://office.com">Microsoft Office</a> 프레젠테이션, 제공: <a target="_blank" href="https://office.com/webapps">Office Online</a></iframe>
+</div>
+
+<hr />
+
+<h2 id="질의응답-detail-new-0325">질의응답 Detail (New: 0325)</h2>
+
+<h3 id="in-not-in-exists-not-exists-in-vs-exists-문서-참조">IN, NOT IN, EXISTS, NOT EXISTS (<a href="https://cose371.github.io/lecturenote-and-qa/2019/03/24/IN-vs-EXISTS.html">IN-vs-EXISTS</a> 문서 참조)</h3>
+
+<hr />
+
+<p>Q1. Correlation에서 방금 말씀하신 예제는 where 절에만 원하는 조건을 다써서 쿼리할수있는것아닌가요? 왜 EXISTS와 IN을 써야하는지 그 필요성 설명해주시면 감사하겠슴당</p>
+
+<p>Q2. 다음 시간에 IN이랑 EXISTS 차이 간략하게 한 번만 더 설명해주실 수 있을까요?</p>
+
+<p>Q3. exists는 그럼 한 튜플 단위로 실행 되는거ㅔㅇ요?</p>
+
+<blockquote>
+  <p>원칙적으로는 맞습니다. 그러나 DBMS에서 MATERIALIZED 기반 방식으로 최적화해주는 경우도 있습니다.</p>
+</blockquote>
+
+<p>Q4. IN 예제에서 그냥 INTERSECT하면 안 되는 이유가 뭔가요</p>
+
+<blockquote>
+  <p>안 될 이유까지는 없고, 표현 방식의 차이입니다. 다만 INTERSECT의 경우 사용하고 싶어도 사용하지 못하는 경우가 가끔 있습니다. Mysql과 같은 일부 DBMS의 경우 INTERSECT Operation을 지원하지 않습니다. MariaDB 역시 10.3버전에 이르러서야 <a href="https://mariadb.com/kb/en/library/intersect/">INTERSECT Operation</a>을 지원하기 시작했습니다. 현재 실습서버에 설치된 MariaDB의 경우 10.2 버전보다 낮은 버전이기 때문에 INTERSECTION Operation이 지원되지 않습니다. 이 경우 아래 SQL문 처럼 INTERSECTION 대신 IN 형태로 질의를 구현할 수 있습니다.</p>
+</blockquote>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> 
+<span class="p">(</span><span class="k">SELECT</span> <span class="n">course_id</span> <span class="k">FROM</span> <span class="n">section</span> <span class="k">WHERE</span> <span class="n">semester</span> <span class="o">=</span> <span class="s1">'Fall'</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2009</span><span class="p">)</span> 
+<span class="n">INSERSECT</span> 
+<span class="p">(</span><span class="k">select</span> <span class="n">course_id</span> <span class="k">FROM</span> <span class="n">section</span> <span class="k">WHERE</span> <span class="n">semester</span> <span class="o">=</span> <span class="s1">'Spring'</span> <span class="k">and</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2010</span><span class="p">);</span>
+
+<span class="n">ERROR</span> <span class="mi">1064</span> <span class="p">(</span><span class="mi">42000</span><span class="p">):</span> <span class="n">You</span> <span class="n">have</span> <span class="n">an</span> <span class="n">error</span> <span class="k">in</span> <span class="n">your</span> <span class="k">SQL</span> <span class="n">syntax</span><span class="p">;</span> <span class="k">check</span> <span class="n">the</span> <span class="n">manual</span> <span class="n">tha</span>
+<span class="n">t</span> <span class="n">corresponds</span> <span class="k">to</span> <span class="n">your</span> <span class="n">MariaDB</span> <span class="n">server</span> <span class="k">version</span> <span class="k">for</span> <span class="n">the</span> <span class="k">right</span> <span class="n">syntax</span> <span class="k">to</span> <span class="n">use</span> <span class="n">near</span> 
+<span class="s1">'INSERSECT (select course_id FROM section WHERE semester = '</span><span class="n">Spring</span><span class="s1">' and year =
+ 20'</span> <span class="k">at</span> <span class="n">line</span> <span class="mi">1</span> 
+
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">cose371</span><span class="p">]</span><span class="o">&gt;</span> 
+<span class="k">SELECT</span> <span class="n">course_id</span> <span class="k">FROM</span> <span class="n">section</span> <span class="k">WHERE</span> <span class="n">semester</span> <span class="o">=</span> <span class="s1">'Fall'</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2009</span>
+        <span class="k">AND</span> <span class="n">course_id</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">course_id</span> <span class="k">FROM</span> <span class="n">section</span> <span class="k">WHERE</span> <span class="n">semester</span> <span class="o">=</span> <span class="s1">'Spring'</span> <span class="k">and</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2010</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------+                                                                 </span>
+<span class="o">|</span> <span class="n">course_id</span> <span class="o">|</span>                                                                 
+<span class="o">+</span><span class="c1">-----------+                                                                 </span>
+<span class="o">|</span> <span class="n">CS</span><span class="o">-</span><span class="mi">101</span>    <span class="o">|</span>                                                                 
+<span class="o">+</span><span class="c1">-----------+                                                                 </span>
+<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>  
+</code></pre></div></div>
+
+<p>Q5. 저 EXISTS를 사용한 쿼리문도 코스 사이트에 올려주시나요.. 옮겨적기 힘들어요 ㅠ 아 피피티에도 비슷하게 잘 되어있네요 안올려주셔도 괜찮을것 같습니다ㅎ</p>
+
+<h3 id="basic-select-clause">Basic SELECT CLAUSE</h3>
+
+<hr />
+
+<p>Q6. 한 column에서 distinct 쓸 수도 있나요? count(distinct ID) 이런 식으로요.</p>
+
+<p>Q7. null 이 없다고 가정하면 count()에 어떤 attribute를 넣든 같은 것 아닌가요?</p>
+
+<p>Q8. 방금 한 질문에서 각 id를 따로 rename을 안 한 상태에선 만약 student id가 필요한 경우에 따로 그 id만 선택하는 방법은 없는건가요?</p>
+
+<h3 id="aggregation">Aggregation</h3>
+
+<hr />
+
+<p>Q9. count(여기) 여기 안에 attribute들을 다 넣으면 *과 같은 효과를 낼 수 있나요?</p>
+
+<h3 id="기타">기타</h3>
+
+<hr />
+
+<p>Q10. explain 한번 예시 보여주실수 있나요?</p>
+
+<p>Q11. heide sql에서 maria db 연결하는 거 보여주실 수 있나요?</p>
+
+<p>Q12. DB 테이블 정의 / 데이터 포함한 sql query 올려주시나요?</p>
+
+<p>Q13. teaches, takes처럼 ID가 겹치면 natural join이 안되는데 이 경우 teaches와 takes에 ID의 내용이 다른데 name을 똑같이 지어준, DB를 만든 사람이 애초에 잘못했다고 평가해도 괜찮나요?</p>
+
+<p>Q14. 아래 질문한 사람인데 select * from teaches join takes using(course_id, sec_id, semester, year); 이 예제에서요!</p>
+
+<p>Q15. where에서 튜플로 쓸때랑 and로 따로따로 쓸때랑 처리하는 속도가 다른가요?</p>
+
+<h2 id="질의응답-detail-old">질의응답 Detail (old)</h2>
+
+<p>Q1. cose371 table에 어떻게 접근하나요?</p>
+
+<blockquote>
+  <p>cose371 데이터베이스는 제겁니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>각 학생마다 전용 데이터베이스 만들어드렸습니다. <a href="https://cose371.github.io/serverInfo/">서버 및 계정정보</a> 확인하신 후 계정으로 로그인하셔서 접속하시면 됩니다. 또한 수업 중에 제가 사용했던 University Database를 각자의 데이터베이스에 import하기 위한 <a href="https://cose371.github.io/sql-practice/2019/03/20/University-Database.html">SQL 명령문</a>도 올려놓았으니, 참고하시기 바랍니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>혹시 계정 접속 안되는 사람은 덧글달아주시거나 메일보내주세요 (청강생 포함)</p>
+</blockquote>
+
+<h3 id="sql-basic">SQL basic</h3>
+
+<hr />
+
+<p>Q2. 
+SQL에서 DDL, DML, DCL을 필요에 따라 선택해서 사용하는 건가요? 세가지를 다 알아야 SQL을 할 수 있는거죠?</p>
+
+<blockquote>
+  <p><a href="https://cose371.github.io/lecturenote-and-qa/2019/03/06/Week-One.html">링크</a>의 Q1~3 참조하세요.</p>
+</blockquote>
+
+<p>Q3. 우분투에서 mysql 로그인하는 명령어가 뭔가요? ㅠㅠ</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">foo@bar:~$</span><span class="w"> </span>mysql <span class="nt">-u</span> db20xxxxxxxx <span class="nt">-p</span>
+<span class="go">password: your e-mail
+</span></code></pre></div></div>
+
+<p>Q4. 명령어들은 대소문자 구문 읎나용?</p>
+
+<blockquote>
+  <p>일반적으로 대문자로 쓰지만, 소문자로 써도 잘 동작합니다.</p>
+</blockquote>
+
+<p>Q5. CHAR 와 VARCHAR 중에서 항상 VARCHAR를 써도 될 것 같은데 CHAR를 써야 하는 상황은 예를 들면 어떤 경우가 있나요?</p>
+
+<blockquote>
+  <p><a href="https://dba.stackexchange.com/questions/424/performance-implications-of-mysql-varchar-sizes/1915#1915">Performance implications of MySQL VARCHAR sizes</a>를 읽어보시면 도움이 될 듯합니다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>TL;DR</strong>: Since CHAR fields require less string manipulation because of fixed field widths, index lookups against CHAR field are on average 20% faster than that of VARCHAR fields.</p>
+</blockquote>
+
+<p>Q6. 방금 numeric(8,2)와 not null은 무슨뜻인가요 not null은 필수항목같은건가여</p>
+
+<blockquote>
+  <p>DDDDDD.DD 의 고정소수 십진법으로 숫자를 나타내라는 뜻이며 NOT NULL은 NULL 값을 허용하지 않겠다라는 뜻입니다.</p>
+</blockquote>
+
+<p>Q7. foreign key 에서 reference 라는게 instructor 테이블이 department를 참조한다는건가요? 아니면 양방향으로 참조할수있다는건가요?</p>
+
+<blockquote>
+  <p>전자가 맞습니다.</p>
+</blockquote>
+
+<h3 id="view">View</h3>
+
+<hr />
+
+<p>Q8. view가 하는 기능을 보면 table과 다른점이 거의 없어 보이는데, view와 테이블의 차이점은 뭔가요? 특정 유저에게 특정 데이터를 숨긴다는데, 무슨 의미인지 잘 모르겠습니다 ㅠㅠ</p>
+
+<p>Q9. view에다 추가해도 원래 table에 추가되나요?</p>
+
+<p>Q10. view로 만든 table은 view를 만들 때 사용했던 table의 정보들이 업데이트되면 업데이트가 되나요?</p>
+
+<h3 id="undo">Undo</h3>
+
+<hr />
+
+<p>Q11. undo 기능 있나요?</p>
+
+<p>Q12. 업데이트 된 테이블 되돌릴수 있나요?</p>
+
+<p>Q13. update와 drop 의 undo 다시한번만 설명해주세요</p>
+
+<p>Q14. 혹시 입력했던 명령을 취소할 수 있는 명령문이 있나요? 예를 들어 아까 salary를 0원으로 바꾼 명령문을 되돌리는 것 같은 명령문이요!</p>
+
+<blockquote>
+  <p>Q11~14: <a href="https://www.sqlteam.com/articles/introduction-to-transactions">Transaction</a> 배울 때 나옵니다.</p>
+</blockquote>
+
+<h3 id="기타-1">기타</h3>
+
+<p>Q15. 제공된 PPT에 슬라이드가 없어요!</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">`department`</span> <span class="p">(</span>
+        <span class="nv">`dept_name`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="nv">`building`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="nv">`budget`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="nv">`dept_name`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">`instructor`</span> <span class="p">(</span>
+        <span class="nv">`ID`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="nv">`name`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="nv">`dept_name`</span>  <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span> 
+        <span class="nv">`salary`</span> <span class="nb">numeric</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span> 
+        <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="nv">`ID`</span><span class="p">),</span>            
+        <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="nv">`dept_name`</span><span class="p">)</span> <span class="k">references</span> <span class="n">department</span><span class="p">(</span><span class="n">dept_name</span><span class="p">)</span> <span class="k">on</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>이때 DELETE CASCASE 옵션 대신 다른 옵션 사용 가능합니다: 예를 들어</p>
+</blockquote>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="nv">`instructor`</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">`instructor`</span> <span class="p">(</span>
+	<span class="nv">`ID`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+	<span class="nv">`name`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+	<span class="nv">`dept_name`</span>  <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
+	<span class="nv">`salary`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span> 
+	<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="nv">`ID`</span><span class="p">),</span>            
+	<span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="nv">`dept_name`</span><span class="p">)</span> <span class="k">references</span> <span class="nv">`department`</span><span class="p">(</span><span class="nv">`dept_name`</span><span class="p">)</span> <span class="k">on</span> <span class="k">delete</span> <span class="k">RESTRICT</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Q16. SQL은 기본적으로 정규표현식을 지원하나요?? *도 정규표현식의 *이랑 같은 의미인것 같아서 질문드립니다.</p>
+
+<blockquote>
+  <p>mariadb에서는 문자열 표현과 관련한 <a href="https://mariadb.com/kb/en/library/regexp/">REGular EXPression</a>을 지원하는 것 같습니다. 모든 attribute 출력하라는 의미인 * 과는 다소 다른 듯하지만…</p>
+</blockquote>
+
+<p>Q17. Time이 보여주는 방식이 HH:MM:SS 인데 왜 838:59:59까지 범위를 준 건지 모르겠어요. HH가 24보다 커지는 경우가 있나요?</p>
+
+<p>Q18. 소크라티브 글자크기 키워주실 수 있나요?</p>
+
+<p>Q19. 질의 답변해주실 때 뒤에서는 질문이 안보여요. 다 읽어주세요.</p>
+:ET

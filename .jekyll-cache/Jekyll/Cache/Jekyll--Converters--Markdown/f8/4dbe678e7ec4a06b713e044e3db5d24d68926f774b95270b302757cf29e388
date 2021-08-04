@@ -1,0 +1,54 @@
+I"b<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?</span>
+<span class="k">include</span> <span class="s1">'config.php'</span><span class="p">;</span>
+<span class="k">include</span> <span class="s2">"util.php"</span><span class="p">;</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="nf">dbconnect</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span><span class="nv">$dbid</span><span class="p">,</span><span class="nv">$dbpass</span><span class="p">,</span><span class="nv">$dbname</span><span class="p">);</span>
+
+<span class="nv">$music_no</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'music_no'</span><span class="p">];</span>
+<span class="nv">$music_name</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'music_name'</span><span class="p">];</span>
+<span class="nv">$artist_name</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'artist_name'</span><span class="p">];</span>
+<span class="nv">$genre_id</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'genre_id'</span><span class="p">];</span>
+<span class="nv">$year</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'year'</span><span class="p">];</span>
+<span class="nv">$album</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'album'</span><span class="p">];</span>
+<span class="nv">$lyrics</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'lyrics'</span><span class="p">];</span>
+
+<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"set autocommit = 0"</span><span class="p">);</span>	<span class="c1">// autocommit 해제</span>
+<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"set transation isolation level serializable"</span><span class="p">);</span>	<span class="c1">// isolation level 설정</span>
+<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"begin"</span><span class="p">);</span>	<span class="c1">// begins a transation</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"select artist_name from artist where artist_name='</span><span class="nv">$artist_name</span><span class="s2">'"</span><span class="p">;</span>
+<span class="nv">$res</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$res</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nf">alert_message</span><span class="p">(</span><span class="s1">'Query Error : '</span><span class="mf">.</span><span class="nf">mysqli_error</span><span class="p">(</span><span class="nv">$conn</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="nf">mysqli_fetch_array</span><span class="p">(</span><span class="nv">$res</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'artist_name'</span><span class="p">]</span><span class="o">!=</span><span class="nv">$artist_name</span><span class="p">){</span>
+<span class="c1">//	echo"unequal";</span>
+	<span class="nv">$ret</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"insert into artist set artist_name=</span><span class="se">\"</span><span class="nv">$artist_name</span><span class="se">\"</span><span class="s2">"</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="nv">$ret</span><span class="p">){</span>	<span class="c1">// insert new artist successful</span>
+	<span class="p">}</span>
+	<span class="k">else</span><span class="p">{</span>	<span class="c1">// insert new artist fail</span>
+		<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"rollback"</span><span class="p">);</span> <span class="c1">// 아티스트 등록 query 수행 실패. 수행 전으로 rollback</span>
+		<span class="nf">alert_message</span><span class="p">(</span><span class="s1">'Query Error : '</span><span class="mf">.</span><span class="nf">mysqli_error</span><span class="p">(</span><span class="nv">$conn</span><span class="p">));</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+<span class="c1">//	echo"equal";</span>
+<span class="p">}</span>
+<span class="nv">$ret2</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"insert into music set music_name = </span><span class="se">\"</span><span class="nv">$music_name</span><span class="se">\"</span><span class="s2">, artist_name = </span><span class="se">\"</span><span class="nv">$artist_name</span><span class="se">\"</span><span class="s2">, genre_id = </span><span class="se">\"</span><span class="nv">$genre_id</span><span class="se">\"</span><span class="s2">, album = </span><span class="se">\"</span><span class="nv">$album</span><span class="se">\"</span><span class="s2">, year = </span><span class="se">\"</span><span class="nv">$year</span><span class="se">\"</span><span class="s2">, lyrics= </span><span class="se">\"</span><span class="nv">$lyrics</span><span class="se">\"</span><span class="s2">"</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$ret2</span><span class="p">){</span>
+	<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"rollback"</span><span class="p">);</span> <span class="c1">// 음악 등록 query 수행 실패. 수행 전으로 rollback</span>
+	<span class="nf">alert_message</span><span class="p">(</span><span class="s1">'Query Error : '</span><span class="mf">.</span><span class="nf">mysqli_error</span><span class="p">(</span><span class="nv">$conn</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+	<span class="nv">$music_no</span> <span class="o">=</span> <span class="nf">mysqli_insert_id</span><span class="p">(</span><span class="nv">$conn</span><span class="p">);</span>
+	<span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conn</span><span class="p">,</span> <span class="s2">"commit"</span><span class="p">);</span> <span class="c1">// 음악 등록 query 수행 성공. 수행 내역 commit</span>
+	<span class="nf">simple_message</span> <span class="p">(</span><span class="s1">'성공적으로 입력 되었습니다'</span><span class="p">);</span>
+	<span class="k">echo</span> <span class="s2">"&lt;meta http-equiv='refresh' content='0;url=music_detail.php?music_no=</span><span class="nv">$music_no</span><span class="s2">'&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+:ET

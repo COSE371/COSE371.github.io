@@ -1,0 +1,28 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: "COSE371"
+email: "ws_choi@korea.ac.kr"
+description: "COSE731 @ Korea UNIV." # this means to ignore newlines until "baseurl:"
+#"IT 환경의 급속한 변화와 정보화 사회가 점차 성숙해지면서 데이터를 통합 관리하여 유용한 정보를 제공하는 데이터베이스 시스템의 역할은 더욱 중요해지고 있다. 본 강의에서는 이러한 데이터베이스시스템에 대한 기초 개념과 데이터베이스시스템 구축에 필요한 이론 및 기술들을 학습하는 것을 목적으로 한다.#
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://COSE371.github.io" # the base hostname & protocol for your site
+github_username:  ws-choi
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# Third-party services
+# just leave someone empty to disable it
+google_analytics: UA-131286067-2
+disqus_shortname: "COSE371"
+
+# used this for post_excerpt at index_page
+excerpt_separator: <!--description-->

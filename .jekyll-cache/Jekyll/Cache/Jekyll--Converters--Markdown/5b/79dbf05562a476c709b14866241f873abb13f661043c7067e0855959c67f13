@@ -1,0 +1,328 @@
+I"\S<h2 id="sql-practice--0403">SQL Practice (~ 04/03)</h2>
+
+<hr />
+
+<p>다음 지시 사항들을 시행하시오.</p>
+
+<ol>
+  <li>A와 B에 제시되어 있는 관계형 스키마들에 해당하는 MariaDB의 테이블(table)들을 생성하여라.
+    <ul>
+      <li>[CREATE TABLE …….]</li>
+      <li>밑줄 친 애트리뷰트는 primary key를 나타내며 각 컬럼 타입 및 제약조건은 임의대로 정의하여 사용하시오.</li>
+    </ul>
+  </li>
+  <li>1.에서 생성한 테이블들 각각에 샘플 데이터(최소 5개 이상)들을 입력하고 각 테이블의 입력된 데이터를 출력(결과 화면 캡쳐)하여 제시하시오.
+    <ul>
+      <li>[INSERT INTO ….]</li>
+    </ul>
+  </li>
+  <li>A와 B에 제시되어 있는 질의를 SQL로 작성하여 실행하고 그 결과(결과 화면 캡쳐)를 제시하시오.</li>
+</ol>
+
+<p><strong>주의: 모든 작업은 지정 <a href="https://cose371.github.io/serverInfo/">서버</a>에서 본인의 MariaDB 계정으로 수행하십시오.</strong></p>
+
+<hr />
+
+<h3 id="a-관계형-스키마relational-schema-함정-정보-관리">A. 관계형 스키마(relational schema)-함정 정보 관리</h3>
+
+<hr />
+
+<ul>
+  <li>classes (<u>class</u>, type, numGuns, displacement)
+    <ul>
+      <li>“class”는 새로운 급의 군함이 만들어졌을 때 그 급을 나타내기 위하여 붙여지는 명칭이다.
+        <ul>
+          <li>e.g.) 광개토대왕함이 만들어지고 난 후 이와 유사한 규모의 군함이 만들어 지면 그 군함을 “광개토대왕함급”이라고 class 명을 붙이게 된다.</li>
+        </ul>
+      </li>
+      <li>“type”은 군함의 기능을 나타내는 것으로 전함(BB), 순양함(CC), 구축함(DD), 호위함(FF) 등이 있다.</li>
+      <li>“numGuns”는 해당 군함에 설치된 함포의 수를 나타내며, “displacement”는 군함의 배수량(주로 ton수로 표기)을 나타낸다.</li>
+    </ul>
+  </li>
+  <li>ships (<u>s_name</u>, class, country, launched)
+    <ul>
+      <li>“s_name”은 군함의 이름(예를 들어, 독도함)을 나타냄</li>
+      <li>“country”는 해당 군함을 보유하고 있는 국가명을 나타냄</li>
+      <li>“launched”는 해당 군함이 취역한 년도를 나타냄</li>
+    </ul>
+  </li>
+  <li>battles (<u>b_name</u>, year)
+    <ul>
+      <li>“b_name”은 해전명을 “year”는 해전이 발발한 년도를 나타냄</li>
+    </ul>
+  </li>
+  <li>outcomes (<u>s_name</u>, <u>b_name</u>, result)
+    <ul>
+      <li>해당 군함(s_name)이 특정 해전(b_name)에 참여한 내역을 결과(result : 침몰, 손상, OK 등)와 함께 나타냄</li>
+    </ul>
+  </li>
+</ul>
+
+<p>(1) “노량” 해전에서 “침몰”된 군함의 보유 국가명을 찾아라.</p>
+
+<p>(2) 취역한 년도에 해전에 참전하여 손상을 당한 군함의 이름을 찾아라.</p>
+
+<p>(3) 가장 많은 함포를 보유하고 있는 군함의 이름(class)을 찾아라.</p>
+<ul>
+  <li>군함 급 명칭 (class)을 찾아라로 해석하시면 됩니다.</li>
+</ul>
+
+<p>(4) 배수량이 5000톤보다 큰 모든 급(class)의 군함을 보유하고 있는 국가의 이름을 찾아라.</p>
+
+<p>(5) “대한민국”이 보유하고 있는 군함들의 이름들을 찾되 해당 군함들이 참전한 기록이 있다면 참전한 해전명을 함께 찾아라.</p>
+
+<p>(6) 국가별 보유 군함의 수와 총배수량을 구하여라(aggregate function을 이용).</p>
+
+<p>(7) 다섯 번 이상 해전에 참전한 군함을 보유한 국가명을 찾아라.</p>
+
+<p>(8) “1945”에 발발한 해전에 참전한 군함의 이름과 취역 년도를 찾아라.</p>
+
+<hr />
+
+<h3 id="b-관계형-스키마relational-schema-호텔-관리">B. 관계형 스키마(relational schema)-호텔 관리</h3>
+
+<hr />
+
+<ul>
+  <li>hotel (<u>hotel_id</u>, hotel_name, city)
+    <ul>
+      <li>city는 호텔이 위치한 도시를 가리킨다.</li>
+    </ul>
+  </li>
+  <li>room (<u>hotel_id</u>, <u>room_id</u>, type, price)
+    <ul>
+      <li>방의 유형(type)에는 “single_room”, “double_room”, “premium_room”이 있다.</li>
+    </ul>
+  </li>
+  <li>booking (<u>guest_id</u>, <u>hotel_id</u>, <u>room_id</u>, <u>date_from</u>, <u>date_to</u>)
+    <ul>
+      <li>booking 릴레이션은 호텔 방에 대한 예약 상세 정보 관리를 위해 사용되며 특정 교객(guest_id)에 의한 방의 예약은 호텔 번호(hotel_id), 방 번호(room_id), 예약 기간(date_from, date_to) 정보로 구성된다.</li>
+    </ul>
+  </li>
+  <li>guest (<u>guest_id</u>, guest_name, age, guest_city)
+    <ul>
+      <li>guest_city는 고객이 거주하고 있는 도시를 가리킨다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>(1) “한국호텔”의 “single_room”을 예약한 고객명(guest_name)을 찾아라.</p>
+
+<p>(2) 보유하고 있는 방들의 가격(price) 평균이 가장 큰 호텔명(hotel_name)을 찾아라.</p>
+
+<p>(3) 나이(age)가 50세 이상의 모든 고객의 이름(guest_name)을 찾되 해당 고객들 중 호텔 방을 예약한 이력이 있는 경우에는 예약한 호텔명(hotel_name)도 함께 찾아라.</p>
+
+<p>(4) 호텔 방의 가격 중 가장 싼 가격(price)를 찾아라.</p>
+
+<p>(5) 고객이 거주하는 도시에 위치한 호텔을 예약한 고객의 이름(guest_name)을 찾아라.</p>
+
+<p>(6) “홍길동” 고객에 의해 예약된 호텔명(hotel_name)들을 찾아라.</p>
+
+<p>(7) 호텔별 가장 비싼 방의 가격들 중 가장 비싼 방의 가격을 구하여라.</p>
+
+<p>(8) London에 위치하는 모든 호텔에 방을 예약한 고객이름(guest_name)을 찾아라.</p>
+
+<h3 id="제출-및-채점-방법">제출 및 채점 방법</h3>
+
+<hr />
+
+<ul>
+  <li>제출기한
+    <ul>
+      <li>정상제출: 4월 03일 14시까지 (채점결과의 <strong>100%</strong> 반영)</li>
+      <li>지각제출: 4월 10일 14시까지 (채점결과의 <strong>80%</strong> 반영)</li>
+      <li>최종제출: 4월 17일 14시까지 (채점결과의 <strong>50%</strong> 반영)</li>
+    </ul>
+  </li>
+  <li>제출방법: <a href="https://kulms.korea.ac.kr/">KULMS(블랙보드)</a> 에 파일 (<strong>pdf</strong>) 제출
+    <ul>
+      <li>블랙보드 접속이 원할하지 않을 시, ws_choi@kore.ac.kr 로 보내주세요.</li>
+    </ul>
+  </li>
+  <li>
+    <p>제출양식: pdf</p>
+  </li>
+  <li>제출내용:
+    <ul>
+      <li>
+        <p>각 테이블 전체 출력 캡쳐본 8개</p>
+
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESC</span> <span class="k">TABLE_NAME</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">TABLE_NAME</span><span class="p">;</span>
+</code></pre></div>        </div>
+
+        <p><img src="https://i.imgur.com/wpxgmBS.png" alt="Imgur" /></p>
+      </li>
+      <li>
+        <p>각 질의문 SQL 결과 캡쳐본 8개</p>
+
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">TABLE_NAME</span><span class="p">;</span>
+</code></pre></div>        </div>
+
+        <p><img src="https://i.imgur.com/ZEMkVZr.png" alt="Imgur" /></p>
+      </li>
+      <li>그림은 예시일 뿐, 이와 꼭 똑같지 않아도 됩니다.</li>
+      <li></li>
+    </ul>
+  </li>
+  <li>채점방법: 각 문제 (총 24문제: 테이블 8개, SQL 16개) 별 오류 내용 발견 시 0.15점 감점, 부분점수 없음
+    <ul>
+      <li>블랙보드에서의 무제한 제출을 허용하나,</li>
+      <li>가장 마지막 제출시각으로 정상/지각/최종 여부를 판단하고, 가장 마지막 제출한 내용을 평가하여 채점합니다.</li>
+      <li><strong>주의: 모든 작업은 지정 <a href="https://cose371.github.io/serverInfo/">서버</a>에서 본인의 MariaDB 계정으로 수행하십시오.</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="q--a">Q &amp; A</h2>
+
+<p>Q1. 다음 번에 과제2 같은 숙제 내주실 때는 기본 데이터셋 몇 개라도 좀 주시면 안될까요.. 과제에 모든 문제에 1개 이상이라도 결과가 노출되게 하려니 너무 소모적인 시간이 발생합니다..ㅜ 혹시 과제의 복붙 금지를 위해서 시라면 기본 데이터셋은 제공하고 거기에 몇 개 더 추가하라고 내시는게 좀 더 좋지 않을까요.. 이상 과제 푸는 시간보다 알맞은 데이터 셋 제작에 시간이 더 소요된 미개한 중생입니다..</p>
+
+<blockquote>
+  <p>화이팅! 단순히 부정행위 방지를 위해 스스로 인스턴스 구성하라고 시키는 것은 아닙니다. 다양한 가능성을 염두하며 데이터 셋을 구성해보는 작업은 현재 작성하고 있는 질의가 제대로 동작하는지 확인하는 <a href="https://www.percona.com/blog/2014/09/10/generating-test-data-from-the-mysql-prompt/">좋은 방법</a> 중 하나이며, 현업에서도 많이 사용된답니다. 과제 1은 교재에서 좋은 데이터 인스턴스를 주었기에 인스턴스 구성에 대한 깊은 고찰을 할 수 없는 반면, 과제 2의 경우 올바른 질의문 작성을 위해 스스로 다양한 케이스를 검토하셔야 합니다.</p>
+</blockquote>
+
+<hr />
+
+<p><a name="solution"></a></p>
+
+<h2 id="문제풀이">문제풀이</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- (1) “노량” 해전에서 “침몰”된 군함의 보유 국가명을 찾아라.</span>
+
+<span class="c1">-- (2) 취역한 년도에 해전에 참전하여 손상을 당한 군함의 이름을 찾아라.</span>
+
+<span class="c1">-- (3) 가장 많은 함포를 보유하고 있는 군함의 이름(class)을 찾아라.</span>
+
+<span class="c1">--- 관계대수형 풀이</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span> <span class="k">NATURAL</span> <span class="k">JOIN</span>
+<span class="p">(</span>
+   <span class="k">SELECT</span> <span class="k">max</span><span class="p">(</span><span class="n">numGuns</span><span class="p">)</span> <span class="k">as</span> <span class="n">numGuns</span>
+   <span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+<span class="p">)</span> <span class="k">as</span> <span class="k">temp</span><span class="p">;</span>
+
+<span class="c1">-- IN 응용 풀이</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span> 
+	<span class="k">WHERE</span> <span class="n">numGuns</span> <span class="k">IN</span>
+<span class="p">(</span>
+   <span class="k">SELECT</span> <span class="k">max</span><span class="p">(</span><span class="n">numGuns</span><span class="p">)</span> <span class="k">as</span> <span class="n">numGuns</span>
+   <span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+<span class="p">);</span>
+
+<span class="c1">-- ALL 기반 풀이</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+<span class="k">WHERE</span> <span class="n">numGuns</span> <span class="o">&gt;=</span> 
+	<span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">numGuns</span> <span class="k">FROM</span> <span class="n">classes</span><span class="p">);</span>
+
+
+<span class="c1">-- 아래 풀이는 하나 밖에 못구하므로 좋은 풀이가 아님</span>
+<span class="k">SELECT</span> <span class="k">class</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">numGuns</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span>
+<span class="k">FROM</span> <span class="n">classes</span>
+<span class="k">ORDER</span> <span class="k">by</span> <span class="n">num</span> <span class="k">DESC</span>
+<span class="k">LIMIt</span> <span class="mi">1</span>
+
+<span class="c1">-- Subquery as a scalar value 기반 풀이</span>
+
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span> 
+	<span class="k">WHERE</span> <span class="n">numGuns</span> <span class="o">=</span>
+<span class="p">(</span>
+   <span class="k">SELECT</span> <span class="k">max</span><span class="p">(</span><span class="n">numGuns</span><span class="p">)</span>
+   <span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+<span class="p">);</span>
+
+<span class="c1">-- (4) 배수량이 5000톤보다 큰 모든 급(class)의 군함을 보유하고 있는 국가의 이름을 찾아라.</span>
+
+<span class="c1">--- count based 풀이법 </span>
+
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+<span class="k">WHERE</span> <span class="n">displacement</span> <span class="o">&gt;</span> <span class="mi">5000</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">country</span>
+<span class="k">HAVING</span> <span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="k">class</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>
+   <span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="k">class</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">classes</span>
+   <span class="k">WHERE</span> <span class="n">displacement</span> <span class="o">&gt;</span> <span class="mi">5000</span>
+   <span class="p">);</span>
+
+<span class="c1">-- 관계대수 기반 풀이법</span>
+
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span> <span class="k">FROM</span> <span class="n">ships</span>
+<span class="k">WHERE</span> <span class="n">country</span> <span class="k">NOT</span> <span class="k">IN</span>
+
+   <span class="c1">-- 결격사유 대상 집합</span>
+   <span class="p">(</span>
+      <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span>
+      <span class="k">FROM</span> <span class="n">ships</span> <span class="k">CROSS</span> <span class="k">JOIN</span> <span class="n">classes</span>
+      <span class="k">WHERE</span> <span class="n">displacement</span> <span class="o">&gt;</span> <span class="mi">5000</span>
+      <span class="k">AND</span> <span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">classes</span><span class="p">.</span><span class="k">class</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span>
+
+         <span class="c1">-- 5000톤 이상 보유 현황</span>
+         <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">country</span><span class="p">,</span> <span class="k">class</span>
+         <span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">classes</span>
+         <span class="k">WHERE</span> <span class="n">displacement</span> <span class="o">&gt;</span> <span class="mi">5000</span>
+         <span class="p">)</span>
+   <span class="p">);</span>
+
+<span class="c1">-- (5) “대한민국”이 보유하고 있는 군함들의 이름들을 찾되 해당 군함들이 참전한 기록이 있다면 참전한 해전명을 함께 찾아라.</span>
+
+<span class="k">SELECT</span> <span class="n">s_name</span><span class="p">,</span> <span class="n">b_name</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">outcomes</span>
+<span class="k">WHERE</span> <span class="n">country</span><span class="o">=</span><span class="nv">"대한민국"</span><span class="p">;</span>
+
+<span class="c1">-- (6) 국가별 보유 군함의 수와 총배수량을 구하여라(aggregate function을 이용).</span>
+
+<span class="c1">-- (7) 다섯 번 이상 해전에 참전한 군함을 보유한 국가명을 찾아라.</span>
+<span class="k">SELECT</span> <span class="n">country</span><span class="p">,</span> <span class="n">s_name</span>
+<span class="k">FROM</span> <span class="n">ships</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">outcomes</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">country</span><span class="p">,</span> <span class="n">s_name</span>
+<span class="k">HAVING</span> <span class="k">count</span><span class="p">(</span><span class="n">b_name</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="c1">-- (8) “1945”에 발발한 해전에 참전한 군함의 이름과 취역 년도를 찾아라.</span>
+
+<span class="c1">-- (1) “한국호텔”의 “single_room”을 예약한 고객명(guest_name)을 찾아라.</span>
+
+<span class="c1">-- (2) 보유하고 있는 방들의 가격(price) 평균이 가장 큰 호텔명(hotel_name)을 찾아라.</span>
+<span class="k">SELECT</span> <span class="n">hotel_name</span><span class="p">,</span> <span class="k">AVG</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="k">as</span> <span class="n">price</span>
+<span class="k">FROM</span> <span class="n">hotel</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">room</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">hotel_id</span><span class="p">,</span> <span class="n">hotel_name</span>
+<span class="k">HAVING</span> <span class="n">price</span> <span class="o">&gt;=</span> <span class="k">ALL</span>
+<span class="p">(</span>
+   <span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="k">as</span> <span class="n">price</span>
+   <span class="k">FROM</span> <span class="n">hotel</span> <span class="k">NATURAL</span> <span class="k">JOIN</span> <span class="n">room</span>
+   <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">hotel_id</span><span class="p">,</span> <span class="n">hotel_name</span>
+<span class="p">);</span>
+<span class="c1">-- (3) 나이(age)가 50세 이상의 모든 고객의 이름(guest_name)을 찾되 해당 고객들 중 호텔 방을 예약한 이력이 있는 경우에는 예약한 호텔명(hotel_name)도 함께 찾아라.</span>
+
+<span class="k">SELECT</span> <span class="n">guest_name</span><span class="p">,</span> <span class="n">hotel_name</span>
+<span class="k">FROM</span> <span class="n">guest</span> <span class="k">NATURAL</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">booking</span> 
+           <span class="k">NATURAL</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">hotel</span> 
+<span class="k">WHERE</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">;</span>
+
+<span class="c1">-- (4) 호텔 방의 가격 중 가장 싼 가격(price)를 찾아라.</span>
+
+<span class="c1">-- (5) 고객이 거주하는 도시에 위치한 호텔을 예약한 고객의 이름(guest_name)을 찾아라.</span>
+
+<span class="c1">-- (6) “홍길동” 고객에 의해 예약된 호텔명(hotel_name)들을 찾아라.</span>
+
+<span class="c1">-- (7) 호텔별 가장 비싼 방의 가격들 중 가장 비싼 방의 가격을 구하여라.</span>
+
+<span class="c1">-- (8) London에 위치하는 모든 호텔에 방을 예약한 고객이름(guest_name)을 찾아라.</span>
+</code></pre></div></div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname  = 'COSE371';
+    var disqus_identifier = '/assignment2';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+:ET
